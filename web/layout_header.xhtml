@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+    <body>
+        <ui:composition>
+            <b:navBar brand="Home" brandHref="index.xhtml">
+                <b:navbarLinks pull="left">
+                    <b:navLink value="Principal" href="index.xhtml"></b:navLink>
+                    <b:dropMenu value="Consulta">
+                        <b:navLink value="Condomino" href="consulta_condomino.xhtml"></b:navLink>
+                        <b:navLink value="Usuário" href="cadastro_condomino.xhtml"></b:navLink>
+                        <b:navLink value="Ocorrências" href="#"></b:navLink>
+                        <b:navLink value="Solicitação" href="#"></b:navLink>                    
+                        <b:navLink value="Despesa" href="#"></b:navLink>                    
+                    </b:dropMenu>
+                    <b:dropMenu value="Documentos">
+                        <b:navLink value="Gerar Boleto" href="#"></b:navLink>
+                        <b:navLink value="Relatório" href="#"></b:navLink>                  
+                    </b:dropMenu>
+                </b:navbarLinks>
+                <b:navbarLinks pull="right">
+                    <b:navLink value="Equipe" href="equipe.xhtml"></b:navLink>
+                    <b:navLink value="Sair" href="login.xhtml"></b:navLink>                
+                </b:navbarLinks>
+            </b:navBar>    
+        </ui:composition>
+    </body>
+</html>
