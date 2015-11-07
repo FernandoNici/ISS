@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+  <h:head>
+    <title>Cadastro Apartamento</title>
+  </h:head>
+  <h:body>
+    <ui:composition template="layout_padrao.xhtml">  
+      <ui:define name="content">
+        <center>
+          <h:form>
+            <h:panelGrid columns="2">
+              Bloco:       <h:inputText id="blocoAP"        value="#{apartamentoController.apartamento.bloco}"></h:inputText>    
+              Numero:      <h:inputText id="numeroAP"       value="#{apartamentoController.apartamento.numero}"></h:inputText> 
+              <!--Condomino:   <h:inputText id="condominoAP"    value="#{apartamentoController.apartamento.condomino}"></h:inputText>-->    
+              <!--Data entrada:<h:inputText id="dataentradaAP"  value="#{apartamentoController.apartamento.dataentrada}"></h:inputText>-->  
+              Condômino:   
+              <h:selectOneMenu id="condominoAP" value="#{apartamentoController.apartamento.condomino}" converter="br.com.condominio.utils.CondominoConverter">
+                <!--<f:selectItem itemLabel="#{msgsCore['']}" itemValue="#{null}"></f:selectItem>-->
+                <!--<f:selectItem itemValue="#{null}" itemLabel="Selecione um condômino"/>-->   
+                <f:selectItems value="#{condominoController.listaCondominos()}" var="condominosLista"
+                               itemValue="#{condominosLista}" itemLabel="#{condominosLista.nome}"></f:selectItems>
+              </h:selectOneMenu>                          
+              Data entrada:
+              <b:datepicker id="dataEntrada" value="#{apartamentoController.apartamento.dataentrada}" changeMonth="true" changeYear="true" 
+                            mode="popup-icon" placeholder="Clique aqui!">
+                <f:convertDateTime pattern="dd/MM/yy"/>
+              </b:datepicker>
+
+              <h:inputHidden></h:inputHidden>
+              <h:commandButton value="Salvar" action="#{apartamentoController.adicionarApartamento()}"></h:commandButton> 
+            </h:panelGrid>    
+          </h:form>
+        </center>
+      </ui:define>
+    </ui:composition>  
+  </h:body>
+</html>
+
