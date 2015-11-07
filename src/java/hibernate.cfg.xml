@@ -11,5 +11,6 @@
     <mapping class="br.com.condominio.model.Condomino"/>
     <mapping class="br.com.condominio.model.Usuario"/>
     <mapping class="br.com.condominio.model.Apartamento"/>
+    <mapping class="br.com.condominio.model.Condominio"/>
   </session-factory>
 </hibernate-configuration>
