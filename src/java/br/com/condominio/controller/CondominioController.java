@@ -2,6 +2,7 @@ package br.com.condominio.controller;
 
 import br.com.condominio.model.Condominio;
 import br.com.condominio.model.CondominioDAO;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -36,17 +37,13 @@ public class CondominioController {
         return this.lista;
     }
     public String novoCondominio(){
-        /*
-        condominio.setId(null);
         condominio.setNome(null);
-        condominio.setSobreNome(null);        
-        condominio.setTelefone(null);
-        condominio.setSenha(null);
-        condominio.setLogin(null);
-        condominio.setCPF(null);
-        condominio.setRG(null);
-        condominio.setApartamento(null);
- */
+        condominio.setAndares(0);        
+        condominio.setAptosPorAndar(0);
+        condominio.setBairro(null);
+        condominio.setCep(null);
+        condominio.setMunicipio(null);
+        condominio.setSindico(null);
         return "cadastro_condominio";
     }
     

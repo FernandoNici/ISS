@@ -3,6 +3,7 @@ package br.com.condominio.model;
 import br.com.condominio.utils.HibernateUtil;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;

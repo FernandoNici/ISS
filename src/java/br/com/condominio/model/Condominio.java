@@ -1,13 +1,16 @@
 package br.com.condominio.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table (name="CONDOMINIO")
-@PrimaryKeyJoinColumn(name="id")
-public class Condominio extends Usuario{
+public class Condominio implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String nome;
     private int andares;
     private int aptosPorAndar;
@@ -31,8 +34,7 @@ public class Condominio extends Usuario{
     public Condominio() {
         super();
     }
-
-    
+   
     
     public String getNome() {
         return nome;
