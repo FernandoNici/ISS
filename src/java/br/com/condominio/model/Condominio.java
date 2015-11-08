@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "CONDOMINIO")
 public class Condominio implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,8 +36,15 @@ public class Condominio implements Serializable{
     public Condominio() {
         super();
     }
-   
-    
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+       
     public String getNome() {
         return nome;
     }
