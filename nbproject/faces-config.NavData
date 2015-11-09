@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="layout_header.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="index.xhtml" x="415" y="182" zoom="true"/>
+        <Node id="equipe.xhtml" x="419" y="222" zoom="true"/>
+        <Node id="layout_padrao.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="consulta_apartamento.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="layout_content.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="cadastro_condomino.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="layout_footer.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="cadastro_apartamento.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="cadastro_condominio.xhtml" x="141" y="60" zoom="true"/>
+        <Node id="consulta_condominio.xhtml" x="142" y="204" zoom="false"/>
+        <Node id="consulta_condomino.xhtml" x="141" y="18" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

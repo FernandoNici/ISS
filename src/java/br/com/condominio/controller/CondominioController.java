@@ -13,27 +13,40 @@ public class CondominioController {
     private Condominio condominio = new Condominio();
     private CondominioDAO condominioDAO = new CondominioDAO();
     public String filtro;
+    public String ativo;
     private List<Condominio> lista;
     
     public CondominioController() {
-        setFiltro("");
+        setFiltro("");        
+        setAtivo("true");
     }
 
-    public String AdicionarCondominio(){
-        condominioDAO.salvar(condominio);
-        return "consulta_condominio";
+    public String getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(String ativo) {
+        this.ativo = ativo;
+    }
+    
+    public String manutencaoCondomino(){
+        System.out.println(condominio);
+        if(condominio.getId()==0) condominioDAO.salvar(condominio);
+        else condominioDAO.atualizar(condominio);
+        return "consulta_condominio?faces-redirect=true";
     }
     public String RemoverCondominio(){
         condominioDAO.deletar(condominio);
-        return "consulta_condominio";
+        return "consulta_condominio?faces-redirect=true";
     }
+    
     public String EditaCondominio(){
         condominioDAO.atualizar(condominio);
-        return "consulta_condominio";
+        return "consulta_condominio?faces-redirect=true";
     }
     
     public List<Condominio> listaCondominios(){
-        lista = condominioDAO.getLista(filtro);
+        lista = condominioDAO.getLista(filtro,ativo);
         return this.lista;
     }
     public String novoCondominio(){
@@ -44,7 +57,7 @@ public class CondominioController {
         condominio.setCep(null);
         condominio.setMunicipio(null);
         condominio.setSindico(null);
-        return "cadastro_condominio";
+        return "cadastro_condominio?faces-redirect=true";
     }
     
      public String carregarEntidade(Condominio condominio){
@@ -53,7 +66,7 @@ public class CondominioController {
     }
      public String excluirEntidade(Condominio condominio){
         condominioDAO.deletar(condominio);
-        return "consulta_condominio";
+        return "consulta_condominio?faces-redirect=true";
     }
      
     public Condominio getCondominio() {

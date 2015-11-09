@@ -21,6 +21,7 @@ public class Condominio implements Serializable{
     private String endereco;
     private String bairro;
     private String sindico;
+    private boolean ativo;
 
     public Condominio(String nome, int andares, int aptosPorAndar, String cep, String Municipio, String endereco, String bairro, String sindico) {
         this.nome = nome;
@@ -31,10 +32,12 @@ public class Condominio implements Serializable{
         this.endereco = endereco;
         this.bairro = bairro;
         this.sindico = sindico;
+        this.ativo = true;
     }
 
     public Condominio() {
         super();
+        this.ativo = true;
     }
 
     public long getId() {
@@ -109,13 +112,17 @@ public class Condominio implements Serializable{
         this.sindico = sindico;
     }
 
-    
-    
-    
+    public boolean isAtivo() {
+        return ativo;
+    }
 
-    
-    
-    
-    
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    @Override
+    public String toString() {
+        return "Condominio{" + "id=" + id + ", nome=" + nome + ", andares=" + andares + ", aptosPorAndar=" + aptosPorAndar + ", cep=" + cep + ", Municipio=" + Municipio + ", endereco=" + endereco + ", bairro=" + bairro + ", sindico=" + sindico + ", ativo=" + ativo + '}';
+    }
     
 }

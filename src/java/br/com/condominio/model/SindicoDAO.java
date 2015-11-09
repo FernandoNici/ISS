@@ -9,21 +9,21 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-public class CondominioDAO {
+public class SindicoDAO {
     private Session sessao;
     private Transaction transacao;
-    private List<Condominio> lista;
+    private List<Sindico> lista;
 
-    public CondominioDAO() {
+    public SindicoDAO() {
         super();
     }
             
-    public void salvar(Condominio cond){
+    public void salvar(Sindico sindico){
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
         
-            sessao.save( cond );
+            sessao.save( sindico );
             transacao.commit();
         }catch(Exception e){
             e.printStackTrace();
@@ -31,12 +31,12 @@ public class CondominioDAO {
         finally{ sessao.close();}
     }
 
-    public void deletar(Condominio cond){
+    public void deletar(Sindico sindico){
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
-            cond.setAtivo(false);
-            sessao.update( cond );
+            sindico.setAtivo(false);
+            sessao.update( sindico );
             transacao.commit();
         }catch(Exception e){
             e.printStackTrace();
@@ -44,12 +44,12 @@ public class CondominioDAO {
         finally{ sessao.close(); }
     }
     
-    public void atualizar(Condominio cond){
+    public void atualizar(Sindico sindico){
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
         
-            sessao.update( cond );
+            sessao.update( sindico );
             transacao.commit();
         }catch(Exception e){
             e.printStackTrace();
@@ -57,11 +57,11 @@ public class CondominioDAO {
         finally{ sessao.close();}
     }
 
-    public List<Condominio> getLista(String filtro,String ativ) {
+    public List<Sindico> getLista(String filtro,String ativ) {
         Criterion filtroNome;
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
-        Criteria criteria = sessao.createCriteria(Condominio.class);
+        Criteria criteria = sessao.createCriteria(Sindico.class);
         filtroNome = Restrictions.like("nome","%"+filtro+"%");
         criteria.add(filtroNome);
         ativ = ativ.toLowerCase();
@@ -70,3 +70,4 @@ public class CondominioDAO {
         return lista;
     }
 }
+

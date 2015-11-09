@@ -17,6 +17,7 @@
                 <style>
                     h1 {font-weight:bold;}
                     p       {margin:0px;margin-top:6px;}
+                    label {width:70px; text-align:right; padding-right:4px;}
                     .filtro {width:200px;}
                     .button {width:auto;padding:2px;}
                     .novo   {display: block;}
@@ -29,7 +30,11 @@
                 <h:form>
                     <b:container>
                         <h1>Consulta de Condomínio</h1> 
-                        <p><h:inputText id="filtro" value="#{condominioController.filtro}" styleClass="filtro"/> &nbsp; <h:commandButton value="Filtrar" styleClass="button"/></p>
+                        <p><label>Nome:</label> 
+                            <h:inputText id="filtro" value="#{condominioController.filtro}" styleClass="filtro"/> &nbsp; 
+                            <label>Situação:</label> 
+                            <h:selectOneMenu value="#{condominioController.ativo}" > <f:selectItem itemLabel="Ativo" itemValue="true" /><f:selectItem itemLabel="Inativo" itemValue="false" /><f:selectItem itemLabel="Ambos" itemValue="Ambos"/></h:selectOneMenu>  &nbsp; <h:commandButton value="Filtrar" styleClass="button"/>
+                        </p>
                         <p><h:commandButton value="+ Novo" styleClass="button novo" action="#{condominioController.novoCondominio()}" /></p>
                         
                         <h:dataTable value="#{condominioController.listaCondominios()}" var="condominio" styleClass="tabela" headerClass="header" rowClasses="rowAntes,rowDepois" >
