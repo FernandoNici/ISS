@@ -14,26 +14,34 @@
         <center>
           <h:form>
             <h:panelGrid columns="2">
-              Bloco:       <h:inputText id="blocoAP"        value="#{apartamentoController.apartamento.bloco}"></h:inputText>    
-              Numero:      <h:inputText id="numeroAP"       value="#{apartamentoController.apartamento.numero}"></h:inputText> 
-              <!--Condomino:   <h:inputText id="condominoAP"    value="#{apartamentoController.apartamento.condomino}"></h:inputText>-->    
-              <!--Data entrada:<h:inputText id="dataentradaAP"  value="#{apartamentoController.apartamento.dataentrada}"></h:inputText>-->  
-              Condômino:   
-              <h:selectOneMenu id="condominoAP" value="#{apartamentoController.apartamento.condomino}" converter="br.com.condominio.utils.CondominoConverter">
-                <!--<f:selectItem itemLabel="#{msgsCore['']}" itemValue="#{null}"></f:selectItem>-->
-                <!--<f:selectItem itemValue="#{null}" itemLabel="Selecione um condômino"/>-->   
-                <f:selectItems value="#{condominoController.listaCondominos()}" var="condominosLista"
-                               itemValue="#{condominosLista}" itemLabel="#{condominosLista.nome}"></f:selectItems>
-              </h:selectOneMenu>                          
-              Data entrada:
-              <b:datepicker id="dataEntrada" value="#{apartamentoController.apartamento.dataentrada}" changeMonth="true" changeYear="true" 
-                            mode="popup-icon" placeholder="Clique aqui!">
-                <f:convertDateTime pattern="dd/MM/yy"/>
-              </b:datepicker>
-
-              <h:inputHidden></h:inputHidden>
-              <h:commandButton value="Salvar" action="#{apartamentoController.adicionarApartamento()}"></h:commandButton> 
-            </h:panelGrid>    
+              Bloco: &nbsp;   
+              <h:inputText  id="bloco"        
+                            value="#{apartamentoController.apartamento.bloco}" 
+                            required="true" maxlength="9" 
+                            requiredMessage="Campo Bloco obrigatório">
+              </h:inputText>    
+              Número: &nbsp;  
+              <h:inputText  id="numero"       
+                            value="#{apartamentoController.apartamento.numero}" 
+                            required="true" 
+                            maxlength="10" 
+                            requiredMessage="Campo Número obrigatório">
+              </h:inputText> 
+              Cadastro: &nbsp;
+              <h:outputText id="dataCadastro" 
+                            value="#{apartamentoController.apartamento.dataCadastro}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+              </h:outputText>
+            </h:panelGrid>
+            <h:inputHidden></h:inputHidden>
+            <h:commandButton value="Salvar" 
+                             action="#{apartamentoController.manutencaoApartamento()}"
+                             styleClass="btn input" >
+            </h:commandButton> 
+            <h:commandButton value="Cancelar" 
+                             action="consulta_apartamento?faces-redirect=true" 
+                             styleClass="btn input" 
+                             immediate="true"/> 
           </h:form>
         </center>
       </ui:define>

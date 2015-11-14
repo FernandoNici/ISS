@@ -1,6 +1,7 @@
 package br.com.condominio.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,16 +16,21 @@ import javax.persistence.TemporalType;
  * @author Massao
  */
 @Entity
-public class Apartamento implements Serializable{
+public class Apartamento implements Serializable {
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   private String bloco;
   private String numero;
-  @OneToOne
-  private Condomino condomino;
   @Temporal(TemporalType.DATE)
-  private Date dataentrada;
+  private Date dataCadastro;
+  private boolean ativo;
+
+  public Apartamento() {
+    setDataCadastro(Calendar.getInstance().getTime());
+    setAtivo(true);
+  }
 
   public long getId() {
     return id;
@@ -50,19 +56,24 @@ public class Apartamento implements Serializable{
     this.numero = numero;
   }
 
-  public Condomino getCondomino() {
-    return condomino;
+  public Date getDataCadastro() {
+    return dataCadastro;
   }
 
-  public void setCondomino(Condomino condomino) {
-    this.condomino = condomino;
+  public void setDataCadastro(Date dataCadastro) {
+    this.dataCadastro = dataCadastro;
   }
 
-  public Date getDataentrada() {
-    return dataentrada;
+  public boolean isAtivo() {
+    return ativo;
   }
 
-  public void setDataentrada(Date dataentrada) {
-    this.dataentrada = dataentrada;
+  public void setAtivo(boolean ativo) {
+    this.ativo = ativo;
+  }
+
+  @Override
+  public String toString() {
+    return "Apartamento{" + "id=" + id + ", bloco=" + bloco + ", numero=" + numero + ", dataCadastro=" + dataCadastro + ", ativo=" + ativo + '}';
   }
 }

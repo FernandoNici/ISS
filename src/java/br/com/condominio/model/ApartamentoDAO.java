@@ -41,8 +41,8 @@ public class ApartamentoDAO {
     try {
       sessao = HibernateUtil.getSessionFactory().openSession();
       transacao = sessao.beginTransaction();
-
-      sessao.delete(ap);
+      ap.setAtivo(false);
+      sessao.update(ap);
       transacao.commit();
     } catch (Exception e) {
       e.printStackTrace();
@@ -74,6 +74,7 @@ public class ApartamentoDAO {
     Criteria criteria = sessao.createCriteria(Apartamento.class);
     filtroNome = Restrictions.like("numero", filtro + "%");
     criteria.add(filtroNome);
+    criteria.add(Restrictions.eq("ativo", true));
     this.lista = criteria.list();
     return this.lista;
   }

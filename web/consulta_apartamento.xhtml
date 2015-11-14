@@ -41,7 +41,7 @@
         </style>       
         <h:form>
           <b:container>
-            <h1><b>Consulta de Condômino</b></h1> 
+            <h1><b>Consulta de Apartamento</b></h1> 
             <br/>
             <h:inputText id="filtro" value="#{apartamentoController.filtro}" styleClass="input"/>
             <h:commandButton value="Filtrar" styleClass="button"/>
@@ -72,15 +72,11 @@
               </h:column>
               <h:column>
                 <f:facet name="header">
-                  Condômino
+                  Data cadastro
                 </f:facet>
-                <h:outputText value="#{apartamento.condomino}" converter="br.com.condominio.utils.CondominoConverter"/>
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  Data entrada
-                </f:facet>
-                <h:outputText value="#{apartamento.dataentrada}"/>
+                <h:outputText value="#{apartamento.dataCadastro}">                  
+                  <f:convertDateTime pattern="dd/MM/yyyy"/>
+                </h:outputText>
               </h:column>
               <h:column>
                 <f:facet name="header">
@@ -90,12 +86,12 @@
                   <b:column span="1">                                        
                   </b:column>
                   <b:column span="4">
-                    <h:commandButton value="Editar" action="#{apartamentoController.carregarEntidade(condomino)}" styleClass="input"/>
+                    <h:commandButton value="Editar" action="#{apartamentoController.carregarEntidade(apartamento)}" styleClass="input"/>
                   </b:column>
                   <b:column span="1">                                        
                   </b:column>
                   <b:column span="4">
-                    <h:commandButton value="Remover" action="#{apartamentoController.removerEntidade(condomino)}" styleClass="input"/>
+                    <h:commandButton value="Remover" action="#{apartamentoController.removerEntidade(apartamento)}" styleClass="input"/>
                   </b:column>
                   <b:column span="1">                                        
                   </b:column>
