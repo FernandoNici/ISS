@@ -8,6 +8,7 @@ package br.com.condominio.controller;
 import br.com.condominio.model.Condomino;
 import br.com.condominio.model.CondominoDAO;
 import java.util.List;
+import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -30,8 +31,17 @@ public class CondominoController {
 
     public String AdicionarCondomino(){
         condominoDAO.salvar(condomino);
-        return "consulta_condomino";
+        return "consulta_condomino?faces-redirect=true";
     }
+    
+    public String ConfirmarCondomino(){
+        lista = listaCondominos();
+        if (lista.contains(condomino)) {
+            return EditaCondomino();
+        }
+        return AdicionarCondomino();
+    }
+    
     public String RemoverCondomino(){
         condominoDAO.deletar(condomino);
         return "consulta_condomino";
@@ -79,7 +89,7 @@ public class CondominoController {
     public String getFiltro() {
         return filtro;
     }
-
+    
     public void setFiltro(String filtro) {
         this.filtro = filtro;
     }

@@ -24,8 +24,9 @@ public class CondominoDAO {
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
-        
+            
             sessao.save( c );
+            
             transacao.commit();
         }catch(Exception e){
             e.printStackTrace();
