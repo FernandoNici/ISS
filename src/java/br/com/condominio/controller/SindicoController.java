@@ -3,6 +3,7 @@ package br.com.condominio.controller;
 import br.com.condominio.model.Sindico;
 import br.com.condominio.model.SindicoDAO;
 import java.util.List;
+import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -94,4 +95,45 @@ public class SindicoController {
     public void setFiltro(String filtro) {
         this.filtro = filtro;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 19 * hash + Objects.hashCode(this.sindico);
+        hash = 19 * hash + Objects.hashCode(this.sindicoDAO);
+        hash = 19 * hash + Objects.hashCode(this.filtro);
+        hash = 19 * hash + Objects.hashCode(this.ativo);
+        hash = 19 * hash + Objects.hashCode(this.lista);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SindicoController other = (SindicoController) obj;
+        if (!Objects.equals(this.sindico, other.sindico)) {
+            return false;
+        }
+        if (!Objects.equals(this.sindicoDAO, other.sindicoDAO)) {
+            return false;
+        }
+        if (!Objects.equals(this.filtro, other.filtro)) {
+            return false;
+        }
+        if (!Objects.equals(this.ativo, other.ativo)) {
+            return false;
+        }
+        if (!Objects.equals(this.lista, other.lista)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
 }

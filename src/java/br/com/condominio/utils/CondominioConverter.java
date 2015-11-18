@@ -15,13 +15,18 @@ public class CondominioConverter implements Converter {
   private CondominioDAO condominioDAO = new CondominioDAO();
   private List<Condominio> listaCondominios = condominioDAO.getLista("","true");
   private Condominio condominio = new Condominio();
+  private Long id;
 
   @Override
   public Object getAsObject(FacesContext context, UIComponent component, String nome) {
      
     for (Condominio cond : listaCondominios) {
-      if (cond.getNome().contains(nome))
-          return cond;
+        id = cond.getId();
+        
+        if(id.toString().contains(nome)){
+            System.out.println(cond);
+            return cond;
+        }
     }
     
     FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro na conversão", "Condomino inexistente na lista");
@@ -32,8 +37,10 @@ public class CondominioConverter implements Converter {
   public String getAsString(FacesContext context, UIComponent component, Object value) {
     if (value instanceof Condominio && value != null) {
       condominio = (Condominio) value;
-      return condominio.getNome();
+      id = condominio.getId();
+      return id.toString();
     }
+    
     return null;
   }
 

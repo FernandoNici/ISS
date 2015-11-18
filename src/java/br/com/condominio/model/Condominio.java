@@ -1,6 +1,7 @@
 package br.com.condominio.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -128,5 +129,62 @@ public class Condominio implements Serializable{
     public String toString() {
         return "Condominio{" + "id=" + id + ", nome=" + nome + ", andares=" + andares + ", aptosPorAndar=" + aptosPorAndar + ", cep=" + cep + ", Municipio=" + Municipio + ", endereco=" + endereco + ", bairro=" + bairro + ", sindico=" + sindico + ", ativo=" + ativo + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 71 * hash + Objects.hashCode(this.nome);
+        hash = 71 * hash + this.andares;
+        hash = 71 * hash + this.aptosPorAndar;
+        hash = 71 * hash + Objects.hashCode(this.cep);
+        hash = 71 * hash + Objects.hashCode(this.Municipio);
+        hash = 71 * hash + Objects.hashCode(this.endereco);
+        hash = 71 * hash + Objects.hashCode(this.bairro);
+        hash = 71 * hash + Objects.hashCode(this.sindico);
+        hash = 71 * hash + (this.ativo ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Condominio other = (Condominio) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (this.andares != other.andares) {
+            return false;
+        }
+        if (this.aptosPorAndar != other.aptosPorAndar) {
+            return false;
+        }
+        if (!Objects.equals(this.cep, other.cep)) {
+            return false;
+        }
+        if (!Objects.equals(this.Municipio, other.Municipio)) {
+            return false;
+        }
+        if (!Objects.equals(this.endereco, other.endereco)) {
+            return false;
+        }
+        if (!Objects.equals(this.bairro, other.bairro)) {
+            return false;
+        }
+        if (!Objects.equals(this.sindico, other.sindico)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
 }

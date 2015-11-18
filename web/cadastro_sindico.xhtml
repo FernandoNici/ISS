@@ -31,11 +31,13 @@
                     <p><label>Bairro:</label>           <h:inputText id="bairrosindico" value="#{sindicoController.sindico.bairro}"/></p>
                     
                     <p><label>Condominio:</label>
-                        <h:selectOneMenu id="condominioAP" value="#{sindicoController.sindico.condominio}">
-
+                        <h:selectOneMenu id="condominioSel" value="#{sindicoController.sindico.condominio}">
+                            
 
                             <f:selectItems value="#{condominioController.listaCondominios()}" var="condominio"
-                                           itemValue="#{condominio.nome}" itemLabel="#{condominio.nome}"></f:selectItems>
+                                           
+                                           itemValue="#{condominio}" itemLabel="#{condominio.nome}" >
+                            </f:selectItems>
                                            
                             <f:converter converterId="CondominioConverter"/>
                         </h:selectOneMenu>

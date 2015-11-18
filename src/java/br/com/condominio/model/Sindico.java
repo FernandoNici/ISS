@@ -1,6 +1,8 @@
 package br.com.condominio.model;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -12,7 +14,7 @@ import javax.persistence.TemporalType;
 @Table(name = "SINDICO")
 @PrimaryKeyJoinColumn(name="id")
 
-public class Sindico extends Usuario{
+public class Sindico extends Usuario implements Serializable{
     private String nome;
     @Temporal(TemporalType.DATE)
     private Date dataNasc;
@@ -138,6 +140,73 @@ public class Sindico extends Usuario{
     public String toString() {
         return "Sindico{" + "nome=" + nome + ", dataNasc=" + dataNasc + ", telefone=" + telefone + ", celular=" + celular + ", rg=" + rg + ", cep=" + cep + ", cpf=" + cpf + ", Municipio=" + Municipio + ", endereco=" + endereco + ", bairro=" + bairro + ", ativo=" + ativo + ", condominio=" + condominio + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.dataNasc);
+        hash = 97 * hash + Objects.hashCode(this.telefone);
+        hash = 97 * hash + Objects.hashCode(this.celular);
+        hash = 97 * hash + Objects.hashCode(this.rg);
+        hash = 97 * hash + Objects.hashCode(this.cep);
+        hash = 97 * hash + Objects.hashCode(this.cpf);
+        hash = 97 * hash + Objects.hashCode(this.Municipio);
+        hash = 97 * hash + Objects.hashCode(this.endereco);
+        hash = 97 * hash + Objects.hashCode(this.bairro);
+        hash = 97 * hash + (this.ativo ? 1 : 0);
+        hash = 97 * hash + Objects.hashCode(this.condominio);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Sindico other = (Sindico) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataNasc, other.dataNasc)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefone, other.telefone)) {
+            return false;
+        }
+        if (!Objects.equals(this.celular, other.celular)) {
+            return false;
+        }
+        if (!Objects.equals(this.rg, other.rg)) {
+            return false;
+        }
+        if (!Objects.equals(this.cep, other.cep)) {
+            return false;
+        }
+        if (!Objects.equals(this.cpf, other.cpf)) {
+            return false;
+        }
+        if (!Objects.equals(this.Municipio, other.Municipio)) {
+            return false;
+        }
+        if (!Objects.equals(this.endereco, other.endereco)) {
+            return false;
+        }
+        if (!Objects.equals(this.bairro, other.bairro)) {
+            return false;
+        }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
+        if (!Objects.equals(this.condominio, other.condominio)) {
+            return false;
+        }
+        return true;
+    }
+    
     
     
     
