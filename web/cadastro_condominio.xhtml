@@ -18,13 +18,13 @@
                 <h:form>
                     <h:inputHidden id="idCond" value="#{condominioController.condominio.id}"></h:inputHidden>
                     <p><label>Nome:</label>             <h:inputText id="nomeCond"          value="#{condominioController.condominio.nome}"/></p>
-                    <p><label>Qtd Andares:</label>      <h:inputText id="qtdandCond"        value="#{condominioController.condominio.andares}" > <f:convertNumber integerOnly="true"/></h:inputText></p>
-                    <p><label>Qtd Aptos /Andar:</label> <h:inputText id="qtdAptosAndarCond" value="#{condominioController.condominio.aptosPorAndar}" > <f:convertNumber  integerOnly="true"/></h:inputText></p>
-                    <p><label>CEP:</label>              <h:inputText id="cepCond"           value="#{condominioController.condominio.cep}"><f:convertNumber integerOnly="true"/></h:inputText></p>
-                    <p><label>Município:</label>        <h:inputText id="municipioCond"     value="#{condominioController.condominio.municipio}"/></p>
-                    <p><label>Endereço:</label>         <h:inputText id="enderecoCond"      value="#{condominioController.condominio.endereco}"/></p>
+                    <p><label>Qtd Andares:</label>      <h:inputText id="qtdandCond"        value="#{condominioController.condominio.andares}"/>
+                       <label>Qtd Aptos /Andar:</label> <h:inputText id="qtdAptosAndarCond" value="#{condominioController.condominio.aptosPorAndar}"/></p>
+                    <p><label>CEP:</label>              <h:inputText id="cepCond"           value="#{condominioController.condominio.cep}"/></p>
+                    <p><label>Município:</label>        <h:inputText id="municipioCond"     value="#{condominioController.condominio.municipio}"/>
+                       <label>Endereço:</label>         <h:inputText id="enderecoCond"      value="#{condominioController.condominio.endereco}"/></p>
                     <p><label>Bairro:</label>           <h:inputText id="bairroCond"        value="#{condominioController.condominio.bairro}"/></p>
-                    <p><label>Síndico:</label>          <h:inputText id="sindicoCond"       value="#{condominioController.condominio.sindico}"/></p>
+                    <!--p><label>Síndico:</label>          <h:inputText id="sindicoCond"       value="#{condominioController.condominio.sindico}"/></p-->
                     <p><label>&nbsp;</label><h:commandButton value="Salvar" action="#{condominioController.manutencaoCondomino}"></h:commandButton> </p>
                 </h:form>
                 

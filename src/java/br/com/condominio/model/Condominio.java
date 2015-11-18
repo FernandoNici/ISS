@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,10 +21,13 @@ public class Condominio implements Serializable{
     private String Municipio;
     private String endereco;
     private String bairro;
-    private String sindico;
+    
+    @OneToOne
+    private Sindico sindico;
+    
     private boolean ativo;
 
-    public Condominio(String nome, int andares, int aptosPorAndar, String cep, String Municipio, String endereco, String bairro, String sindico) {
+    public Condominio(String nome, int andares, int aptosPorAndar, String cep, String Municipio, String endereco, String bairro, Sindico sindico) {
         this.nome = nome;
         this.andares = andares;
         this.aptosPorAndar = aptosPorAndar;
@@ -104,11 +108,11 @@ public class Condominio implements Serializable{
         this.bairro = bairro;
     }
 
-    public String getSindico() {
+    public Sindico getSindico() {
         return sindico;
     }
 
-    public void setSindico(String sindico) {
+    public void setSindico(Sindico sindico) {
         this.sindico = sindico;
     }
 

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Manutenção Condomíno</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="layout_padrao.xhtml">  
+            <ui:define name="content">
+                <style>
+                    label {width:160px; text-align:right; padding-right:4px;}
+                    p     {margin-top:6px;}
+                </style>
+                <h:form>
+                    <h:inputHidden id="idCond" value="#{sindicoController.sindico.id}"></h:inputHidden>
+                    <p><label>Nome:</label>             <h:inputText id="nomesindico"   value="#{sindicoController.sindico.nome}"/>
+                        <!--label>Nascimento</label>           <h:inputText id="nascsindico"   value="#{sindicoController.sindico.dataNasc}"/-->
+                    
+                    </p>
+                    <p><label>Telefone:</label>         <h:inputText id="telsindico"    value="#{sindicoController.sindico.telefone}" />
+                        <label>Celular:</label>             <h:inputText id="celsindico"    value="#{sindicoController.sindico.celular}"/></p>
+                    <p><label>RG</label>                <h:inputText id="rgsindico"     value="#{sindicoController.sindico.rg}"/>
+                        <label>CPF</label>                  <h:inputText id="cpfsindico"    value="#{sindicoController.sindico.cpf}"/></p>
+                    <p><label>CEP:</label>              <h:inputText id="cepsindico"    value="#{sindicoController.sindico.cep}"/></p>
+                    <p><label>Município:</label>        <h:inputText id="munsindico"    value="#{sindicoController.sindico.municipio}"/>
+                        <label>Endereço:</label>            <h:inputText id="endsindico"    value="#{sindicoController.sindico.endereco}"/></p>
+                    <p><label>Bairro:</label>           <h:inputText id="bairrosindico" value="#{sindicoController.sindico.bairro}"/></p>
+                    
+                    <p><label>Condominio:</label>
+                        <h:selectOneMenu id="condominioAP" value="#{sindicoController.sindico.condominio}">
+
+
+                            <f:selectItems value="#{condominioController.listaCondominios()}" var="condominio"
+                                           itemValue="#{condominio.nome}" itemLabel="#{condominio.nome}"></f:selectItems>
+                                           
+                            <f:converter converterId="CondominioConverter"/>
+                        </h:selectOneMenu>
+                        
+                        
+                        <!--h:selectOneMenu      
+                            value="#{sindicoController.sindico.condominio}" id="condominioAP"  
+                            >  
+                            <f:selectItem itemLabel="Selecione" itemValue="" />  
+                            <f:selectItems value="#{condominioController.listaCondominios()}" var="condominiosLista"  
+                                itemLabel="#{condominiosLista.nome}" itemValue="#{condominiosLista}" />  
+                            <f:ajax render="condominioAP" execute="@this" />  
+                        </h:selectOneMenu-->  
+                        
+                        
+                        
+                        
+                        
+                    </p>
+                    
+                    
+                    <p><label>&nbsp;</label><h:commandButton value="Salvar" action="#{sindicoController.manutencaoSindico}"></h:commandButton> </p>
+                </h:form>
+                
+            </ui:define>
+        </ui:composition>               
+    </h:body>
+</html>
+
+

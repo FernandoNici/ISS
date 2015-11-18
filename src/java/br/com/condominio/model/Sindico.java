@@ -2,6 +2,7 @@ package br.com.condominio.model;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -10,6 +11,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "SINDICO")
 @PrimaryKeyJoinColumn(name="id")
+
 public class Sindico extends Usuario{
     private String nome;
     @Temporal(TemporalType.DATE)
@@ -18,10 +20,39 @@ public class Sindico extends Usuario{
     private String celular;
     private String rg;
     private String cep;
+    private String cpf;
     private String Municipio;
     private String endereco;
     private String bairro;
     private boolean ativo;
+    
+    @OneToOne
+    private Condominio condominio;
+
+    public String getCpf() {
+        return cpf;
+    }
+ 
+    public Condominio getCondominio() {
+        return condominio;
+    }
+
+    public void setCondominio(Condominio condominio) {
+        this.condominio = condominio;
+    }
+    
+    
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Condominio getCondomino() {
+        return condominio;
+    }
+
+    public void setCondomino(Condominio condominio) {
+        this.condominio = condominio;
+    }
 
     public boolean isAtivo() {
         return ativo;
@@ -102,5 +133,12 @@ public class Sindico extends Usuario{
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
+
+    @Override
+    public String toString() {
+        return "Sindico{" + "nome=" + nome + ", dataNasc=" + dataNasc + ", telefone=" + telefone + ", celular=" + celular + ", rg=" + rg + ", cep=" + cep + ", cpf=" + cpf + ", Municipio=" + Municipio + ", endereco=" + endereco + ", bairro=" + bairro + ", ativo=" + ativo + ", condominio=" + condominio + '}';
+    }
+    
+    
     
 }

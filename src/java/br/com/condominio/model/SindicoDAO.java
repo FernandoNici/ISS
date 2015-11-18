@@ -64,8 +64,8 @@ public class SindicoDAO {
         Criteria criteria = sessao.createCriteria(Sindico.class);
         filtroNome = Restrictions.like("nome","%"+filtro+"%");
         criteria.add(filtroNome);
-        ativ = ativ.toLowerCase();
-        if(!ativ.contains("ambos")) criteria.add(Restrictions.eq("ativo",ativ.contains("true")));
+        /*ativ = ativ.toLowerCase();
+        if(!ativ.contains("ambos")) criteria.add(Restrictions.eq("ativo",ativ.contains("true")));*/
         this.lista = criteria.list();
         return lista;
     }

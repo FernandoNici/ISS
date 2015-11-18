@@ -29,7 +29,7 @@ public class CondominioController {
         this.ativo = ativo;
     }
     
-    public String manutencaoCondomino(){
+     public String manutencaoCondomino(){
         System.out.println(condominio);
         if(condominio.getId()==0) condominioDAO.salvar(condominio);
         else condominioDAO.atualizar(condominio);
