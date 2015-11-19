@@ -11,13 +11,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "SINDICO")
+@Table(name = "FUNCIONARIO")
 @PrimaryKeyJoinColumn(name="id")
 
-public class Sindico extends Usuario implements Serializable{
+public class Funcionario extends Usuario implements Serializable{
     private String nome;
     @Temporal(TemporalType.DATE)
     private Date dataNasc;
+    private String turno;
     private String telefone;
     private String celular;
     private String rg;
@@ -31,42 +32,9 @@ public class Sindico extends Usuario implements Serializable{
     @OneToOne
     private Condominio condominio;
 
-    public Sindico() {
+    public Funcionario() {
         super();
         this.ativo = true;
-    }
-    
-        public String getCpf() {
-        return cpf;
-    }
- 
-    public Condominio getCondominio() {
-        return condominio;
-    }
-
-    public void setCondominio(Condominio condominio) {
-        this.condominio = condominio;
-    }
-    
-    
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Condominio getCondomino() {
-        return condominio;
-    }
-
-    public void setCondomino(Condominio condominio) {
-        this.condominio = condominio;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
     }
 
     public String getNome() {
@@ -83,6 +51,14 @@ public class Sindico extends Usuario implements Serializable{
 
     public void setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
+    }
+
+    public String getTurno() {
+        return turno;
+    }
+
+    public void setTurno(String turno) {
+        this.turno = turno;
     }
 
     public String getTelefone() {
@@ -117,6 +93,14 @@ public class Sindico extends Usuario implements Serializable{
         this.cep = cep;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public String getMunicipio() {
         return Municipio;
     }
@@ -141,26 +125,36 @@ public class Sindico extends Usuario implements Serializable{
         this.bairro = bairro;
     }
 
-    @Override
-    public String toString() {
-        return "Sindico{" + "nome=" + nome + ", dataNasc=" + dataNasc + ", telefone=" + telefone + ", celular=" + celular + ", rg=" + rg + ", cep=" + cep + ", cpf=" + cpf + ", Municipio=" + Municipio + ", endereco=" + endereco + ", bairro=" + bairro + ", ativo=" + ativo + ", condominio=" + condominio + '}';
+    public boolean isAtivo() {
+        return ativo;
     }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+      
+      
+    
+      
+      
+      
+      
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + Objects.hashCode(this.dataNasc);
-        hash = 97 * hash + Objects.hashCode(this.telefone);
-        hash = 97 * hash + Objects.hashCode(this.celular);
-        hash = 97 * hash + Objects.hashCode(this.rg);
-        hash = 97 * hash + Objects.hashCode(this.cep);
-        hash = 97 * hash + Objects.hashCode(this.cpf);
-        hash = 97 * hash + Objects.hashCode(this.Municipio);
-        hash = 97 * hash + Objects.hashCode(this.endereco);
-        hash = 97 * hash + Objects.hashCode(this.bairro);
-        hash = 97 * hash + (this.ativo ? 1 : 0);
-        hash = 97 * hash + Objects.hashCode(this.condominio);
+        hash = 19 * hash + Objects.hashCode(this.nome);
+        hash = 19 * hash + Objects.hashCode(this.dataNasc);
+        hash = 19 * hash + Objects.hashCode(this.turno);
+        hash = 19 * hash + Objects.hashCode(this.telefone);
+        hash = 19 * hash + Objects.hashCode(this.celular);
+        hash = 19 * hash + Objects.hashCode(this.rg);
+        hash = 19 * hash + Objects.hashCode(this.cep);
+        hash = 19 * hash + Objects.hashCode(this.cpf);
+        hash = 19 * hash + Objects.hashCode(this.Municipio);
+        hash = 19 * hash + Objects.hashCode(this.endereco);
+        hash = 19 * hash + Objects.hashCode(this.bairro);
+        hash = 19 * hash + (this.ativo ? 1 : 0);
         return hash;
     }
 
@@ -172,11 +166,14 @@ public class Sindico extends Usuario implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Sindico other = (Sindico) obj;
+        final Funcionario other = (Funcionario) obj;
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         if (!Objects.equals(this.dataNasc, other.dataNasc)) {
+            return false;
+        }
+        if (!Objects.equals(this.turno, other.turno)) {
             return false;
         }
         if (!Objects.equals(this.telefone, other.telefone)) {
@@ -206,13 +203,10 @@ public class Sindico extends Usuario implements Serializable{
         if (this.ativo != other.ativo) {
             return false;
         }
-        if (!Objects.equals(this.condominio, other.condominio)) {
-            return false;
-        }
         return true;
     }
-    
-    
+      
+      
     
     
 }

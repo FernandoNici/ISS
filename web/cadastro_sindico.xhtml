@@ -36,29 +36,12 @@
 
                             <f:selectItems value="#{condominioController.listaCondominios()}" var="condominio"
                                            
-                                           itemValue="#{condominio}" itemLabel="#{condominio.nome}" >
+                                           itemValue="#{condominio}" itemLabel="id:#{condominio.id} nome:#{condominio.nome} " >
                             </f:selectItems>
                                            
                             <f:converter converterId="CondominioConverter"/>
                         </h:selectOneMenu>
-                        
-                        
-                        <!--h:selectOneMenu      
-                            value="#{sindicoController.sindico.condominio}" id="condominioAP"  
-                            >  
-                            <f:selectItem itemLabel="Selecione" itemValue="" />  
-                            <f:selectItems value="#{condominioController.listaCondominios()}" var="condominiosLista"  
-                                itemLabel="#{condominiosLista.nome}" itemValue="#{condominiosLista}" />  
-                            <f:ajax render="condominioAP" execute="@this" />  
-                        </h:selectOneMenu-->  
-                        
-                        
-                        
-                        
-                        
                     </p>
-                    
-                    
                     <p><label>&nbsp;</label><h:commandButton value="Salvar" action="#{sindicoController.manutencaoSindico}"></h:commandButton> </p>
                 </h:form>
                 

@@ -9,21 +9,21 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-public class SindicoDAO {
+public class FuncionarioDAO {
     private Session sessao;
     private Transaction transacao;
-    private List<Sindico> lista;
+    private List<Funcionario> lista;
 
-    public SindicoDAO() {
+    public FuncionarioDAO() {
         super();
     }
             
-    public void salvar(Sindico sindico){
+    public void salvar(Funcionario func){
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
         
-            sessao.save( sindico );
+            sessao.save( func );
             transacao.commit();
         }catch(Exception e){
             e.printStackTrace();
@@ -31,12 +31,12 @@ public class SindicoDAO {
         finally{ sessao.close();}
     }
 
-    public void deletar(Sindico sindico){
+    public void deletar(Funcionario func){
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
-            sindico.setAtivo(false);
-            sessao.update( sindico );
+            func.setAtivo(false);
+            sessao.update( func );
             transacao.commit();
         }catch(Exception e){
             e.printStackTrace();
@@ -44,12 +44,12 @@ public class SindicoDAO {
         finally{ sessao.close(); }
     }
     
-    public void atualizar(Sindico sindico){
+    public void atualizar(Funcionario func){
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
         
-            sessao.update( sindico );
+            sessao.update( func );
             transacao.commit();
         }catch(Exception e){
             e.printStackTrace();
@@ -57,15 +57,15 @@ public class SindicoDAO {
         finally{ sessao.close();}
     }
 
-    public List<Sindico> getLista(String filtro,String ativ) {
+    public List<Funcionario> getLista(String filtro,String ativ) {
         Criterion filtroNome;
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
-        Criteria criteria = sessao.createCriteria(Sindico.class);
+        Criteria criteria = sessao.createCriteria(Funcionario.class);
         filtroNome = Restrictions.like("nome","%"+filtro+"%");
         criteria.add(filtroNome);
-        ativ = ativ.toLowerCase();
-        if(!ativ.contains("ambos")) criteria.add(Restrictions.eq("ativo",ativ.contains("true")));
+        /*ativ = ativ.toLowerCase();
+        if(!ativ.contains("ambos")) criteria.add(Restrictions.eq("ativo",ativ.contains("true")));*/
         this.lista = criteria.list();
         return lista;
     }

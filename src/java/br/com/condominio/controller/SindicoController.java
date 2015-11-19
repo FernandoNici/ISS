@@ -132,8 +132,5 @@ public class SindicoController {
             return false;
         }
         return true;
-    }
-    
-    
-    
+    }   
 }
