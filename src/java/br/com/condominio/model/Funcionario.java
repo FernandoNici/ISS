@@ -132,29 +132,31 @@ public class Funcionario extends Usuario implements Serializable{
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-      
-      
-    
-      
-      
-      
-      
+
+    public Condominio getCondominio() {
+        return condominio;
+    }
+
+    public void setCondominio(Condominio condominio) {
+        this.condominio = condominio;
+    }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 19 * hash + Objects.hashCode(this.nome);
-        hash = 19 * hash + Objects.hashCode(this.dataNasc);
-        hash = 19 * hash + Objects.hashCode(this.turno);
-        hash = 19 * hash + Objects.hashCode(this.telefone);
-        hash = 19 * hash + Objects.hashCode(this.celular);
-        hash = 19 * hash + Objects.hashCode(this.rg);
-        hash = 19 * hash + Objects.hashCode(this.cep);
-        hash = 19 * hash + Objects.hashCode(this.cpf);
-        hash = 19 * hash + Objects.hashCode(this.Municipio);
-        hash = 19 * hash + Objects.hashCode(this.endereco);
-        hash = 19 * hash + Objects.hashCode(this.bairro);
-        hash = 19 * hash + (this.ativo ? 1 : 0);
+        hash = 79 * hash + Objects.hashCode(this.nome);
+        hash = 79 * hash + Objects.hashCode(this.dataNasc);
+        hash = 79 * hash + Objects.hashCode(this.turno);
+        hash = 79 * hash + Objects.hashCode(this.telefone);
+        hash = 79 * hash + Objects.hashCode(this.celular);
+        hash = 79 * hash + Objects.hashCode(this.rg);
+        hash = 79 * hash + Objects.hashCode(this.cep);
+        hash = 79 * hash + Objects.hashCode(this.cpf);
+        hash = 79 * hash + Objects.hashCode(this.Municipio);
+        hash = 79 * hash + Objects.hashCode(this.endereco);
+        hash = 79 * hash + Objects.hashCode(this.bairro);
+        hash = 79 * hash + (this.ativo ? 1 : 0);
+        hash = 79 * hash + Objects.hashCode(this.condominio);
         return hash;
     }
 
@@ -203,9 +205,13 @@ public class Funcionario extends Usuario implements Serializable{
         if (this.ativo != other.ativo) {
             return false;
         }
+        if (!Objects.equals(this.condominio, other.condominio)) {
+            return false;
+        }
         return true;
     }
-      
+    
+
       
     
     

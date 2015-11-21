@@ -22,9 +22,7 @@ public class CondominioConverter implements Converter {
      
     for (Condominio cond : listaCondominios) {
         id = cond.getId();
-        
         if(id.toString().contains(nome)){
-            System.out.println(cond);
             return cond;
         }
     }
@@ -40,7 +38,6 @@ public class CondominioConverter implements Converter {
       id = condominio.getId();
       return id.toString();
     }
-    
     return null;
   }
 

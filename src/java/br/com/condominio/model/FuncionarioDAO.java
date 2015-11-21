@@ -22,7 +22,6 @@ public class FuncionarioDAO {
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
-        
             sessao.save( func );
             transacao.commit();
         }catch(Exception e){
@@ -64,8 +63,8 @@ public class FuncionarioDAO {
         Criteria criteria = sessao.createCriteria(Funcionario.class);
         filtroNome = Restrictions.like("nome","%"+filtro+"%");
         criteria.add(filtroNome);
-        /*ativ = ativ.toLowerCase();
-        if(!ativ.contains("ambos")) criteria.add(Restrictions.eq("ativo",ativ.contains("true")));*/
+        ativ = ativ.toLowerCase();
+        if(!ativ.contains("ambos")) criteria.add(Restrictions.eq("ativo",ativ.contains("true")));
         this.lista = criteria.list();
         return lista;
     }

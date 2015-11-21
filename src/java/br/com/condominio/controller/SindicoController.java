@@ -15,9 +15,7 @@ public class SindicoController {
     public String filtro;
     public String ativo;
     private List<Sindico> lista;
-    
-    
-    
+            
     public SindicoController() {
         setFiltro("");       
         setAtivo("true");
