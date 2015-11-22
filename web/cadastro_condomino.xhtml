@@ -13,8 +13,8 @@
             <ui:define name="content">
                 <center>
                 <h:form>
+                    <h:inputHidden value="#{condominoController.condomino.id}" />
                     <h:panelGrid columns="2">
-                        id:          <h:inputText id="idCondomino"        value="#{condominoController.condomino.id}"></h:inputText>    
                         Nome:        <h:inputText id="nomeCondomino"        value="#{condominoController.condomino.nome}"></h:inputText>    
                         Sobrenome:   <h:inputText id="sobreNomeCondomino"   value="#{condominoController.condomino.sobreNome}"></h:inputText> 
                         RG:          <h:inputText id="RGCondomino"          value="#{condominoController.condomino.RG}"></h:inputText>    
@@ -24,6 +24,7 @@
                         
                         <h:inputHidden></h:inputHidden>
                         <h:commandButton value="Salvar" action="#{condominoController.ConfirmarCondomino()}"></h:commandButton> 
+                        <h:commandButton value="Cancelar" action="consulta_condomino.xhtml" />
                     </h:panelGrid>    
                 </h:form>
                 </center>

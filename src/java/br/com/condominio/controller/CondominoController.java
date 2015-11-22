@@ -30,6 +30,10 @@ public class CondominoController {
     }
 
     public String AdicionarCondomino(){
+        condomino.setLogin(condomino.getCPF());
+        condomino.setSenha("123456");
+        condomino.setAcesso("ROLE_USER");
+        
         condominoDAO.salvar(condomino);
         return "consulta_condomino?faces-redirect=true";
     }

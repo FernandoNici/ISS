@@ -20,9 +20,9 @@ public class Usuario implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(name = "USUARIO_LOGIN")
     private String login;
     private String senha;
+    private String acesso;
 
     public Integer getId() {
         return id;
@@ -46,6 +46,14 @@ public class Usuario implements Serializable{
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getAcesso() {
+        return acesso;
+    }
+
+    public void setAcesso(String acesso) {
+        this.acesso = acesso;
     }
 
     @Override

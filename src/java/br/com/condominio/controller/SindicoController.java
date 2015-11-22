@@ -37,6 +37,9 @@ public class SindicoController {
         //System.out.println(sindico.getCondominio());
         
         //if(sindico.getId()==0)
+        sindico.setLogin(sindico.getCpf());
+        sindico.setSenha("123456");
+        sindico.setAcesso("ROLE_USER");
         sindicoDAO.salvar(sindico);
         //else sindicoDAO.atualizar(sindico);
         //return "consulta_sindico?faces-redirect=true";

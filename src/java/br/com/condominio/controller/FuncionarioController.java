@@ -37,6 +37,9 @@ public class FuncionarioController {
         //System.out.println(funcionario.getCondominio());
         
         //if(funcionario.getId()==0)
+        funcionario.setLogin(funcionario.getCpf());
+        funcionario.setSenha("123456");
+        funcionario.setAcesso("ROLE_USER");
         funcionarioDAO.salvar(funcionario);
         //else funcionarioDAO.atualizar(funcionario);
         //return "consulta_funcionario?faces-redirect=true";
