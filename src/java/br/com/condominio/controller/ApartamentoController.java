@@ -27,8 +27,12 @@ public class ApartamentoController implements Serializable {
 
   public String manutencaoApartamento() {
     System.out.println(apartamento);
-    if (apartamento.getId() == 0) {
-      adicionarApartamento();
+    if ((apartamento.getId() == 0)) {
+      if (!(existeApartamento())) {
+        adicionarApartamento();
+      } else {
+        return "apartamento_erro?faces-redirect=true";
+      }
     } else {
       atualizarApartamento();
     }
@@ -87,6 +91,16 @@ public class ApartamentoController implements Serializable {
 
   public void setApartamento(Apartamento apartamento) {
     this.apartamento = apartamento;
+  }
+
+  public boolean existeApartamento() {
+    for (Apartamento ap : this.listaApartamento()) {
+      if (ap.getBloco().equals(apartamento.getBloco()) && ap.getNumero().equals(apartamento.getNumero())) {
+        apartamento = ap;
+        return true;
+      }
+    }
+    return false;
   }
 
 }

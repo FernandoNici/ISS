@@ -86,12 +86,19 @@
                   <b:column span="1">                                        
                   </b:column>
                   <b:column span="4">
-                    <h:commandButton value="Editar" action="#{apartamentoController.carregarEntidade(apartamento)}" styleClass="input"/>
+                    <h:commandButton 
+                      value="Editar" 
+                      action="#{apartamentoController.carregarEntidade(apartamento)}" 
+                      styleClass="btn input"/>
                   </b:column>
                   <b:column span="1">                                        
                   </b:column>
                   <b:column span="4">
-                    <h:commandButton value="Remover" action="#{apartamentoController.removerEntidade(apartamento)}" styleClass="input"/>
+                    <h:commandButton 
+                      value="Remover" 
+                      action="#{apartamentoController.removerEntidade(apartamento)}" 
+                      styleClass="btn input"
+                      onclick="return (confirm('Deseja realmente remover o apartamento?'));"/>
                   </b:column>
                   <b:column span="1">                                        
                   </b:column>

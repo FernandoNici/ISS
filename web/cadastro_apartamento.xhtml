@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:p="http://primefaces.org/ui">
   <h:head>
     <title>Cadastro Apartamento</title>
   </h:head>
@@ -12,36 +12,40 @@
     <ui:composition template="layout_padrao.xhtml">  
       <ui:define name="content">
         <center>
-          <h:form>
-            <h:panelGrid columns="2">
-              Bloco: &nbsp;   
-              <h:inputText  id="bloco"        
+          <h:form>     
+            <h:panelGrid columns="3" cellpadding="5">
+              <p:outputLabel for="bloco" value="Bloco:"/>
+              <p:inputText  id="bloco"        
                             value="#{apartamentoController.apartamento.bloco}" 
                             required="true" maxlength="9" 
                             requiredMessage="Campo Bloco obrigatório">
-              </h:inputText>    
-              Número: &nbsp;  
-              <h:inputText  id="numero"       
+              </p:inputText>    
+              <p:message for="bloco" display="default"/>    
+              <p:outputLabel for="numero" value="Número:"/>
+              <p:inputText  id="numero"       
                             value="#{apartamentoController.apartamento.numero}" 
                             required="true" 
-                            maxlength="10" 
+                            maxlength="9" 
                             requiredMessage="Campo Número obrigatório">
-              </h:inputText> 
-              Cadastro: &nbsp;
-              <h:outputText id="dataCadastro" 
-                            value="#{apartamentoController.apartamento.dataCadastro}">
-                <f:convertDateTime pattern="dd/MM/yyyy"/>
-              </h:outputText>
+              </p:inputText> 
+              <p:message for="numero" display="default"/>               
+              <p:outputLabel for="dataCadastro" value="Cadastro:"/>
+              <p:calendar 
+                id="dataCadastro" 
+                disabled="true" 
+                value="#{apartamentoController.apartamento.dataCadastro}"/>
             </h:panelGrid>
             <h:inputHidden></h:inputHidden>
             <h:commandButton value="Salvar" 
                              action="#{apartamentoController.manutencaoApartamento()}"
-                             styleClass="btn input" >
+                             styleClass="btn input"
+                             onclick="return (confirm('Deseja realmente salvar as alterações?'));">
             </h:commandButton> 
             <h:commandButton value="Cancelar" 
                              action="consulta_apartamento?faces-redirect=true" 
                              styleClass="btn input" 
-                             immediate="true"/> 
+                             immediate="true"
+                             onclick="return (confirm('Deseja realmente descartar as alterações?'));"/> 
           </h:form>
         </center>
       </ui:define>
