@@ -3,7 +3,11 @@ package br.com.condominio.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -12,9 +16,12 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "SINDICO")
-@PrimaryKeyJoinColumn(name="id")
 
-public class Sindico extends Usuario implements Serializable{
+public class Sindico  implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    
     private String nome;
     @Temporal(TemporalType.DATE)
     private Date dataNasc;
@@ -22,6 +29,8 @@ public class Sindico extends Usuario implements Serializable{
     private String celular;
     private String rg;
     private String cep;
+    
+    @Column(unique = true)
     private String cpf;
     private String Municipio;
     private String endereco;
@@ -39,7 +48,17 @@ public class Sindico extends Usuario implements Serializable{
         public String getCpf() {
         return cpf;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
  
+        
+        
     public Condominio getCondominio() {
         return condominio;
     }
