@@ -19,28 +19,37 @@
                             value="#{apartamentoController.apartamento.bloco}" 
                             required="true" maxlength="9" 
                             requiredMessage="Campo Bloco obrigatório">
-              </p:inputText>    
-              <p:message for="bloco" display="default"/>    
+              </p:inputText>                 
+              <br/>
               <p:outputLabel for="numero" value="Número:"/>
               <p:inputText  id="numero"       
                             value="#{apartamentoController.apartamento.numero}" 
                             required="true" 
                             maxlength="9" 
                             requiredMessage="Campo Número obrigatório">
-              </p:inputText> 
-              <p:message for="numero" display="default"/>               
+              </p:inputText>  
+              <br/>
+              <p:outputLabel for="condominio" value="Condominio:"/>
+              <p:selectOneMenu  id="condominio" value="#{apartamentoController.apartamento.condominio}" required="true">
+                <f:selectItem itemValue="" itemLabel="Selecione um Condomínio"/>
+                <f:selectItems value="#{condominioController.listaCondominios()}" var="condominio" itemValue="#{condominio}" itemLabel="#{condominio.nome}"/>
+                <f:converter converterId="CondominioConverter"/>
+              </p:selectOneMenu> 
+              <br/>              
               <p:outputLabel for="dataCadastro" value="Cadastro:"/>
               <p:calendar 
                 id="dataCadastro" 
-                value="#{apartamentoController.apartamento.dataCadastro}"/>
+                value="#{apartamentoController.apartamento.dataCadastro}"
+                disabled="true"/> 
+              
             </h:panelGrid>
             <h:inputHidden></h:inputHidden>
-            <h:commandButton value="Salvar" 
+            <p:commandButton value="Salvar" 
                              action="#{apartamentoController.manutencaoApartamento()}"
                              styleClass="btn input"
                              onclick="return (confirm('Deseja realmente salvar as alterações?'));">
-            </h:commandButton> 
-            <h:commandButton value="Cancelar" 
+            </p:commandButton> 
+            <p:commandButton value="Cancelar" 
                              action="consulta_apartamento?faces-redirect=true" 
                              styleClass="btn input" 
                              immediate="true"

@@ -15,9 +15,8 @@
           .input {
             width: 50%;
           }  
-
           .button {
-            width: 30%;
+            width: 10%;
           }
           .tabela {
             border: 1px solid;                        
@@ -43,15 +42,24 @@
           <b:container>
             <h1><b>Consulta de Apartamento</b></h1> 
             <br/>
-            <h:inputText id="filtro" value="#{apartamentoController.filtro}" styleClass="input"/>
+            <h:outputLabel for="filtro" value="Número do apartamento:"/>
+            <h:inputText id="filtro" 
+                         value="#{apartamentoController.filtro}" 
+                         styleClass="input"/>
             <h:commandButton value="Filtrar" styleClass="button"/>
             <br/>
             <br/>
-            <h:commandButton value="+ Novo" action="#{apartamentoController.novoApartamento()}" />
+            <h:commandButton value="+ Novo" 
+                             styleClass="button" 
+                             action="#{apartamentoController.novoApartamento()}" />
             <br/>
             <br/>
 
-            <h:dataTable value="#{apartamentoController.listaApartamento()}" var="apartamento" styleClass="tabela" headerClass="header" rowClasses="rowAntes,rowDepois" >
+            <h:dataTable value="#{apartamentoController.listaApartamento()}" 
+                         var="apartamento" 
+                         styleClass="tabela" 
+                         headerClass="header" 
+                         rowClasses="rowAntes,rowDepois" >
               <h:column>
                 <f:facet name="header">
                   ID
@@ -77,6 +85,12 @@
                 <h:outputText value="#{apartamento.dataCadastro}">                  
                   <f:convertDateTime pattern="dd/MM/yyyy"/>
                 </h:outputText>
+              </h:column>
+              <h:column>
+                <f:facet name="header">
+                  Condominio
+                </f:facet>
+                <h:outputText value="#{apartamento.condominio.nome}"/>
               </h:column>
               <h:column>
                 <f:facet name="header">

@@ -28,11 +28,7 @@ public class ApartamentoController implements Serializable {
   public String manutencaoApartamento() {
     System.out.println(apartamento);
     if ((apartamento.getId() == 0)) {
-      if (!(existeApartamento())) {
-        adicionarApartamento();
-      } else {
-        return "apartamento_erro?faces-redirect=true";
-      }
+      adicionarApartamento();
     } else {
       atualizarApartamento();
     }
