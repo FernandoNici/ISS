@@ -26,6 +26,18 @@ public class Apartamento implements Serializable {
   @Temporal(TemporalType.DATE)
   private Date dataCadastro;
   private boolean ativo;
+  @OneToOne
+  private Condominio condominio;
+  @OneToOne
+  private Condomino condomino;
+
+  public Condomino getCondomino() {
+    return condomino;
+  }
+
+  public void setCondomino(Condomino condomino) {
+    this.condomino = condomino;
+  }
 
   public Apartamento() {
     setDataCadastro(Calendar.getInstance().getTime());
@@ -75,5 +87,13 @@ public class Apartamento implements Serializable {
   @Override
   public String toString() {
     return "Apartamento{" + "id=" + id + ", bloco=" + bloco + ", numero=" + numero + ", dataCadastro=" + dataCadastro + ", ativo=" + ativo + '}';
+  }
+
+  public Condominio getCondominio() {
+    return condominio;
+  }
+
+  public void setCondominio(Condominio condominio) {
+    this.condominio = condominio;
   }
 }
