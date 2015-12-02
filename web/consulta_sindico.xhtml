@@ -18,85 +18,111 @@
                 <style>
                     h1         {font-weight:bold;}
                     p          {margin:0px;margin-top:6px;}
-                    label      {width:70px; text-align:right; padding-right:4px;}
-                    .filtro    {width:200px;}
-                    .button    {width:auto;padding:2px;}
-                    .novo      {display: block;}
-                    .tabela    {border: 1px solid;width: 100%;margin-top:6px;}
-                    .header    {border: 1px;text-align: center;padding: 2px;background:none repeat scroll 0 0 #428bca;color: #fff;}
-                    .rowAntes  {text-align:center;background: none repeat scroll 0 0 #ffffff;}
-                    .rowDepois {text-align:center;background: none repeat scroll 0 0 #e2e2e2;}
+                    label      {width:90px; text-align:right; padding-right:4px;}
                 </style>
                 <h:form>
                     <b:container>
-                        
                         <h1>Consulta de Síndico</h1> 
-                        
-                        
-                        <p><label>Nome:</label> 
-                            <h:inputText id="filtro" value="#{sindicoController.filtro}" styleClass="filtro"/> &nbsp; 
-                            <label>Situação:</label> 
-                            <h:selectOneMenu value="#{sindicoController.ativo}" > <f:selectItem itemLabel="Ativo" itemValue="true" /><f:selectItem itemLabel="Inativo" itemValue="false" /><f:selectItem itemLabel="Ambos" itemValue="Ambos"/></h:selectOneMenu>  &nbsp; <h:commandButton value="Filtrar" styleClass="button"/>
-                        </p>
-                        <p><h:commandButton value="+ Novo" styleClass="button novo" action="#{sindicoController.novoSindico}" /></p>
-                        
-                        <h:dataTable value="#{sindicoController.listaSindicos()}" var="sindico" styleClass="tabela" headerClass="header" rowClasses="rowAntes,rowDepois" >
-                            <h:column>
-                                <f:facet name="header">
-                                    ID
-                                </f:facet>
-                                <h:outputText value="#{sindico.id}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    Nome
-                                </f:facet>
-                                <h:outputText value="#{sindico.nome}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    Telefone
-                                </f:facet>
-                                <h:outputText value="#{sindico.telefone}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    Endereço
-                                </f:facet>
-                                <h:outputText value="#{sindico.endereco}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    Condominio
-                                </f:facet>
-                                <h:outputText value="#{sindico.condominio.nome}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    Ações
-                                </f:facet>
-                                <b:row>
-                                    <b:column span="1">                                        
-                                    </b:column>
-                                    <b:column span="4">
-                                        <h:commandButton value="Editar" action="#{sindicoController.carregarEntidade(sindico)}" styleClass="input"/>
-                                    </b:column>
-                                    <b:column span="1">                                        
-                                    </b:column>
-                                    <b:column span="4">
-                                        <h:commandButton value="Remover" action="#{sindicoController.excluirEntidade(sindico)}" styleClass="input"/>
-                                    </b:column>
-                                    <b:column span="1">                                        
-                                    </b:column>
-                                </b:row>
-                               
-                            </h:column>
-                        </h:dataTable>
+                        <h:panelGrid columns="6">
+                            <p:outputLabel for="nomesindico" value="Nome:"/>
+                            <p:inputText id="nomesindico" value="#{sindicoController.filtro}" styleClass="filtro"/>
+                            <p:outputLabel for="situacao" value="Situação:"/>
+                            <p:selectOneMenu id="situacao" value="#{sindicoController.ativo}"> 
+                                <f:selectItem itemLabel="Ativo" itemValue="true" />
+                                <f:selectItem itemLabel="Inativo" itemValue="false" />
+                                <f:selectItem itemLabel="Ambos" itemValue="Ambos"/>
+                            </p:selectOneMenu>&nbsp;
+                            <p:commandButton ajax="false" value="Filtrar"/>
+                        </h:panelGrid>
+
+                        <p><p:commandButton value="+ Novo" action="#{sindicoController.novoSindico}" /></p>
+
+                        <p:dataTable value="#{sindicoController.listaSindicos()}" var="sindico" style="margin-top:10px;" >
+                            <p:column width="05%" headerText="Id"><h:outputText value="#{sindico.id}"/></p:column>
+                            <p:column width="25%" headerText="Nome"><h:outputText value="#{sindico.nome}"/></p:column>
+                            <p:column width="15%" headerText="Telefone"><h:outputText value="#{sindico.telefone}"/></p:column>
+                            <p:column width="16%" headerText="Endereço"><h:outputText value="#{sindico.endereco}"/></p:column>
+                            <p:column width="20%" headerText="Condominio"><h:outputText value="#{sindico.condominio.nome}"/></p:column>
+                            <p:column width="18%" headerText="Ações" colspan="2">
+                              <p:commandButton value="Editar" action="#{sindicoController.carregarEntidade(sindico)}" style="display:inline"/>
+                              <p:commandButton value="Remover" action="#{sindicoController.excluirEntidade(sindico)}" style="display:inline"/>
+                            </p:column>
+                        </p:dataTable>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--                        <h:dataTable value="#{sindicoController.listaSindicos()}" var="sindico" styleClass="tabela" headerClass="header" rowClasses="rowAntes,rowDepois" >
+    <h:column>
+        <f:facet name="header">
+            ID
+        </f:facet>
+        <h:outputText value="#{sindico.id}"/>
+    </h:column>
+    <h:column>
+        <f:facet name="header">
+            Nome
+        </f:facet>
+        <h:outputText value="#{sindico.nome}"/>
+    </h:column>
+    <h:column>
+        <f:facet name="header">
+            Telefone
+        </f:facet>
+        <h:outputText value="#{sindico.telefone}"/>
+    </h:column>
+    <h:column>
+        <f:facet name="header">
+            Endereço
+        </f:facet>
+        <h:outputText value="#{sindico.endereco}"/>
+    </h:column>
+    <h:column>
+        <f:facet name="header">
+            Condominio
+        </f:facet>
+        <h:outputText value="#{sindico.condominio.nome}"/>
+    </h:column>
+    <h:column>
+        <f:facet name="header">
+            Ações
+        </f:facet>
+        <b:row>
+            <b:column span="1">                                        
+            </b:column>
+            <b:column span="4">
+                <h:commandButton value="Editar" action="#{sindicoController.carregarEntidade(sindico)}" styleClass="input"/>
+            </b:column>
+            <b:column span="1">                                        
+            </b:column>
+            <b:column span="4">
+                <h:commandButton value="Remover" action="#{sindicoController.excluirEntidade(sindico)}" styleClass="input"/>
+            </b:column>
+            <b:column span="1">                                        
+            </b:column>
+        </b:row>
+
+    </h:column>
+</h:dataTable>-->
+
+
+
                     </b:container>
                 </h:form>
             </ui:define>     
         </ui:composition>
-        
+
     </h:body>
 </html>
 
