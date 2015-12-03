@@ -2,22 +2,44 @@ package br.com.condominio.controller;
 
 import br.com.condominio.model.Sindico;
 import br.com.condominio.model.SindicoDAO;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
 @ManagedBean
 @RequestScoped
 public class SindicoController {
+
     private Sindico sindico = new Sindico();
     private SindicoDAO sindicoDAO = new SindicoDAO();
     public String filtro;
     public String ativo;
+    public Date data;
     private List<Sindico> lista;
-            
+
+    public void onDateSelect(SelectEvent event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+    }
+
+    public void click() {
+        RequestContext requestContext = RequestContext.getCurrentInstance();
+
+        requestContext.update("form:display");
+        requestContext.execute("PF('dlg').show()");
+    }
+
     public SindicoController() {
-        setFiltro("");       
+        setFiltro("");
         setAtivo("true");
     }
 
@@ -28,42 +50,57 @@ public class SindicoController {
     public void setAtivo(String ativo) {
         this.ativo = ativo;
     }
-    
-    public String manutencaoSindico(){
-        //System.out.println(sindico.)
-        //System.out.println(sindico.get      );
-        
-        //System.out.println("here");
-        //System.out.println(sindico.getCondominio());
-        
-        //if(sindico.getId()==0)
-        sindico.setLogin(sindico.getCpf());
-        sindico.setSenha("123456");
-        sindico.setAcesso("ROLE_USER");
-        sindicoDAO.salvar(sindico);
-        //else sindicoDAO.atualizar(sindico);
-        //return "consulta_sindico?faces-redirect=true";
+
+    public Date getData() {
+        this.data = data;
+        return data;
+    }
+
+    public void setData(Date data) {
+    }
+
+    public String manutencaoSindico() {
+        if (sindico.getId() == 0) {
+            if (VerificaCpf(sindico.getCpf())) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cpf Já Cadastrado", "Contact admin."));
+                return "cadastro_sindico";
+            }
+            sindicoDAO.salvar(sindico);
+        } else {
+            sindicoDAO.atualizar(sindico);
+        }
         return "consulta_sindico?faces-redirect=true";
     }
-   
-    public String RemoverSindico(){
+
+    public String RemoverSindico() {
         sindicoDAO.deletar(sindico);
         return "consulta_sindico?faces-redirect=true";
     }
-    
-    public String EditaSindico(){
+
+    public boolean VerificaCpf(String cpf) {
+        lista = sindicoDAO.getLista("", "true");
+        for (Sindico sindico : lista) {
+            if (sindico.getCpf().contains(cpf)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String EditaSindico() {
         sindicoDAO.atualizar(sindico);
         return "consulta_sindico?faces-redirect=true";
     }
-    
-    public List<Sindico> listaSindicos(){
-        lista = sindicoDAO.getLista(filtro,ativo);
+
+    public List<Sindico> listaSindicos() {
+        lista = sindicoDAO.getLista(filtro, ativo);
         return this.lista;
     }
-    public String novoSindico(){
+
+    public String novoSindico() {
         sindico.setNome(null);
         sindico.setDataNasc(null);
-        sindico.setTelefone(null);        
+        sindico.setTelefone(null);
         sindico.setCelular(null);
         sindico.setEndereco(null);
         sindico.setBairro(null);
@@ -71,16 +108,17 @@ public class SindicoController {
         sindico.setMunicipio(null);
         return "cadastro_sindico?faces-redirect=true";
     }
-    
-     public String carregarEntidade(Sindico sindico){
+
+    public String carregarEntidade(Sindico sindico) {
         this.sindico = sindico;
         return "cadastro_sindico";
     }
-     public String excluirEntidade(Sindico sindico){
+
+    public String excluirEntidade(Sindico sindico) {
         sindicoDAO.deletar(sindico);
         return "consulta_sindico?faces-redirect=true";
     }
-     
+
     public Sindico getSindico() {
         return sindico;
     }
@@ -133,5 +171,5 @@ public class SindicoController {
             return false;
         }
         return true;
-    }   
+    }
 }

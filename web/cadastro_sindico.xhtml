@@ -20,7 +20,7 @@
                 <h:form>
                     <b:container>
                         <h:inputHidden id="idsin" value="#{sindicoController.sindico.id}"></h:inputHidden>
-
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                         <p>
                             <p:outputLabel for="nomesindico" value="Nome:" />
                             <p:inputText id="nomesindico" value="#{sindicoController.sindico.nome}" required="true"/>
