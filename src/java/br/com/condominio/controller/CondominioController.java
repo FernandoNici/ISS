@@ -30,7 +30,6 @@ public class CondominioController {
     }
     
      public String manutencaoCondomino(){
-        
         if(condominio.getId()==0) condominioDAO.salvar(condominio);
         else condominioDAO.atualizar(condominio);
         return "consulta_condominio?faces-redirect=true";

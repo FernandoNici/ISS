@@ -26,17 +26,20 @@
                     .rowAntes{text-align:center;background: none repeat scroll 0 0 #ffffff;}
                     .rowDepois{text-align:center;background: none repeat scroll 0 0 #e2e2e2;}
                 </style>
-                
+
                 <h:form>
                     <b:container>
                         <h1>Consulta de Condomínio</h1> 
-                        <p><label>Nome:</label> 
-                            <h:inputText id="filtro" value="#{condominioController.filtro}" styleClass="filtro"/> &nbsp; 
-                            <label>Situação:</label> 
-                            <h:selectOneMenu value="#{condominioController.ativo}" > <f:selectItem itemLabel="Ativo" itemValue="true" /><f:selectItem itemLabel="Inativo" itemValue="false" /><f:selectItem itemLabel="Ambos" itemValue="Ambos"/></h:selectOneMenu>  &nbsp; <h:commandButton value="Filtrar" styleClass="button"/>
-                        </p>
+
+                        <h:panelGrid columns="6">
+                            <p><label>Nome:</label> 
+                                <h:inputText id="filtro" value="#{condominioController.filtro}" styleClass="filtro"/> &nbsp; 
+                                <label>Situação:</label> 
+                                <h:selectOneMenu value="#{condominioController.ativo}" > <f:selectItem itemLabel="Ativo" itemValue="true" /><f:selectItem itemLabel="Inativo" itemValue="false" /><f:selectItem itemLabel="Ambos" itemValue="Ambos"/></h:selectOneMenu>  &nbsp; <h:commandButton value="Filtrar" styleClass="button"/>
+                            </p>
+                        </h:panelGrid>
                         <p><h:commandButton value="+ Novo" styleClass="button novo" action="#{condominioController.novoCondominio()}" /></p>
-                        
+
                         <h:dataTable value="#{condominioController.listaCondominios()}" var="condominio" styleClass="tabela" headerClass="header" rowClasses="rowAntes,rowDepois" >
                             <h:column>
                                 <f:facet name="header">
@@ -68,12 +71,7 @@
                                 </f:facet>
                                 <h:outputText value="#{condominio.aptosPorAndar}"/>
                             </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    Síndico
-                                </f:facet>
-                                <h:outputText value="#{condominio.sindico}"/>
-                            </h:column>
+
                             <h:column>
                                 <f:facet name="header">
                                     Ações
@@ -92,14 +90,14 @@
                                     <b:column span="1">                                        
                                     </b:column>
                                 </b:row>
-                               
+
                             </h:column>
                         </h:dataTable>
                     </b:container>
                 </h:form>
             </ui:define>     
         </ui:composition>
-        
+
     </h:body>
 </html>
 
