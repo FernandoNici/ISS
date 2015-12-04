@@ -36,7 +36,7 @@ public class Sindico  implements Serializable{
     private String bairro;
     private boolean ativo;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Condominio condominio;
     
     
@@ -152,7 +152,7 @@ public class Sindico  implements Serializable{
 
     @Override
     public String toString() {
-        return "Sindico{" + "nome=" + nome + ", dataNasc=" + dataNasc + ", telefone=" + telefone + ", celular=" + celular + ", rg=" + rg + ", cep=" + cep + ", cpf=" + cpf + ", Municipio=" + Municipio + ", endereco=" + endereco + ", bairro=" + bairro + ", ativo=" + ativo + ", condominio=" + condominio + '}';
+        return "Sindico{" + "id=" + id + ", nome=" + nome + ", dataNasc=" + dataNasc + ", telefone=" + telefone + ", celular=" + celular + ", rg=" + rg + ", cep=" + cep + ", cpf=" + cpf + ", Municipio=" + Municipio + ", endereco=" + endereco + ", bairro=" + bairro + ", ativo=" + ativo + ", condominio=" + condominio + '}';
     }
 
     @Override

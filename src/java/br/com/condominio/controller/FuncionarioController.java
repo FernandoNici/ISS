@@ -4,8 +4,10 @@ import br.com.condominio.model.Funcionario;
 import br.com.condominio.model.FuncionarioDAO;
 import java.util.List;
 import java.util.Objects;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @RequestScoped
@@ -30,7 +32,16 @@ public class FuncionarioController {
     }
     
     public String manutencaoFuncionario(){
-        funcionarioDAO.salvar(funcionario);
+        if (funcionario.getId() == 0) {
+            if (VerificaCpf(funcionario.getCpf())) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cpf Já Cadastrado", "Contact admin."));
+                return "cadastro_sindico";
+            }
+            funcionarioDAO.salvar(funcionario);
+        }   
+        else {
+            funcionarioDAO.atualizar(funcionario);
+        }
         return "consulta_funcionario?faces-redirect=true";
     }
    
@@ -83,5 +94,15 @@ public class FuncionarioController {
 
     public void setFiltro(String filtro) {
         this.filtro = filtro;
+    }
+
+    private boolean VerificaCpf(String cpf) {
+        lista = funcionarioDAO.getLista("", "true");
+        for (Funcionario funcionario : lista) {
+            if (funcionario.getCpf().contains(cpf)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Manutenção Condomíno</title>
     </h:head>
@@ -14,40 +15,81 @@
                 <style>
                     label {width:160px; text-align:right; padding-right:4px;}
                     p     {margin-top:6px;}
-                    
+
                 </style>
                 <h:form>
-                    <h:inputHidden id="idfunc" value="#{funcionarioController.funcionario.id}"></h:inputHidden>
-                    <p><label>Nome:</label>             <h:inputText id="nomefuncionario"   value="#{funcionarioController.funcionario.nome}"/>
-                        <!--label>Nascimento</label>       <h:inputText id="nascfuncionario"   value="#{funcionarioController.funcionario.dataNasc}"/--></p>
-                    
-                    <p> <label>Turno:</label>
-                        <h:selectOneMenu id="turno" value="#{funcionarioController.funcionario.turno}" >
-                            <f:selectItem itemValue="" itemLabel="Selecione um Turno" />
-                            <f:selectItem itemValue="Manha"/>
-                            <f:selectItem itemValue="Tarde"/>
-                            <f:selectItem itemValue="Noite"/>
-                        </h:selectOneMenu>
-                        <label>Telefone:</label>         <h:inputText id="telfuncionario"    value="#{funcionarioController.funcionario.telefone}" />
-                        <label>Celular:</label>             <h:inputText id="celfuncionario"    value="#{funcionarioController.funcionario.celular}"/>
-                    </p>
+                    <b:container>
+
+                        <h:inputHidden id="idfunc" value="#{funcionarioController.funcionario.id}"></h:inputHidden>
                         
-                    <p><label>RG</label>                <h:inputText id="rgfuncionario"     value="#{funcionarioController.funcionario.rg}"/>
-                       <label>CPF</label>                  <h:inputText id="cpffuncionario"    value="#{funcionarioController.funcionario.cpf}"/></p>
-                    <p><label>CEP:</label>              <h:inputText id="cepfuncionario"    value="#{funcionarioController.funcionario.cep}"/></p>
-                    <p><label>Município:</label>        <h:inputText id="munfuncionario"    value="#{funcionarioController.funcionario.municipio}"/>
-                        <label>Endereço:</label>            <h:inputText id="endfuncionario"    value="#{funcionarioController.funcionario.endereco}"/></p>
-                    <p><label>Bairro:</label>           <h:inputText id="bairrofuncionario" value="#{funcionarioController.funcionario.bairro}"/></p>
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 
-                    <p><label>Condominio:</label>
-                        <h:selectOneMenu id="condominioSel" value="#{funcionarioController.funcionario.condominio}">
-                            <f:selectItem itemValue="" itemLabel="Selecione um Condominío"/>    
-                            <f:selectItems value="#{condominioController.listaCondominios()}" var="condominio" itemValue="#{condominio}" itemLabel="#{condominio.nome} " />
-                            <f:converter converterId="CondominioConverter"/>
-                        </h:selectOneMenu>
-                    </p>
-                    <p><label>&nbsp;</label><h:commandButton value="Salvar" action="#{funcionarioController.manutencaoFuncionario()}"></h:commandButton> </p>
+                        <p>
+                            <p:outputLabel for="nomefuncionario" value="Nome:" />
+                            <p:inputText id="nomefuncionario" value="#{funcionarioController.funcionario.nome}" required="true"/>
 
+                            <p:outputLabel for="datnasc" value="Data Nascimento:"/>
+                            <p:calendar id="datnasc" value="#{funcionarioController.funcionario.dataNasc}" required="true" pattern="dd/MM/yyyy" mask="99/99/9999"/>    
+                        </p>
+
+                        <p> 
+                            <p:outputLabel for="turno" value="Turno:" style="float:left"/>
+                            <div style="float:left; width:172px;">
+                                <p:selectOneMenu id="turno" value="#{funcionarioController.funcionario.turno}" required="true" >
+                                    <f:selectItem itemValue="" itemLabel="Selecione um Turno" />
+                                    <f:selectItem itemValue="Manha" itemLabel="Manha"/>
+                                    <f:selectItem itemValue="Tarde" itemLabel="Tarde" />
+                                    <f:selectItem itemValue="Noite" itemLabel="Noite"/>
+                                </p:selectOneMenu>
+                            </div >    
+                            <p:outputLabel for="telefone" value="Telefone:"/>
+                            <p:inputMask id="telefone" value="#{funcionarioController.funcionario.telefone}" mask="(99) 9999-9999" required="true"/>
+                            <p:outputLabel for="celular" value="Celular:"/>
+                            <p:inputMask id="celular" value="#{funcionarioController.funcionario.celular}" mask="(99) 9999-9999" required="true"/>
+                            
+                        </p>
+
+                        <p>
+                            <p:outputLabel for="rgfuncionario" value="RG:"/>
+                            <p:inputMask id="rgfuncionario" value="#{funcionarioController.funcionario.rg}" mask="99.999.999-9" required="true"/>
+
+                            <p:outputLabel for="cpffuncionario" value="CPF:"/>
+                            <p:inputMask id="cpffuncionario" value="#{funcionarioController.funcionario.cpf}" mask="999.999.999-99" required="true"/>
+                        </p>
+
+                        <p>
+                            <p:outputLabel for="cepfuncionario" value="CEP:"/>
+                            <p:inputMask id="cepfuncionario" value="#{funcionarioController.funcionario.cep}" mask="99999-999" required="true"/>
+                        </p>
+
+                        <p>
+                            <p:outputLabel for="munfuncionario" value="Município:"/>
+                            <p:inputText id="munfuncionario" value="#{funcionarioController.funcionario.municipio}" required="true"/>
+
+                            <p:outputLabel for="endfuncionario" value="Endereço:"/>
+                            <p:inputText id="endfuncionario" value="#{funcionarioController.funcionario.endereco}" required="true"/>
+                        </p>
+
+                        <p>
+                            <p:outputLabel for="bairrofuncionario" value="Bairro:" />
+                            <p:inputText id="bairrofuncionario" value="#{funcionarioController.funcionario.bairro}" required="true"/>
+                        </p>
+                        
+                        <p> 
+                            <p:outputLabel for="condominioSel" value="Condominio:" style="float:left"/>
+                            <div>
+                                <p:selectOneMenu  id="condominioSel" value="#{funcionarioController.funcionario.condominio}">
+                                    <f:selectItem itemValue="" itemLabel="Selecione um Condomínio"/>
+                                    <f:selectItems value="#{condominioController.listaCondominios()}" var="condominio" itemValue="#{condominio}" itemLabel="#{condominio.nome}"/>
+                                    <f:converter converterId="CondominioConverter"/>
+                                </p:selectOneMenu>
+                            </div>
+                        </p>
+
+                        <center>
+                            <p:commandButton value="Salvar" action="#{funcionarioController.manutencaoFuncionario()}" onclick="return(confirm('Deseja Realmente Salvar?'));"/>
+                        </center>
+                    </b:container>
                 </h:form>
             </ui:define>
         </ui:composition>               

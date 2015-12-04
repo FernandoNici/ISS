@@ -26,19 +26,19 @@
                             <p:inputText id="nomesindico" value="#{sindicoController.sindico.nome}" required="true"/>
 
                             <p:outputLabel for="datnasc" value="Data Nascimento:"/>
-                            <p:calendar id="datnasc" value="#{sindicoController.sindico.dataNasc}"/>    
+                            <p:calendar id="datnasc" value="#{sindicoController.sindico.dataNasc}" required="true" pattern="dd/MM/yyyy" mask="99/99/9999"/>    
                         </p>
 
                         <p>
                             <p:outputLabel for="telefone" value="Telefone:"/>
-                            <p:inputMask id="telefone" value="#{sindicoController.sindico.telefone}" mask="(99) 9999-9999"/>
+                            <p:inputMask id="telefone" value="#{sindicoController.sindico.telefone}" mask="(99) 9999-9999" required="true"/>
 
                             <p:outputLabel for="celular" value="Celular:"/>
-                            <p:inputMask id="celular" value="#{sindicoController.sindico.celular}" mask="(99) 9999-9999"/>
+                            <p:inputMask id="celular" value="#{sindicoController.sindico.celular}" mask="(99) 9999-9999" required="true"/>
                         </p>
                         <p>
                             <p:outputLabel for="rgsindico" value="RG:"/>
-                            <p:inputMask id="rgsindico" value="#{sindicoController.sindico.rg}" mask="99.999.999-9"/>
+                            <p:inputMask id="rgsindico" value="#{sindicoController.sindico.rg}" mask="99.999.999-9" required="true"/>
 
                             <p:outputLabel for="cpfsindico" value="CPF:"/>
                             <p:inputMask id="cpfsindico" value="#{sindicoController.sindico.cpf}" mask="999.999.999-99" required="true"/>
@@ -46,20 +46,20 @@
 
                         <p>
                             <p:outputLabel for="cepsindico" value="CEP:"/>
-                            <p:inputMask id="cepsindico" value="#{sindicoController.sindico.cep}" mask="99999-999"/>
+                            <p:inputMask id="cepsindico" value="#{sindicoController.sindico.cep}" mask="99999-999" required="true"/>
                         </p>
 
                         <p>
                             <p:outputLabel for="munsindico" value="Município:"/>
-                            <p:inputText id="munsindico" value="#{sindicoController.sindico.municipio}"/>
+                            <p:inputText id="munsindico" value="#{sindicoController.sindico.municipio}" required="true"/>
 
                             <p:outputLabel for="endsindico" value="Endereço:"/>
-                            <p:inputText id="endsindico" value="#{sindicoController.sindico.endereco}"/>
+                            <p:inputText id="endsindico" value="#{sindicoController.sindico.endereco}" required="true"/>
                         </p>
 
                         <p>
-                            <p:outputLabel for="bairrosindico" value="Bairro:"/>
-                            <p:inputText id="bairrosindico" value="#{sindicoController.sindico.bairro}"/>
+                            <p:outputLabel for="bairrosindico" value="Bairro:" />
+                            <p:inputText id="bairrosindico" value="#{sindicoController.sindico.bairro}" required="true"/>
                         </p>
 
                         <p> 

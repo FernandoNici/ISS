@@ -55,7 +55,7 @@ public class CondominioController {
         condominio.setBairro(null);
         condominio.setCep(null);
         condominio.setMunicipio(null);
-        condominio.setSindico(null);
+       // condominio.setSindico(null);
         return "cadastro_condominio?faces-redirect=true";
     }
     

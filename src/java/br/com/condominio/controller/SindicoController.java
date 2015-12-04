@@ -69,7 +69,7 @@ public class SindicoController {
         } else {
             sindicoDAO.atualizar(sindico);
         }
-        return "consulta_sindico?faces-redirect=true";
+       return "consulta_sindico?faces-redirect=true";
     }
 
     public String RemoverSindico() {

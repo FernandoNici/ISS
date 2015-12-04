@@ -54,7 +54,7 @@
                         </p>
                         
                         <center>
-                            <p:commandButton value="Salvar" action="#{condominioController.manutencaoCondomino}"></p:commandButton>                         
+                            <p:commandButton value="Salvar" action="#{condominioController.manutencaoCondomino}" onclick="return(confirm('Deseja Realmente Salvar?'));"/>
                         </center>
                     </b:container>
                 </h:form>

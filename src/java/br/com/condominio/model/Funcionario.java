@@ -3,7 +3,9 @@ package br.com.condominio.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +19,8 @@ import javax.persistence.TemporalType;
 public class Funcionario implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
+    
     private String nome;
     @Temporal(TemporalType.DATE)
     private Date dataNasc;
@@ -26,19 +29,30 @@ public class Funcionario implements Serializable{
     private String celular;
     private String rg;
     private String cep;
+    
+    @Column(unique = true)
     private String cpf;
     private String Municipio;
     private String endereco;
     private String bairro;
     private boolean ativo;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Condominio condominio;
 
     public Funcionario() {
         super();
         this.ativo = true;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+       
 
     public String getNome() {
         return nome;
@@ -214,16 +228,8 @@ public class Funcionario implements Serializable{
         return true;
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public String toString() {
+        return "Funcionario{" + "id=" + id + ", nome=" + nome + ", dataNasc=" + dataNasc + ", turno=" + turno + ", telefone=" + telefone + ", celular=" + celular + ", rg=" + rg + ", cep=" + cep + ", cpf=" + cpf + ", Municipio=" + Municipio + ", endereco=" + endereco + ", bairro=" + bairro + ", ativo=" + ativo + ", condominio=" + condominio + '}';
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-
-      
-    
-    
 }

@@ -24,22 +24,7 @@ public class Condominio implements Serializable{
     private String endereco;
     private String bairro;
     
-    @OneToOne
-    private Sindico sindico;
-    
     private boolean ativo;
-
-    public Condominio(String nome, int andares, int aptosPorAndar, String cep, String Municipio, String endereco, String bairro, Sindico sindico) {
-        this.nome = nome;
-        this.andares = andares;
-        this.aptosPorAndar = aptosPorAndar;
-        this.cep = cep;
-        this.Municipio = Municipio;
-        this.endereco = endereco;
-        this.bairro = bairro;
-        this.sindico = sindico;
-        this.ativo = true;
-    }
 
     public Condominio() {
         super();
@@ -110,14 +95,6 @@ public class Condominio implements Serializable{
         this.bairro = bairro;
     }
 
-    public Sindico getSindico() {
-        return sindico;
-    }
-
-    public void setSindico(Sindico sindico) {
-        this.sindico = sindico;
-    }
-
     public boolean isAtivo() {
         return ativo;
     }
@@ -128,7 +105,7 @@ public class Condominio implements Serializable{
 
     @Override
     public String toString() {
-        return "Condominio{" + "id=" + id + ", nome=" + nome + ", andares=" + andares + ", aptosPorAndar=" + aptosPorAndar + ", cep=" + cep + ", Municipio=" + Municipio + ", endereco=" + endereco + ", bairro=" + bairro + ", sindico=" + sindico + ", ativo=" + ativo + '}';
+        return "Condominio{" + "id=" + id + ", nome=" + nome + ", andares=" + andares + ", aptosPorAndar=" + aptosPorAndar + ", cep=" + cep + ", Municipio=" + Municipio + ", endereco=" + endereco + ", bairro=" + bairro + ", ativo=" + ativo + '}';
     }
 
     @Override
@@ -142,7 +119,7 @@ public class Condominio implements Serializable{
         hash = 71 * hash + Objects.hashCode(this.Municipio);
         hash = 71 * hash + Objects.hashCode(this.endereco);
         hash = 71 * hash + Objects.hashCode(this.bairro);
-        hash = 71 * hash + Objects.hashCode(this.sindico);
+//        hash = 71 * hash + Objects.hashCode(this.sindico);
         hash = 71 * hash + (this.ativo ? 1 : 0);
         return hash;
     }
@@ -180,9 +157,9 @@ public class Condominio implements Serializable{
         if (!Objects.equals(this.bairro, other.bairro)) {
             return false;
         }
-        if (!Objects.equals(this.sindico, other.sindico)) {
-            return false;
-        }
+//        if (!Objects.equals(this.sindico, other.sindico)) {
+//            return false;
+//        }
         return true;
     }
     
