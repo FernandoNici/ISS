@@ -3,6 +3,7 @@ package br.com.condominio.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,8 @@ public class Sindico  implements Serializable{
     
     @OneToOne
     private Condominio condominio;
-
+    
+    
     public Sindico() {
         super();
         this.ativo = true;
@@ -55,8 +57,6 @@ public class Sindico  implements Serializable{
         this.id = id;
     }
  
-        
-        
     public Condominio getCondominio() {
         return condominio;
     }
@@ -68,14 +68,6 @@ public class Sindico  implements Serializable{
     
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public Condominio getCondomino() {
-        return condominio;
-    }
-
-    public void setCondomino(Condominio condominio) {
-        this.condominio = condominio;
     }
 
     public boolean isAtivo() {
