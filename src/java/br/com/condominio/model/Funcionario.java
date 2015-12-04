@@ -4,17 +4,20 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "FUNCIONARIO")
-@PrimaryKeyJoinColumn(name="id")
-
-public class Funcionario extends Usuario implements Serializable{
+public class Funcionario implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String nome;
     @Temporal(TemporalType.DATE)
     private Date dataNasc;
@@ -209,6 +212,14 @@ public class Funcionario extends Usuario implements Serializable{
             return false;
         }
         return true;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
     
 

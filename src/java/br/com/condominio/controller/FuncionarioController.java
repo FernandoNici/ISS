@@ -30,19 +30,7 @@ public class FuncionarioController {
     }
     
     public String manutencaoFuncionario(){
-        //System.out.println(funcionario.)
-        //System.out.println(funcionario.get      );
-        
-        //System.out.println("here");
-        //System.out.println(funcionario.getCondominio());
-        
-        //if(funcionario.getId()==0)
-        funcionario.setLogin(funcionario.getCpf());
-        funcionario.setSenha("123456");
-        funcionario.setAcesso("ROLE_USER");
         funcionarioDAO.salvar(funcionario);
-        //else funcionarioDAO.atualizar(funcionario);
-        //return "consulta_funcionario?faces-redirect=true";
         return "consulta_funcionario?faces-redirect=true";
     }
    

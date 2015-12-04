@@ -9,10 +9,10 @@
     <property name="hibernate.connection.password">root</property>
     <property name="hibernate.hbm2ddl.auto">create-drop</property>
     <mapping class="br.com.condominio.model.Condomino"/>
-    <mapping class="br.com.condominio.model.Usuario"/>
     <mapping class="br.com.condominio.model.Apartamento"/>
     <mapping class="br.com.condominio.model.Condominio"/>
     <mapping class="br.com.condominio.model.Sindico"/>
     <mapping class="br.com.condominio.model.Funcionario"/>
+    <!--    <mapping class="br.com.condominio.model.Usuario"/> -->
   </session-factory>
 </hibernate-configuration>

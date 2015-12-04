@@ -8,7 +8,6 @@ package br.com.condominio.controller;
 import br.com.condominio.model.Condomino;
 import br.com.condominio.model.CondominoDAO;
 import java.util.List;
-import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -29,11 +28,7 @@ public class CondominoController {
         setFiltro("");
     }
 
-    public String AdicionarCondomino(){
-        condomino.setLogin(condomino.getCPF());
-        condomino.setSenha("123456");
-        condomino.setAcesso("ROLE_USER");
-        
+    public String AdicionarCondomino(){    
         condominoDAO.salvar(condomino);
         return "consulta_condomino?faces-redirect=true";
     }
@@ -64,8 +59,6 @@ public class CondominoController {
         condomino.setNome(null);
         condomino.setSobreNome(null);        
         condomino.setTelefone(null);
-        condomino.setSenha(null);
-        condomino.setLogin(null);
         condomino.setCPF(null);
         condomino.setRG(null);
         condomino.setApartamento(null);

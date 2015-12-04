@@ -16,6 +16,19 @@ public class UsuarioDAO {
     public UsuarioDAO() {
         super();
     }
+    
+    public void salvar(Usuario user){
+        try {
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            transacao = sessao.beginTransaction();
+            sessao.save( user );
+            transacao.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{ sessao.close(); }
+    }
+    
             
     public void deletar(Usuario user){
         try {
