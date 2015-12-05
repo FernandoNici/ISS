@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @RequestScoped
@@ -28,8 +29,8 @@ public class CondominioController {
     public void setAtivo(String ativo) {
         this.ativo = ativo;
     }
-    
-     public String manutencaoCondomino(){
+
+    public String manutencaoCondomino(){
         if(condominio.getId()==0) condominioDAO.salvar(condominio);
         else condominioDAO.atualizar(condominio);
         return "consulta_condominio?faces-redirect=true";
@@ -55,7 +56,6 @@ public class CondominioController {
         condominio.setBairro(null);
         condominio.setCep(null);
         condominio.setMunicipio(null);
-       // condominio.setSindico(null);
         return "cadastro_condominio?faces-redirect=true";
     }
     
@@ -83,5 +83,4 @@ public class CondominioController {
     public void setFiltro(String filtro) {
         this.filtro = filtro;
     }
-    
 }

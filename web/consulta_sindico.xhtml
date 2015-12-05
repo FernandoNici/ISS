@@ -25,9 +25,9 @@
                         <h1>Consulta de Síndico</h1> 
                         <h:panelGrid columns="6">
                             <p:outputLabel for="nomesindico" value="Nome:"/>
-                            <p:inputText id="nomesindico" value="#{sindicoController.filtro}" styleClass="filtro"/>
+                            <p:inputText id="nomesindico" value="#{sindicoController.filtro}" styleClass="filtro" size="40"/>
                             <p:outputLabel for="situacao" value="Situação:"/>
-                            <p:selectOneMenu id="situacao" value="#{sindicoController.ativo}"> 
+                            <p:selectOneMenu id="situacao" value="#{sindicoController.ativo}" style="float:left; width:100px; margin-right:10px; " > 
                                 <f:selectItem itemLabel="Ativo" itemValue="true" />
                                 <f:selectItem itemLabel="Inativo" itemValue="false" />
                                 <f:selectItem itemLabel="Ambos" itemValue="Ambos"/>

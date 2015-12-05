@@ -15,24 +15,24 @@
                 <style>
                     label {width:160px; text-align:right; padding-right:4px;}
                     p     {margin-top:6px;}
+
                 </style>
                 <h:form>
                     <b:container>
-                        
-                        <h:inputHidden id="idCond" value="#{condominioController.condominio.id}"></h:inputHidden>
+                        <h:inputHidden id="idCond" value="#{condominioController.condominio.id}"/>
                         <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
 
                         <p>
                             <p:outputLabel for="nomeCond" value="Nome:" />
-                            <p:inputText id="nomeCond" value="#{condominioController.condominio.nome}" required="true"/>
+                            <p:inputText id="nomeCond" value="#{condominioController.condominio.nome}" required="true" size="60"/>
                         </p>
 
                         <p>
                             <p:outputLabel for="qtdandCond" value="Qtd Andares:" />
-                            <p:spinner id="qtdandCond" value="#{condominioController.condominio.andares}" />
+                            <p:spinner id="qtdandCond" value="#{condominioController.condominio.andares}" size="5"/>
 
                             <p:outputLabel for="qtdAptosAndarCond" value="Qtd Aptos /Andar:" />
-                            <p:spinner id="qtdAptosAndarCond" value="#{condominioController.condominio.andares}" />
+                            <p:spinner id="qtdAptosAndarCond" value="#{condominioController.condominio.andares}" size="5"/>
                         </p>
                         <p>
                             <p:outputLabel for="cepCond" value="CEP:"/>
@@ -45,16 +45,17 @@
                             <p:inputText id="municipioCond" value="#{condominioController.condominio.municipio}"/>
 
                             <p:outputLabel for="enderecoCond" value="Endereço:"/>
-                            <p:inputText id="enderecoCond" value="#{condominioController.condominio.endereco}"/>
+                            <p:inputText id="enderecoCond" value="#{condominioController.condominio.endereco}" size="60"/>
                         </p>
 
                         <p>
                             <p:outputLabel for="bairroCond" value="Bairro:"/>
-                            <p:inputText id="bairroCond" value="#{condominioController.condominio.bairro}"/>
+                            <p:inputText id="bairroCond" value="#{condominioController.condominio.bairro}" size="40"/>
                         </p>
-                        
+
                         <center>
-                            <p:commandButton value="Salvar" action="#{condominioController.manutencaoCondomino}" onclick="return(confirm('Deseja Realmente Salvar?'));"/>
+                            <p:commandButton value="Salvar" action="#{condominioController.manutencaoCondomino()}" onclick="return(confirm('Deseja Realmente Salvar?'));"/>
+                            <p:commandButton rendered="#{condominioController.condominio.id==0}" immediate="true" value="Limpar" action="#{condominioController.novoCondominio()}"/>
                         </center>
                     </b:container>
                 </h:form>

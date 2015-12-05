@@ -23,7 +23,7 @@
                         <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                         <p>
                             <p:outputLabel for="nomesindico" value="Nome:" />
-                            <p:inputText id="nomesindico" value="#{sindicoController.sindico.nome}" required="true"/>
+                            <p:inputText id="nomesindico" value="#{sindicoController.sindico.nome}" required="true" size="60"/>
 
                             <p:outputLabel for="datnasc" value="Data Nascimento:"/>
                             <p:calendar id="datnasc" value="#{sindicoController.sindico.dataNasc}" required="true" pattern="dd/MM/yyyy" mask="99/99/9999"/>    
@@ -54,12 +54,12 @@
                             <p:inputText id="munsindico" value="#{sindicoController.sindico.municipio}" required="true"/>
 
                             <p:outputLabel for="endsindico" value="Endereço:"/>
-                            <p:inputText id="endsindico" value="#{sindicoController.sindico.endereco}" required="true"/>
+                            <p:inputText id="endsindico" value="#{sindicoController.sindico.endereco}" required="true" size="60"/>
                         </p>
 
                         <p>
                             <p:outputLabel for="bairrosindico" value="Bairro:" />
-                            <p:inputText id="bairrosindico" value="#{sindicoController.sindico.bairro}" required="true"/>
+                            <p:inputText id="bairrosindico" value="#{sindicoController.sindico.bairro}" required="true" size="40"/>
                         </p>
 
                         <p> 
@@ -74,6 +74,7 @@
                         </p>
                         <center>
                             <p:commandButton value="Salvar" action="#{sindicoController.manutencaoSindico}" onclick="return(confirm('Deseja Realmente Salvar?'));"/>
+                            <p:commandButton rendered="#{sindicoController.sindico.id==0}" immediate="true" value="Limpar" action="#{sindicoController.novoSindico()}"/>
                         </center>
                     </b:container>
                 </h:form>

@@ -16,6 +16,7 @@ public class Usuario implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    
     private String login;
     private String senha;
     private String acesso;

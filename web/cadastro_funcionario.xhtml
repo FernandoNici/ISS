@@ -26,7 +26,7 @@
 
                         <p>
                             <p:outputLabel for="nomefuncionario" value="Nome:" />
-                            <p:inputText id="nomefuncionario" value="#{funcionarioController.funcionario.nome}" required="true"/>
+                            <p:inputText id="nomefuncionario" value="#{funcionarioController.funcionario.nome}" required="true" size="60"/>
 
                             <p:outputLabel for="datnasc" value="Data Nascimento:"/>
                             <p:calendar id="datnasc" value="#{funcionarioController.funcionario.dataNasc}" required="true" pattern="dd/MM/yyyy" mask="99/99/9999"/>    
@@ -34,8 +34,8 @@
 
                         <p> 
                             <p:outputLabel for="turno" value="Turno:" style="float:left"/>
-                            <div style="float:left; width:172px;">
-                                <p:selectOneMenu id="turno" value="#{funcionarioController.funcionario.turno}" required="true" >
+                            <div style="float:left;">
+                                <p:selectOneMenu id="turno" value="#{funcionarioController.funcionario.turno}" required="true" style="width:172px;">
                                     <f:selectItem itemValue="" itemLabel="Selecione um Turno" />
                                     <f:selectItem itemValue="Manha" itemLabel="Manha"/>
                                     <f:selectItem itemValue="Tarde" itemLabel="Tarde" />
@@ -67,12 +67,12 @@
                             <p:inputText id="munfuncionario" value="#{funcionarioController.funcionario.municipio}" required="true"/>
 
                             <p:outputLabel for="endfuncionario" value="Endereço:"/>
-                            <p:inputText id="endfuncionario" value="#{funcionarioController.funcionario.endereco}" required="true"/>
+                            <p:inputText id="endfuncionario" value="#{funcionarioController.funcionario.endereco}" required="true" size="60"/>
                         </p>
 
                         <p>
                             <p:outputLabel for="bairrofuncionario" value="Bairro:" />
-                            <p:inputText id="bairrofuncionario" value="#{funcionarioController.funcionario.bairro}" required="true"/>
+                            <p:inputText id="bairrofuncionario" value="#{funcionarioController.funcionario.bairro}" required="true" size="40"/>
                         </p>
                         
                         <p> 
@@ -88,6 +88,7 @@
 
                         <center>
                             <p:commandButton value="Salvar" action="#{funcionarioController.manutencaoFuncionario()}" onclick="return(confirm('Deseja Realmente Salvar?'));"/>
+                            <p:commandButton rendered="#{funcionarioController.funcionario.id==0}" immediate="true" value="Limpar" action="#{funcionarioController.novoFuncionario()}"/>
                         </center>
                     </b:container>
                 </h:form>

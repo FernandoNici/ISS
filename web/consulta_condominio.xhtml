@@ -26,9 +26,9 @@
                         <h1>Consulta de Condomínio</h1> 
                         <h:panelGrid columns="6">
                             <p:outputLabel for="nomeCond" value="Nome:"/>
-                            <p:inputText id="nomeCond" value="#{condominioController.filtro}"/>
+                            <p:inputText id="nomeCond" value="#{condominioController.filtro}" size="40"/>
                             <p:outputLabel for="situacao" value="Situação:"/>
-                            <p:selectOneMenu id="situacao" value="#{condominioController.ativo}" > 
+                            <p:selectOneMenu id="situacao" value="#{condominioController.ativo}" style="float:left; width:100px; margin-right:10px;" > 
                                 <f:selectItem itemLabel="Ativo" itemValue="true" />
                                 <f:selectItem itemLabel="Inativo" itemValue="false" />
                                 <f:selectItem itemLabel="Ambos" itemValue="Ambos"/>
@@ -38,15 +38,15 @@
 
                         <p><p:commandButton value="+ Novo" styleClass="button novo" action="#{condominioController.novoCondominio()}" /></p>
 
-                        <p:dataTable value="#{condominioController.listaCondominios()}" var="condominio"  style="margin-top:10px;">
+                        <p:dataTable value="#{condominioController.listaCondominios()}" var="condominio"  style="margin-top:10px;" >
                             <p:column width="05%" headerText="Id"><h:outputText value="#{condominio.id}"/></p:column>
                             <p:column width="25%" headerText="Nome"><h:outputText value="#{condominio.nome}"/></p:column>
                             <p:column width="15%" headerText="Endereço"><h:outputText value="#{condominio.endereco}"/></p:column>
                             <p:column width="16%" headerText="Qtd Andares"><h:outputText value="#{condominio.andares}"/></p:column>
                             <p:column width="20%" headerText="Qtd Aptos /Andar"><h:outputText value="#{condominio.aptosPorAndar}"/></p:column>
                             <p:column width="18%" headerText="Ações" colspan="2">
-                                <p:commandButton value="Editar" action="#{condominioController.carregarEntidade(condominio)}" style="display:inline"/>
-                                <p:commandButton value="Remover" action="#{condominioController.excluirEntidade(condominio)}" style="display:inline"/>
+                                <p:commandButton value="Editar" action="#{condominioController.carregarEntidade(condominio)}" style="display:inline" />
+                                <p:commandButton value="Remover" action="#{condominioController.excluirEntidade(condominio)}" style="display:inline" onclick="return(confirm('Deseja Realmente Remover?'));"/>
                             </p:column>
                         </p:dataTable>
                     </b:container>

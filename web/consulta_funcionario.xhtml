@@ -26,9 +26,9 @@
                         
                         <h:panelGrid columns="6">
                             <p:outputLabel for="nomeFunc" value="Nome:"/>
-                            <p:inputText id="nomeFunc" value="#{funcionarioController.filtro}"/>
+                            <p:inputText id="nomeFunc" value="#{funcionarioController.filtro}" size="40"/>
                             <p:outputLabel for="situacao" value="Situação:"/>
-                            <p:selectOneMenu id="situacao" value="#{funcionarioController.ativo}" > 
+                            <p:selectOneMenu id="situacao" value="#{funcionarioController.ativo}" style="float:left; width:100px; margin-right:10px;"> 
                                 <f:selectItem itemLabel="Ativo" itemValue="true" />
                                 <f:selectItem itemLabel="Inativo" itemValue="false" />
                                 <f:selectItem itemLabel="Ambos" itemValue="Ambos"/>
@@ -43,7 +43,8 @@
                             <p:column width="25%" headerText="Nome"><h:outputText value="#{funcionario.nome}"/></p:column>
                             <p:column width="15%" headerText="Telefone"><h:outputText value="#{funcionario.telefone}"/></p:column>
                             <p:column width="16%" headerText="Endereço"><h:outputText value="#{funcionario.endereco}"/></p:column>
-                            <p:column width="20%" headerText="Condominio"><h:outputText value="#{funcionario.condominio.nome}"/></p:column>
+                            <p:column width="10%" headerText="Turno"><h:outputText value="#{funcionario.turno}"/></p:column>
+                            <p:column width="10%" headerText="Condominio"><h:outputText value="#{funcionario.condominio.nome}"/></p:column>
                             <p:column width="18%" headerText="Ações" colspan="2">
                               <p:commandButton value="Editar" action="#{funcionarioController.carregarEntidade(funcionario)}" style="display:inline"/>
                               <p:commandButton value="Remover" action="#{funcionarioController.excluirEntidade(funcionario)}" style="display:inline"/>
