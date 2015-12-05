@@ -10,22 +10,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="USUARIO")
-public class Usuario implements Serializable{
-    private static final long serialVersionUID = 1L;
-    
+public class Usuario implements Serializable{   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    
+    private long id;
     private String login;
     private String senha;
     private String acesso;
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 

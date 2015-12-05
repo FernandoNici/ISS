@@ -13,6 +13,6 @@
     <mapping class="br.com.condominio.model.Condominio"/>
     <mapping class="br.com.condominio.model.Sindico"/>
     <mapping class="br.com.condominio.model.Funcionario"/>
-    <!--    <mapping class="br.com.condominio.model.Usuario"/> -->
+    <mapping class="br.com.condominio.model.Usuario"/>
   </session-factory>
 </hibernate-configuration>

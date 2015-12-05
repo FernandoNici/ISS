@@ -32,7 +32,7 @@ public class Funcionario implements Serializable{
     
     @Column(unique = true)
     private String cpf;
-    private String Municipio;
+    private String municipio;
     private String endereco;
     private String bairro;
     private boolean ativo;
@@ -119,11 +119,11 @@ public class Funcionario implements Serializable{
     }
 
     public String getMunicipio() {
-        return Municipio;
+        return municipio;
     }
 
-    public void setMunicipio(String Municipio) {
-        this.Municipio = Municipio;
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
     }
 
     public String getEndereco() {
@@ -169,7 +169,7 @@ public class Funcionario implements Serializable{
         hash = 79 * hash + Objects.hashCode(this.rg);
         hash = 79 * hash + Objects.hashCode(this.cep);
         hash = 79 * hash + Objects.hashCode(this.cpf);
-        hash = 79 * hash + Objects.hashCode(this.Municipio);
+        hash = 79 * hash + Objects.hashCode(this.municipio);
         hash = 79 * hash + Objects.hashCode(this.endereco);
         hash = 79 * hash + Objects.hashCode(this.bairro);
         hash = 79 * hash + (this.ativo ? 1 : 0);
@@ -210,7 +210,7 @@ public class Funcionario implements Serializable{
         if (!Objects.equals(this.cpf, other.cpf)) {
             return false;
         }
-        if (!Objects.equals(this.Municipio, other.Municipio)) {
+        if (!Objects.equals(this.municipio, other.municipio)) {
             return false;
         }
         if (!Objects.equals(this.endereco, other.endereco)) {
@@ -230,6 +230,6 @@ public class Funcionario implements Serializable{
 
     @Override
     public String toString() {
-        return "Funcionario{" + "id=" + id + ", nome=" + nome + ", dataNasc=" + dataNasc + ", turno=" + turno + ", telefone=" + telefone + ", celular=" + celular + ", rg=" + rg + ", cep=" + cep + ", cpf=" + cpf + ", Municipio=" + Municipio + ", endereco=" + endereco + ", bairro=" + bairro + ", ativo=" + ativo + ", condominio=" + condominio + '}';
+        return "Funcionario{" + "id=" + id + ", nome=" + nome + ", dataNasc=" + dataNasc + ", turno=" + turno + ", telefone=" + telefone + ", celular=" + celular + ", rg=" + rg + ", cep=" + cep + ", cpf=" + cpf + ", Municipio=" + municipio + ", endereco=" + endereco + ", bairro=" + bairro + ", ativo=" + ativo + ", condominio=" + condominio + '}';
     }
 }

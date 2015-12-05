@@ -3,8 +3,6 @@ package br.com.condominio.controller;
 import br.com.condominio.model.Usuario;
 import br.com.condominio.model.UsuarioDAO;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 
 public class UsuarioController {
     private UsuarioDAO usuarioDao;

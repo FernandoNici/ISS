@@ -12,7 +12,7 @@ public class UsuarioFacade{
     private Funcionario funcionario;
     private Sindico sindico;
     private UsuarioController usuarioController = new UsuarioController() ;
-    private Usuario usuario = new Usuario();;
+    private Usuario usuario = new Usuario();
     
     public UsuarioFacade(Condomino condomino){
        this.condomino = condomino;
@@ -25,14 +25,14 @@ public class UsuarioFacade{
     }
     
     public void CriaUsuarioCondomino(){
-       usuario.setLogin(condomino.getCPF());
-       usuario.setSenha("123");
-       usuario.setAcesso("Condomino");
-       usuarioController.AdicionarUsuario( usuario );
+       //this.usuario.setId(0);
+       this.usuario.setLogin(condomino.getCPF());
+       this.usuario.setSenha("123");
+       this.usuario.setAcesso("Condomino");
+       this.usuarioController.AdicionarUsuario( usuario );
     }
     public void CriaUsuarioSindico(){
        usuario = new Usuario();
-       
        usuario.setLogin(sindico.getCpf());
        usuario.setSenha("123");
        usuario.setAcesso("Sindico");

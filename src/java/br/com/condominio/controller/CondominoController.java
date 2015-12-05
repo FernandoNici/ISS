@@ -21,6 +21,7 @@ public class CondominoController {
 
     private Condomino condomino = new Condomino();
     private CondominoDAO condominoDAO = new CondominoDAO();
+    private UsuarioFacade usuface =  new UsuarioFacade(condomino);
     public String filtro;
     private List<Condomino> lista;
     
@@ -30,6 +31,7 @@ public class CondominoController {
 
     public String AdicionarCondomino(){    
         condominoDAO.salvar(condomino);
+        usuface.CriaUsuarioCondomino();
         return "consulta_condomino?faces-redirect=true";
     }
     
@@ -55,7 +57,6 @@ public class CondominoController {
         return this.lista;
     }
     public String novoCondomino(){
-        condomino.setId(null);
         condomino.setNome(null);
         condomino.setSobreNome(null);        
         condomino.setTelefone(null);
