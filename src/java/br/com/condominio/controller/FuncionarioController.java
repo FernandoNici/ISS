@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 public class FuncionarioController {
     private Funcionario funcionario = new Funcionario();
     private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+    private UsuarioFacade usuface =  new UsuarioFacade(funcionario);
     public String filtro;
     public String ativo;
     private List<Funcionario> lista;
@@ -38,6 +39,7 @@ public class FuncionarioController {
                 return "cadastro_sindico";
             }
             funcionarioDAO.salvar(funcionario);
+            usuface.CriaUsuarioFuncionario();
         }   
         else {
             funcionarioDAO.atualizar(funcionario);

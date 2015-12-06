@@ -31,9 +31,9 @@
               <br/>
               <p:outputLabel for="condominio" value="Condominio:"/>
               <p:selectOneMenu  id="condominio" value="#{apartamentoController.apartamento.condominio}" required="true">
-                <f:selectItem itemValue="" itemLabel="Selecione um Condomínio"/>
-                <f:selectItems value="#{condominioController.listaCondominios()}" var="condominio" itemValue="#{condominio}" itemLabel="#{condominio.nome}"/>
-                <f:converter converterId="CondominioConverter"/>
+                    <f:selectItem itemValue="" itemLabel="Selecione um Condomínio"/>
+                    <f:selectItems value="#{condominioController.listaCondominios()}" var="condominio" itemValue="#{condominio}" itemLabel="#{condominio.nome}"/>
+                    <f:converter converterId="CondominioConverter"/>
               </p:selectOneMenu> 
               <br/>              
               <p:outputLabel for="dataCadastro" value="Cadastro:"/>

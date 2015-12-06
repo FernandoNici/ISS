@@ -14,7 +14,6 @@ public class UsuarioDAO {
     private List<Usuario> lista;
 
     public UsuarioDAO() {
-        super();
     }
     
     public void salvar(Usuario user){

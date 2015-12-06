@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 /**
  *
@@ -22,8 +23,10 @@ public class Condomino implements Serializable{
     private String RG;
     @Column( unique = true )
     private String CPF;
-    private long telefone;
-    private String apartamento;
+    private String telefone;
+    @OneToOne
+    private Condominio condominio;
+    private Apartamento apartamento;
     
     public String getNome() {
         return nome;
@@ -57,20 +60,12 @@ public class Condomino implements Serializable{
         this.CPF = CPF;
     }
 
-    public Long getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(Long telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public String getApartamento() {
-        return apartamento;
-    }
-
-    public void setApartamento(String apartamento) {
-        this.apartamento = apartamento;
     }
 
     public long getId() {
@@ -80,5 +75,20 @@ public class Condomino implements Serializable{
     public void setId(long id) {
         this.id = id;
     }
-    
+
+    public Condominio getCondominio() {
+        return condominio;
+    }
+
+    public void setCondominio(Condominio condominio) {
+        this.condominio = condominio;
+    }
+
+    public Apartamento getApartamento() {
+        return apartamento;
+    }
+
+    public void setApartamento(Apartamento apartamento) {
+        this.apartamento = apartamento;
+    }    
 }

@@ -4,14 +4,12 @@ import br.com.condominio.model.Condomino;
 import br.com.condominio.model.Funcionario;
 import br.com.condominio.model.Sindico;
 import br.com.condominio.model.Usuario;
-import javax.faces.bean.ManagedBean;
 
-@ManagedBean
 public class UsuarioFacade{
     private Condomino condomino;
     private Funcionario funcionario;
     private Sindico sindico;
-    private UsuarioController usuarioController = new UsuarioController() ;
+    private UsuarioController usuarioController = new UsuarioController();
     private Usuario usuario = new Usuario();
     
     public UsuarioFacade(Condomino condomino){
@@ -25,11 +23,10 @@ public class UsuarioFacade{
     }
     
     public void CriaUsuarioCondomino(){
-       //this.usuario.setId(0);
-       this.usuario.setLogin(condomino.getCPF());
-       this.usuario.setSenha("123");
-       this.usuario.setAcesso("Condomino");
-       this.usuarioController.AdicionarUsuario( usuario );
+       usuario.setLogin(condomino.getCPF());
+       usuario.setSenha("123");
+       usuario.setAcesso("Condomino");
+       usuarioController.AdicionarUsuario( usuario );
     }
     public void CriaUsuarioSindico(){
        usuario = new Usuario();

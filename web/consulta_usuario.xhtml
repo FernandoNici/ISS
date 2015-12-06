@@ -46,11 +46,11 @@
                     <b:container>
                         <h1><b>Manutenção Usuário</b></h1> 
                         <br/>
-                        <h:inputText id="filtro" value="#{loginController.filtro}" styleClass="input"/>
+                        <h:inputText id="filtro" value="#{usuarioController.filtro}" styleClass="input"/>
                         <h:commandButton value="Filtrar" styleClass="button"/>
                         <br/>
                         
-                        <h:dataTable value="#{loginController.listaUsuarios()}" var="usuario" styleClass="tabela" headerClass="header" rowClasses="rowAntes,rowDepois" >
+                        <h:dataTable value="#{usuarioController.listaUsuarios()}" var="usuario" styleClass="tabela" headerClass="header" rowClasses="rowAntes,rowDepois" >
                             <h:column>
                                 <f:facet name="header">
                                     Login

@@ -3,8 +3,10 @@ package br.com.condominio.controller;
 import br.com.condominio.model.Usuario;
 import br.com.condominio.model.UsuarioDAO;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import org.primefaces.context.RequestContext;
 
 @ManagedBean
 @RequestScoped
@@ -15,10 +17,12 @@ public class LoginController{
     private Usuario usuario;
     private List<Usuario> lista;
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
+    private String filtro;
 
     public LoginController() {
-        setUsername("");
-        setSenha("");
+       // setUsername("");
+       // setSenha("");
+        setFiltro("");
     }
 
     public String getUsername() {
@@ -38,9 +42,18 @@ public class LoginController{
     }
 
     public List<Usuario> listaUsuarios(){
-        lista = usuarioDAO.getLista("");
+        lista = usuarioDAO.getLista(filtro);
         return this.lista;
     }
+
+    public String getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(String filtro) {
+        this.filtro = filtro;
+    }
+    
     public String ValidarLogin() {
         for (Usuario user : this.listaUsuarios()) {
             if (user.getLogin().equals(username) && user.getSenha().equals(senha)) {
@@ -48,7 +61,9 @@ public class LoginController{
                 return "index";
             }
         }
-        return null;
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Login", "Senha incorreta para este usuário! Verifique.");
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "login";
     }
-    
+        
 }

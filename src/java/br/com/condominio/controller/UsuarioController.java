@@ -3,9 +3,13 @@ package br.com.condominio.controller;
 import br.com.condominio.model.Usuario;
 import br.com.condominio.model.UsuarioDAO;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
+@ManagedBean
+@RequestScoped
 public class UsuarioController {
-    private UsuarioDAO usuarioDao;
+    private UsuarioDAO usuarioDao = new UsuarioDAO();
     private String filtro;
     private List<Usuario> lista;
     

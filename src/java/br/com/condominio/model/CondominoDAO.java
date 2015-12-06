@@ -65,7 +65,7 @@ public class CondominoDAO {
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
         Criteria criteria = sessao.createCriteria(Condomino.class);
-        filtroNome = Restrictions.like("nome",filtro+"%");
+        filtroNome = Restrictions.like("nome","%"+filtro+"%");
         criteria.add(filtroNome);
         this.lista = criteria.list();
         return lista;

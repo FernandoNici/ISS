@@ -20,6 +20,7 @@ public class SindicoController {
 
     private Sindico sindico = new Sindico();
     private SindicoDAO sindicoDAO = new SindicoDAO();
+    private UsuarioFacade usuface =  new UsuarioFacade(sindico);
     public String filtro;
     public String ativo;
     public Date data;
@@ -66,6 +67,7 @@ public class SindicoController {
                 return "cadastro_sindico";
             }
             sindicoDAO.salvar(sindico);
+            usuface.CriaUsuarioSindico();
         } else {
             sindicoDAO.atualizar(sindico);
         }

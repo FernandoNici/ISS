@@ -5,11 +5,14 @@
  */
 package br.com.condominio.controller;
 
+import br.com.condominio.model.Condominio;
 import br.com.condominio.model.Condomino;
 import br.com.condominio.model.CondominoDAO;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -22,8 +25,10 @@ public class CondominoController {
     private Condomino condomino = new Condomino();
     private CondominoDAO condominoDAO = new CondominoDAO();
     private UsuarioFacade usuface =  new UsuarioFacade(condomino);
-    public String filtro;
+    private String filtro;
     private List<Condomino> lista;
+    private List<Condominio> listaCondominios;
+    private CondominioController condominioController = new CondominioController();
     
     public CondominoController() {
         setFiltro("");
@@ -36,11 +41,15 @@ public class CondominoController {
     }
     
     public String ConfirmarCondomino(){
-        lista = listaCondominos();
-        if (lista.contains(condomino)) {
+        if (condomino.getId() == 0){
+            if ( VerificaCPF(condomino.getCPF())) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Já Cadastrado", "Contact admin."));
+                return "cadastro_condomino";
+            }
+            return AdicionarCondomino();
+        } else {
             return EditaCondomino();
         }
-        return AdicionarCondomino();
     }
     
     public String RemoverCondomino(){
@@ -63,17 +72,12 @@ public class CondominoController {
         condomino.setCPF(null);
         condomino.setRG(null);
         condomino.setApartamento(null);
- 
         return "cadastro_condomino";
     }
     
      public String carregarEntidade(Condomino condomino){
         this.condomino = condomino;
         return "cadastro_condomino";
-    }
-     public String excluirEntidade(Condomino condomino){
-        condominoDAO.deletar(condomino);
-        return "consulta_condomino";
     }
      
     public Condomino getCondomino() {
@@ -91,5 +95,18 @@ public class CondominoController {
     public void setFiltro(String filtro) {
         this.filtro = filtro;
     }
+    public List<Condominio> listaCondominios(){
+        listaCondominios = condominioController.listaCondominios();
+        return this.listaCondominios;
+    }
     
+     private boolean VerificaCPF(String cpf) {
+       lista = condominoDAO.getLista("");
+        for (Condomino cond : lista) {
+            if (cond.getCPF().contains(cpf)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
