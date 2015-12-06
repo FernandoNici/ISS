@@ -47,7 +47,7 @@
                             <p:column width="10%" headerText="Condominio"><h:outputText value="#{funcionario.condominio.nome}"/></p:column>
                             <p:column width="18%" headerText="Ações" colspan="2">
                               <p:commandButton value="Editar" action="#{funcionarioController.carregarEntidade(funcionario)}" style="display:inline"/>
-                              <p:commandButton value="Remover" action="#{funcionarioController.excluirEntidade(funcionario)}" style="display:inline"/>
+                              <p:commandButton value="Remover" action="#{funcionarioController.excluirEntidade(funcionario)}" style="display:inline" onclick="return(confirm('Deseja Realmente Remover?'));"/>
                             </p:column>
                         </p:dataTable>
                     </b:container>

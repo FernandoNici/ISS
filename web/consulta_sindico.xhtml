@@ -45,7 +45,7 @@
                             <p:column width="20%" headerText="Condominio"><h:outputText value="#{sindico.condominio.nome}"/></p:column>
                             <p:column width="18%" headerText="Ações" colspan="2">
                               <p:commandButton value="Editar" action="#{sindicoController.carregarEntidade(sindico)}" style="display:inline"/>
-                              <p:commandButton value="Remover" action="#{sindicoController.excluirEntidade(sindico)}" style="display:inline"/>
+                              <p:commandButton value="Remover" action="#{sindicoController.excluirEntidade(sindico)}" style="display:inline" onclick="return(confirm('Deseja Realmente Remover?'));"/>
                             </p:column>
                         </p:dataTable>
 
