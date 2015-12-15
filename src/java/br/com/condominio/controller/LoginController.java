@@ -55,12 +55,33 @@ public class LoginController{
     }
     
     public String ValidarLogin() {
-        for (Usuario user : this.listaUsuarios()) {
-            if (user.getLogin().equals(username) && user.getSenha().equals(senha)) {
-                usuario = user;
-                return "index";
+        setFiltro("");
+        this.lista = listaUsuarios();
+        //  lista = usuarioDAO.getLista("");
+        
+        
+//        lista = sindicoDAO.getLista("", "true");
+//        for (Sindico sindico : lista) {
+//            if (sindico.getCpf().contains(cpf)) {
+//                return true;
+//            }
+//        }
+//        return false;
+        
+        for (Usuario u : this.lista){
+            if(u.getLogin().equals(this.username) && u.getSenha().equals(this.senha)){
+                  return "index";
             }
         }
+//      
+        
+        
+//        for (Usuario user : this.listaUsuarios()) {
+//            if (user.getLogin().equals(username) && user.getSenha().equals(senha)) {
+//                usuario = user;
+//                return "index";
+//            }
+//        }
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Login", "Senha incorreta para este usuário! Verifique.");
         RequestContext.getCurrentInstance().showMessageInDialog(message);
         return "login";
