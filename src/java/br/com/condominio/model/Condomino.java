@@ -26,7 +26,9 @@ public class Condomino implements Serializable{
     private String telefone;
     @OneToOne
     private Condominio condominio;
+    @OneToOne
     private Apartamento apartamento;
+    private boolean ativo;
     
     public String getNome() {
         return nome;
@@ -91,4 +93,13 @@ public class Condomino implements Serializable{
     public void setApartamento(Apartamento apartamento) {
         this.apartamento = apartamento;
     }    
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
 }

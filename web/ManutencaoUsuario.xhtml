@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:b="http://bootsfaces.net/ui"
+       xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8"></meta>
+        <meta http-equivequiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title>Manutenção Usuário</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="LayoutPadrao.xhtml">
+            <ui:define name="content">
+                <style>
+                    .input {
+                        width: 50%;
+                    }  
+                    
+                    .button {
+                        width: 30%;
+                    }
+                    .tabela {
+                        border: 1px solid;                        
+                        width: 100%;                        
+                    }
+                    .header {
+                        border: 1px;                       
+                        text-align: center;
+                        padding: 2px;
+                        background:none repeat scroll 0 0 #428bca;
+                        color: #fff;
+                    }
+                    .rowAntes{
+                        text-align:center;
+                        background: none repeat scroll 0 0 #ffffff;	
+                     }
+                     .rowDepois{
+                        text-align:center;
+                        background: none repeat scroll 0 0 #e2e2e2;
+                     }
+                </style>       
+                
+                <h:form>
+                    <h:inputHidden value="#{usuarioController.usuario.id}" />
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                    <center>
+                        <h:panelGrid columns="2" style="margin-bottom:20px"  cellpadding="5">
+
+                            <p:outputLabel for="login" value="Login:" />
+                            <p:inputText id="login" value="#{usuarioController.usuario.login}" disabled="true" size="30"/>
+                            <p:outputLabel for="senha" value="Senha:" />
+                            <p:inputText id="senha" value="#{usuarioController.usuario.senha}" required="true" size="30"/>
+
+                        </h:panelGrid>
+
+                        <p:commandButton value="Salvar" action="#{usuarioController.EditaUsuario(usuarioController.usuario)}" onclick="return(confirm('Deseja Realmente Salvar?'));"/>
+                        <p:commandButton value="Cancelar" rendered="true" immediate="true" action="ManutencaoUsuario.xhtml"/>
+                    </center>
+                </h:form>
+                        
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

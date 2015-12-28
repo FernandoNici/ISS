@@ -25,12 +25,12 @@
                         <br/>
                         <h:panelGrid columns="2">
                             <h:outputLabel value="Usuário"/>
-                            <h:inputText id="usuario" value="#{loginController.username}" styleClass="input"/>
+                            <h:inputText id="usuario" value="#{usuarioController.username}" styleClass="input"/>
                             <h:outputLabel value="Senha"/>
-                            <h:inputSecret id="senha" value="#{loginController.senha}" styleClass="input"/>
+                            <h:inputSecret id="senha" value="#{usuarioController.senha}" styleClass="input"/>
                         </h:panelGrid>
                         <br/>
-                        <p:commandButton value="Entrar" actionListener="#{loginController.ValidarLogin()}" styleClass="btn btn-primary"/>
+                        <p:commandButton value="Entrar" action="#{usuarioController.ValidarLogin()}" styleClass="btn btn-primary"/>
                     </center>
                 </b:jumbotron>
             </b:container>

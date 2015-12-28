@@ -10,51 +10,50 @@
         <title>Manutenção Condômino</title>
     </h:head>
     <h:body>
-        <ui:composition template="layout_padrao.xhtml">  
+        <ui:composition template="LayoutPadrao.xhtml"> 
             <ui:define name="content">
                 <style>
                     label {width:160px; text-align:right; padding-right:4px;}
-                    p     {margin-top:6px;}
-
                 </style>
-                
+                 
                 <h:form>
-                    <b:container>
-                        <h:inputHidden value="#{condominoController.condomino.id}" />
-                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
-                        <p>
+                    <h:inputHidden value="#{condominoController.condomino.id}" />
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                    <center>
+                        <h:panelGrid columns="2" style="margin-bottom:20px"  cellpadding="5">
+
                             <p:outputLabel for="nomeCondomino" value="Nome:" />
                             <p:inputText id="nomeCondomino" value="#{condominoController.condomino.nome}" required="true" size="30"/>
                             <p:outputLabel for="sobreNomeCondomino" value="Sobrenome:" />
                             <p:inputText id="sobreNomeCondomino" value="#{condominoController.condomino.sobreNome}" required="true" size="60"/>
-                        </p>
-                        <p>
+
                             <p:outputLabel for="RGCondomino" value="RG:"/>
                             <p:inputText id="RGCondomino" value="#{condominoController.condomino.RG}"/>
                             <p:outputLabel for="CPFCondomino" value="CPF:"/>
                             <p:inputMask id="CPFCondomino" value="#{condominoController.condomino.CPF}" mask="999.999.999-99" readonly="#{condominoController.condomino.id != 0}"/>
-                        </p>
-                        <p>
                             <p:outputLabel for="telefoneCondomino" value="Telefone:"/>
                             <p:inputMask id="telefoneCondomino" value="#{condominoController.condomino.telefone}"  mask="(99)99999-999?9"/>
-                            
+
                             <p:outputLabel for="condominio" value="Condomínio:"/>
-                            <p:selectOneMenu  id="condominio" value="#{condominoController.condomino.condominio}" required="true">
+                            <p:selectOneMenu  id="condominio" value="#{condominoController.condomino.condominio}" required="true" style="width:240px">
                                 <f:selectItem itemValue="" itemLabel="Selecione um Condomínio"/>
-                                <f:selectItems value="#{condominoController.listaCondominios()}" var="condominio" itemValue="#{condominio}" itemLabel="#{condomino.nome}"/>
+                                <f:selectItems value="#{condominoController.listaCondominios()}" var="condominio" itemValue="#{condominio}" itemLabel="#{condominio.nome}"/>
                                 <f:converter converterId="CondominioConverter"/>
+                                <p:ajax listener="#{condominoController.listaApartamento()}" process="@this" update="apartamento" />
                             </p:selectOneMenu> 
-                            
-                            <p:outputLabel for="apartamentoCondomino" value="Apartamento:"/>
-                            <p:inputText id="apartamentoCondomino" value="#{condominoController.condomino.apartamento}"/>
-                        </p>
-                        <center>
-                            <p:commandButton value="Salvar" action="#{condominoController.ConfirmarCondomino()}" onclick="return(confirm('Deseja Realmente Salvar?'));"/>
-                            <p:commandButton value="Cancelar" rendered="true" immediate="true" action="consulta_condomino.xhtml"/>
-                        </center>
-                    </b:container>
+
+                            <p:outputLabel for="apartamento" value="Apartamento:"/>
+                            <p:selectOneMenu  id="apartamento" value="#{condominoController.condomino.apartamento}" required="true" style="width:240px">
+                                <f:selectItem itemValue="" itemLabel="Selecione um Apartamento"/>
+                                <f:selectItems value="#{condominoController.listaApartamentos}" var="apartamento" itemValue="#{apartamento}" itemLabel="#{apartamento.numero}"/>
+                                <f:converter converterId="ApartamentoConverter"/>
+                            </p:selectOneMenu>    
+                        </h:panelGrid>
+
+                        <p:commandButton value="Salvar" action="#{condominoController.ConfirmarCondomino()}" onclick="return(confirm('Deseja Realmente Salvar?'));"/>
+                        <p:commandButton value="Cancelar" rendered="true" immediate="true" action="ConsultaCondomino.xhtml"/>
+                    </center>
                 </h:form>
-               
             </ui:define>
         </ui:composition>               
     </h:body>

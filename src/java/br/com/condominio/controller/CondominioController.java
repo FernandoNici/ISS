@@ -1,7 +1,7 @@
 package br.com.condominio.controller;
 
 import br.com.condominio.model.Condominio;
-import br.com.condominio.model.CondominioDAO;
+import br.com.condominio.dao.CondominioDAO;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -33,16 +33,16 @@ public class CondominioController {
     public String manutencaoCondomino(){
         if(condominio.getId()==0) condominioDAO.salvar(condominio);
         else condominioDAO.atualizar(condominio);
-        return "consulta_condominio?faces-redirect=true";
+        return "ConsultaCondominio?faces-redirect=true";
     }
     public String RemoverCondominio(){
         condominioDAO.deletar(condominio);
-        return "consulta_condominio?faces-redirect=true";
+        return "ConsultaCondominio?faces-redirect=true";
     }
     
     public String EditaCondominio(){
         condominioDAO.atualizar(condominio);
-        return "consulta_condominio?faces-redirect=true";
+        return "ConsultaCondominio?faces-redirect=true";
     }
     
     public List<Condominio> listaCondominios(){
@@ -56,16 +56,16 @@ public class CondominioController {
         condominio.setBairro(null);
         condominio.setCep(null);
         condominio.setMunicipio(null);
-        return "cadastro_condominio?faces-redirect=true";
+        return "CadastroCondominio?faces-redirect=true";
     }
     
      public String carregarEntidade(Condominio condominio){
         this.condominio = condominio;
-        return "cadastro_condominio";
+        return "CadastroCondominio";
     }
      public String excluirEntidade(Condominio condominio){
         condominioDAO.deletar(condominio);
-        return "consulta_condominio?faces-redirect=true";
+        return "ConsultaCondominio?faces-redirect=true";
     }
      
     public Condominio getCondominio() {

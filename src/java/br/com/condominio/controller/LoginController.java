@@ -1,27 +1,25 @@
 package br.com.condominio.controller;
 
 import br.com.condominio.model.Usuario;
-import br.com.condominio.model.UsuarioDAO;
+import br.com.condominio.dao.UsuarioDAO;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import org.primefaces.context.RequestContext;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class LoginController{
 
     public String username;
     public String senha;
-    private Usuario usuario;
     private List<Usuario> lista;
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
+    private UsuarioController usuarioController = new UsuarioController();
     private String filtro;
 
     public LoginController() {
-       // setUsername("");
-       // setSenha("");
         setFiltro("");
     }
 
@@ -57,34 +55,17 @@ public class LoginController{
     public String ValidarLogin() {
         setFiltro("");
         this.lista = listaUsuarios();
-        //  lista = usuarioDAO.getLista("");
-        
-        
-//        lista = sindicoDAO.getLista("", "true");
-//        for (Sindico sindico : lista) {
-//            if (sindico.getCpf().contains(cpf)) {
-//                return true;
-//            }
-//        }
-//        return false;
-        
+
         for (Usuario u : this.lista){
             if(u.getLogin().equals(this.username) && u.getSenha().equals(this.senha)){
-                  return "index";
+                usuarioController.setUsuario(u);
+                return "Index?faces-redirect=true";
             }
         }
-//      
-        
-        
-//        for (Usuario user : this.listaUsuarios()) {
-//            if (user.getLogin().equals(username) && user.getSenha().equals(senha)) {
-//                usuario = user;
-//                return "index";
-//            }
-//        }
+
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Login", "Senha incorreta para este usuário! Verifique.");
         RequestContext.getCurrentInstance().showMessageInDialog(message);
-        return "login";
+        return "Login?faces-redirect=true";
     }
         
 }

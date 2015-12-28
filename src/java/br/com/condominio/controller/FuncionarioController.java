@@ -1,9 +1,8 @@
 package br.com.condominio.controller;
 
 import br.com.condominio.model.Funcionario;
-import br.com.condominio.model.FuncionarioDAO;
+import br.com.condominio.dao.FuncionarioDAO;
 import java.util.List;
-import java.util.Objects;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -36,7 +35,7 @@ public class FuncionarioController {
         if (funcionario.getId() == 0) {
             if (VerificaCpf(funcionario.getCpf())) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cpf Já Cadastrado", "Contact admin."));
-                return "cadastro_sindico";
+                return "CadastroSindico";
             }
             funcionarioDAO.salvar(funcionario);
             usuface.CriaUsuarioFuncionario();
@@ -44,17 +43,17 @@ public class FuncionarioController {
         else {
             funcionarioDAO.atualizar(funcionario);
         }
-        return "consulta_funcionario?faces-redirect=true";
+        return "ConsultaFuncionario?faces-redirect=true";
     }
    
     public String RemoverFuncionario(){
         funcionarioDAO.deletar(funcionario);
-        return "consulta_funcionario?faces-redirect=true";
+        return "ConsultaFuncionario?faces-redirect=true";
     }
     
     public String EditaFuncionario(){
         funcionarioDAO.atualizar(funcionario);
-        return "consulta_funcionario?faces-redirect=true";
+        return "ConsultaFuncionario?faces-redirect=true";
     }
     
     public List<Funcionario> listaFuncionarios(){
@@ -70,16 +69,16 @@ public class FuncionarioController {
         funcionario.setBairro(null);
         funcionario.setCep(null);
         funcionario.setMunicipio(null);
-        return "cadastro_funcionario?faces-redirect=true";
+        return "CadastroFuncionario?faces-redirect=true";
     }
     
      public String carregarEntidade(Funcionario funcionario){
         this.funcionario = funcionario;
-        return "cadastro_funcionario";
+        return "CadastroFuncionario";
     }
      public String excluirEntidade(Funcionario funcionario){
         funcionarioDAO.deletar(funcionario);
-        return "consulta_funcionario?faces-redirect=true";
+        return "ConsultaFuncionario?faces-redirect=true";
     }
      
     public Funcionario getFuncionario() {

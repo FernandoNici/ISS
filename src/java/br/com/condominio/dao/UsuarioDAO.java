@@ -1,5 +1,6 @@
-package br.com.condominio.model;
+package br.com.condominio.dao;
 
+import br.com.condominio.model.Usuario;
 import br.com.condominio.utils.HibernateUtil;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -8,33 +9,19 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-public class FuncionarioDAO {
+public class UsuarioDAO {
     private Session sessao;
     private Transaction transacao;
-    private List<Funcionario> lista;
+    private List<Usuario> lista;
 
-    public FuncionarioDAO() {
-        super();
+    public UsuarioDAO() {
     }
-            
-    public void salvar(Funcionario func){
+    
+    public void salvar(Usuario user){
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
-            sessao.save( func );
-            transacao.commit();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        finally{ sessao.close();}
-    }
-
-    public void deletar(Funcionario func){
-        try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            transacao = sessao.beginTransaction();
-            func.setAtivo(false);
-            sessao.update( func );
+            sessao.save( user );
             transacao.commit();
         }catch(Exception e){
             e.printStackTrace();
@@ -42,12 +29,25 @@ public class FuncionarioDAO {
         finally{ sessao.close(); }
     }
     
-    public void atualizar(Funcionario func){
+            
+    public void deletar(Usuario user){
+        try {
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            transacao = sessao.beginTransaction();
+            sessao.update( user );
+            transacao.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{ sessao.close(); }
+    }
+    
+    public void atualizar(Usuario user){
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
         
-            sessao.update( func );
+            sessao.update( user);
             transacao.commit();
         }catch(Exception e){
             e.printStackTrace();
@@ -55,17 +55,14 @@ public class FuncionarioDAO {
         finally{ sessao.close();}
     }
 
-    public List<Funcionario> getLista(String filtro,String ativ) {
+    public List<Usuario> getLista(String filtro) {
         Criterion filtroNome;
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
-        Criteria criteria = sessao.createCriteria(Funcionario.class);
-        filtroNome = Restrictions.like("nome","%"+filtro+"%");
+        Criteria criteria = sessao.createCriteria(Usuario.class);
+        filtroNome = Restrictions.like("login","%"+filtro+"%");
         criteria.add(filtroNome);
-        ativ = ativ.toLowerCase();
-        if(!ativ.contains("ambos")) criteria.add(Restrictions.eq("ativo",ativ.contains("true")));
         this.lista = criteria.list();
         return lista;
     }
 }
-

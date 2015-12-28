@@ -1,45 +1,43 @@
-package br.com.condominio.model;
+package br.com.condominio.dao;
 
+import br.com.condominio.model.Sindico;
 import br.com.condominio.utils.HibernateUtil;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-/**
- *
- * @author Nando
- */
-public class CondominoDAO {
+public class SindicoDAO {
     private Session sessao;
     private Transaction transacao;
-    private List<Condomino> lista;
-    
-    public CondominoDAO() {
-    }
-    
-    public void salvar(Condomino c){
-        try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            transacao = sessao.beginTransaction();
-            
-            sessao.save( c );
-            
-            transacao.commit();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        finally{ sessao.close(); }
-    }
+    private List<Sindico> lista;
 
-    public void deletar(Condomino c){
+    public SindicoDAO() {
+        super();
+    }
+            
+    public void salvar(Sindico sindico){
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
         
-            sessao.delete( c );
+            sessao.save( sindico );
+            transacao.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{ sessao.close();}
+    }
+
+    public void deletar(Sindico sindico){
+        try {
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            transacao = sessao.beginTransaction();
+            sindico.setAtivo(false);
+            sessao.update( sindico );
             transacao.commit();
         }catch(Exception e){
             e.printStackTrace();
@@ -47,29 +45,30 @@ public class CondominoDAO {
         finally{ sessao.close(); }
     }
     
-    public void atualizar(Condomino c){
+    public void atualizar(Sindico sindico){
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
         
-            sessao.update( c );
+            sessao.update( sindico );
             transacao.commit();
         }catch(Exception e){
             e.printStackTrace();
         }
-        finally{ sessao.close(); }
+        finally{ sessao.close();}
     }
 
-    public List<Condomino> getLista(String filtro) {
+    public List<Sindico> getLista(String filtro,String ativ) {
         Criterion filtroNome;
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
-        Criteria criteria = sessao.createCriteria(Condomino.class);
+        Criteria criteria = sessao.createCriteria(Sindico.class);
         filtroNome = Restrictions.like("nome","%"+filtro+"%");
         criteria.add(filtroNome);
+        ativ = ativ.toLowerCase();
+        if(!ativ.contains("ambos")) criteria.add(Restrictions.eq("ativo",ativ.contains("true")));
         this.lista = criteria.list();
         return lista;
     }
-    
-    
 }
+

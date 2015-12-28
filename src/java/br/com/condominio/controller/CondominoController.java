@@ -5,13 +5,15 @@
  */
 package br.com.condominio.controller;
 
+import br.com.condominio.model.Apartamento;
+import br.com.condominio.dao.ApartamentoDAO;
 import br.com.condominio.model.Condominio;
 import br.com.condominio.model.Condomino;
-import br.com.condominio.model.CondominoDAO;
+import br.com.condominio.dao.CondominoDAO;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -19,7 +21,7 @@ import javax.faces.context.FacesContext;
  * @author Nando
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class CondominoController {
 
     private Condomino condomino = new Condomino();
@@ -28,23 +30,26 @@ public class CondominoController {
     private String filtro;
     private List<Condomino> lista;
     private List<Condominio> listaCondominios;
+    private List<Apartamento> listaApartamentos;
+    private ApartamentoDAO apartamentoDAO = new ApartamentoDAO();
     private CondominioController condominioController = new CondominioController();
     
     public CondominoController() {
+        condomino.setAtivo(true);
         setFiltro("");
     }
 
-    public String AdicionarCondomino(){    
+    public String AdicionarCondomino(){
         condominoDAO.salvar(condomino);
         usuface.CriaUsuarioCondomino();
-        return "consulta_condomino?faces-redirect=true";
+        return "ConsultaCondomino?faces-redirect=true";
     }
     
     public String ConfirmarCondomino(){
         if (condomino.getId() == 0){
             if ( VerificaCPF(condomino.getCPF())) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Já Cadastrado", "Contact admin."));
-                return "cadastro_condomino";
+                return "CadastroCondomino";
             }
             return AdicionarCondomino();
         } else {
@@ -54,17 +59,23 @@ public class CondominoController {
     
     public String RemoverCondomino(){
         condominoDAO.deletar(condomino);
-        return "consulta_condomino";
-    }
+        return "ConsultaCondomino";
+    }   
     public String EditaCondomino(){
         condominoDAO.atualizar(condomino);
-        return "consulta_condomino";
+        return "ConsultaCondomino";
     }
     
     public List<Condomino> listaCondominos(){
         lista = condominoDAO.getLista(filtro);
         return this.lista;
     }
+    
+     public List<Apartamento> listaApartamento(){
+        this.listaApartamentos = apartamentoDAO.getListaDoCondominio(condomino.getCondominio());
+        return this.listaApartamentos;
+    }
+    
     public String novoCondomino(){
         condomino.setNome(null);
         condomino.setSobreNome(null);        
@@ -72,12 +83,12 @@ public class CondominoController {
         condomino.setCPF(null);
         condomino.setRG(null);
         condomino.setApartamento(null);
-        return "cadastro_condomino";
+        return "CadastroCondomino";
     }
     
      public String carregarEntidade(Condomino condomino){
         this.condomino = condomino;
-        return "cadastro_condomino";
+        return "CadastroCondomino";
     }
      
     public Condomino getCondomino() {
@@ -108,5 +119,9 @@ public class CondominoController {
             }
         }
         return false;
+    }
+
+    public List<Apartamento> getListaApartamentos() {
+        return listaApartamentos;
     }
 }

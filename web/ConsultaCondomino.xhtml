@@ -13,7 +13,7 @@
         <title>Manutenção Condômino</title>
     </h:head>
     <h:body>
-        <ui:composition template="layout_padrao.xhtml">  
+        <ui:composition template="LayoutPadrao.xhtml">  
             <ui:define name="content">
                 <style>
                     h1 {font-weight:bold;}
@@ -25,16 +25,32 @@
                         <h1><b>Consulta de Condômino</b></h1> 
                         
                         <p:outputLabel for="filtro" value="Nome:"/>
-                        <p:inputText id="filtro" value="#{condominioController.filtro}" size="40"/>
+                        <p:inputText id="filtro" value="#{condominoController.filtro}" size="40"/>
                         <p:commandButton ajax="false" value="Filtrar" styleClass="button"/>
                         <br/>
                         <p><h:commandButton value="+ Novo" action="#{condominoController.novoCondomino}" /></p>
                        
                         <p:dataTable value="#{condominoController.listaCondominos()}" var="condomino"  style="margin-top:10px;" >
-                            <p:column width="05%" headerText="Id"         ><h:outputText value="#{condomino.id}"         /></p:column>
-                            <p:column width="25%" headerText="Nome"       ><h:outputText value="#{condomino.nome}"       /></p:column>
-                            <p:column width="15%" headerText="Sobrenome"  ><h:outputText value="#{condomino.sobreNome}"  /></p:column>
-                            <p:column width="16%" headerText="Apartamento"><h:outputText value="#{condomino.apartamento}"/></p:column>
+                            <p:column width="05%" headerText="Id">
+                                <h:outputText value="#{condomino.id}"/>
+                            </p:column>
+                            
+                            <p:column width="25%" headerText="Nome">
+                                <h:outputText value="#{condomino.nome}"/>
+                            </p:column>
+                            
+                            <p:column width="15%" headerText="Sobrenome">
+                                <h:outputText value="#{condomino.sobreNome}"/>
+                            </p:column>
+                            
+                            <p:column width="16%" headerText="Condomínio">
+                                <h:outputText value="#{condomino.condominio.nome}"/>
+                            </p:column>
+                            
+                            <p:column width="16%" headerText="Apartamento">
+                                <h:outputText value="#{condomino.apartamento.numero}"/>
+                            </p:column>
+                            
                             <p:column width="18%" headerText="Ações" colspan="2">
                                 <p:commandButton value="Editar"  action="#{condominoController.carregarEntidade(condomino)}" style="display:inline" />
                                 <p:commandButton value="Remover" action="#{condominoController.RemoverCondomino()}" style="display:inline" onclick="return(confirm('Deseja Realmente Remover?'));"/>

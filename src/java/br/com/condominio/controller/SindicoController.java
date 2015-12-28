@@ -1,7 +1,7 @@
 package br.com.condominio.controller;
 
 import br.com.condominio.model.Sindico;
-import br.com.condominio.model.SindicoDAO;
+import br.com.condominio.dao.SindicoDAO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -64,19 +64,19 @@ public class SindicoController {
         if (sindico.getId() == 0) {
             if (VerificaCpf(sindico.getCpf())) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cpf Já Cadastrado", "Contact admin."));
-                return "cadastro_sindico";
+                return "CadastroSindico";
             }
             sindicoDAO.salvar(sindico);
             usuface.CriaUsuarioSindico();
         } else {
             sindicoDAO.atualizar(sindico);
         }
-       return "consulta_sindico?faces-redirect=true";
+       return "ConsultaSindico?faces-redirect=true";
     }
 
     public String RemoverSindico() {
         sindicoDAO.deletar(sindico);
-        return "consulta_sindico?faces-redirect=true";
+        return "ConsultaSindico?faces-redirect=true";
     }
 
     public boolean VerificaCpf(String cpf) {
@@ -91,7 +91,7 @@ public class SindicoController {
 
     public String EditaSindico() {
         sindicoDAO.atualizar(sindico);
-        return "consulta_sindico?faces-redirect=true";
+        return "ConsultaSindico?faces-redirect=true";
     }
 
     public List<Sindico> listaSindicos() {
@@ -108,17 +108,17 @@ public class SindicoController {
         sindico.setBairro(null);
         sindico.setCep(null);
         sindico.setMunicipio(null);
-        return "cadastro_sindico?faces-redirect=true";
+        return "CadastroSindico?faces-redirect=true";
     }
 
     public String carregarEntidade(Sindico sindico) {
         this.sindico = sindico;
-        return "cadastro_sindico";
+        return "CadastroSindico";
     }
 
     public String excluirEntidade(Sindico sindico) {
         sindicoDAO.deletar(sindico);
-        return "consulta_sindico?faces-redirect=true";
+        return "ConsultaSindico?faces-redirect=true";
     }
 
     public Sindico getSindico() {

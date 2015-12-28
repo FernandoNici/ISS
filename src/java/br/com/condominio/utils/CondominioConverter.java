@@ -1,6 +1,6 @@
 package br.com.condominio.utils;
 
-import br.com.condominio.model.CondominioDAO;
+import br.com.condominio.dao.CondominioDAO;
 import br.com.condominio.model.Condominio;
 import java.util.List;
 import javax.faces.application.FacesMessage;

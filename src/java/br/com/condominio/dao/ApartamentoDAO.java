@@ -1,9 +1,10 @@
-package br.com.condominio.model;
+package br.com.condominio.dao;
 
+import br.com.condominio.model.Apartamento;
+import br.com.condominio.model.Condominio;
 import br.com.condominio.utils.HibernateUtil;
 import java.util.List;
 import org.hibernate.Criteria;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
@@ -73,6 +74,18 @@ public class ApartamentoDAO {
     transacao = sessao.beginTransaction();
     Criteria criteria = sessao.createCriteria(Apartamento.class);
     filtroNome = Restrictions.like("numero", filtro + "%");
+    criteria.add(filtroNome);
+    criteria.add(Restrictions.eq("ativo", true));
+    this.lista = criteria.list();
+    return this.lista;
+  }
+  
+   public List<Apartamento> getListaDoCondominio(Condominio filtro) {
+    Criterion filtroNome;
+    sessao = HibernateUtil.getSessionFactory().openSession();
+    transacao = sessao.beginTransaction();
+    Criteria criteria = sessao.createCriteria(Apartamento.class);
+    filtroNome = Restrictions.eq("condominio", filtro );
     criteria.add(filtroNome);
     criteria.add(Restrictions.eq("ativo", true));
     this.lista = criteria.list();

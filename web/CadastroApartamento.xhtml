@@ -9,7 +9,7 @@
     <title>Cadastro Apartamento</title>
   </h:head>
   <h:body>
-    <ui:composition template="layout_padrao.xhtml">  
+    <ui:composition template="LayoutPadrao.xhtml">
       <ui:define name="content">
         <center>
           <h:form>     
@@ -50,7 +50,7 @@
                              onclick="return (confirm('Deseja realmente salvar as alterações?'));">
             </p:commandButton> 
             <p:commandButton value="Cancelar" 
-                             action="consulta_apartamento?faces-redirect=true" 
+                             action="ConsultaApartamento?faces-redirect=true" 
                              styleClass="btn input" 
                              immediate="true"
                              onclick="return (confirm('Deseja realmente descartar as alterações?'));"/> 

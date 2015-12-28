@@ -1,7 +1,7 @@
 package br.com.condominio.controller;
 
 import br.com.condominio.model.Apartamento;
-import br.com.condominio.model.ApartamentoDAO;
+import br.com.condominio.dao.ApartamentoDAO;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
@@ -33,29 +33,29 @@ public class ApartamentoController implements Serializable {
       atualizarApartamento();
     }
 
-    return "consulta_apartamento?faces-redirect=true";
+    return "ConsultaApartamento?faces-redirect=true";
   }
 
   public String adicionarApartamento() {
     apartamentoDAO.adicionar(apartamento);
-    return "consulta_apartament?faces-redirect=trueo";
+    return "ConsultaApartament?faces-redirect=trueo";
   }
 
   public String deletarApartamento() {
     apartamentoDAO.deletar(apartamento);
-    return "consulta_apartamento?faces-redirect=true";
+    return "ConsultaApartamento?faces-redirect=true";
   }
 
   public String atualizarApartamento() {
     apartamentoDAO.atualizar(apartamento);
-    return "consulta_apartamento?faces-redirect=true";
+    return "ConsultaApartamento?faces-redirect=true";
   }
 
   public String novoApartamento() {
     apartamento.setBloco("");
     apartamento.setDataCadastro(Calendar.getInstance().getTime());
     apartamento.setNumero("");
-    return "cadastro_apartamento?faces-redirect=true";
+    return "CadastroApartamento?faces-redirect=true";
   }
 
   public List<Apartamento> listaApartamento() {
@@ -65,12 +65,12 @@ public class ApartamentoController implements Serializable {
 
   public String carregarEntidade(Apartamento ap) {
     this.apartamento = ap;
-    return "cadastro_apartamento";
+    return "CadastroApartamento";
   }
 
   public String removerEntidade(Apartamento ap) {
     apartamentoDAO.deletar(ap);
-    return "consulta_apartamento?faces-redirect=true";
+    return "ConsultaApartamento?faces-redirect=true";
   }
 
   public String getFiltro() {
