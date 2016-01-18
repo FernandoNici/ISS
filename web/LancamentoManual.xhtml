@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Manutenção Condomíno</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="LayoutPadrao.xhtml">
+            <ui:define name="content">
+                <style>
+                    label {width:160px; text-align:right; padding-right:4px;}
+                    p     {margin-top:6px;}
+
+                </style>
+                <h:form>
+                    <b:container>
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                        
+                        <p> 
+                            <p:outputLabel for="condominioSel" value="Condominio:" style="float:left"/>
+                            <div>
+                                <p:selectOneMenu  id="condominioSel" value="#{lancamentoController.lancamento.condominio}">
+                                    <f:selectItem itemValue="" itemLabel="Selecione um Condomínio"/>
+                                    <f:selectItems value="#{condominioController.listaCondominios()}" var="condominio" itemValue="#{condominio}" itemLabel="#{condominio.nome}"/>
+                                    <f:converter converterId="CondominioConverter"/>
+                                </p:selectOneMenu>
+                            </div>
+                        </p>
+
+                        <p>
+                            <p:outputLabel for="descricao" value="Descrição:" />
+                            <p:inputText id="descricao" value="#{lancamentoController.lancamento.descricao}" required="true" size="60"/>
+                        
+                            <p:outputLabel for="vencimento" value="Vencimento:" />
+                            <p:calendar size="10" id="vencimento" value="#{lancamentoController.lancamento.vencimento}" required="true" pattern="dd/MM/yyyy" mask="99/99/9999" />    
+                            
+                        </p>
+                        
+                        <p>
+                            <p:outputLabel for="valor" value="Valor:" />
+                            <p:inputText id="valor" value="#{lancamentoController.lancamento.valor}"/>
+                        </p>
+                        
+                        <center>
+                            <p:commandButton value="Salvar" action="#{lancamentoController.manutencaoLancamento()}" onclick="return(confirm('Deseja Realmente Salvar?'));"/>
+                            <p:commandButton immediate="true" value="Limpar" action="#{funcionarioController.novoFuncionario()}"/>
+                        </center>
+                    </b:container>
+                </h:form>
+            </ui:define>
+        </ui:composition>               
+    </h:body>
+</html>
+

@@ -1,6 +1,7 @@
 package br.com.condominio.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "LANCAMENTOS")
@@ -16,15 +19,42 @@ public class Lancamento implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idLanc;
+    
+    @OneToOne(cascade = CascadeType.ALL)
     private Condominio condominio;
+    
+    @OneToOne(cascade = CascadeType.ALL)
     private Apartamento apartamento;
+    
     private String descricao;
     private double valor;
     private boolean debito;
     private boolean pago;
+    private boolean ativo;
+    
+    @Temporal(TemporalType.DATE)
+    private Date vencimento;
+       
 
     public Lancamento() {
         super();
+    }
+
+    public Date getVencimento() {
+        return vencimento;
+    }
+
+    public void setVencimento(Date vencimento) {
+        this.vencimento = vencimento;
+    }
+
+       
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
     
     public long getIdLanc() {
