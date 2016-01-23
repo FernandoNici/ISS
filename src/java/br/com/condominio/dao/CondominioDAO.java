@@ -39,7 +39,7 @@ public class CondominioDAO {
             sessao.update( cond );
             transacao.commit();
         }catch(Exception e){
-            e.printStackTrace();
+            throw e;
         }
         finally{ sessao.close(); }
     }

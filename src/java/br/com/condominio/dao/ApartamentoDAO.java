@@ -46,8 +46,8 @@ public class ApartamentoDAO {
       sessao.update(ap);
       transacao.commit();
     } catch (Exception e) {
-      e.printStackTrace();
       transacao.rollback();
+      throw e;
     } finally {
       sessao.close();
     }
@@ -79,13 +79,13 @@ public class ApartamentoDAO {
     this.lista = criteria.list();
     return this.lista;
   }
-  
-   public List<Apartamento> getListaDoCondominio(Condominio filtro) {
+
+  public List<Apartamento> getListaDoCondominio(Condominio filtro) {
     Criterion filtroNome;
     sessao = HibernateUtil.getSessionFactory().openSession();
     transacao = sessao.beginTransaction();
     Criteria criteria = sessao.createCriteria(Apartamento.class);
-    filtroNome = Restrictions.eq("condominio", filtro );
+    filtroNome = Restrictions.eq("condominio", filtro);
     criteria.add(filtroNome);
     criteria.add(Restrictions.eq("ativo", true));
     this.lista = criteria.list();

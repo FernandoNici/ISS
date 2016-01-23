@@ -1,0 +1,6 @@
+INSERT INTO usuario(LOGIN, SENHA) VALUES ('admin', '123'), ('massao', 'massao');
+INSERT INTO condominio(MUNICIPIO, ANDARES, APTOSPORANDAR, BAIRRO, CEP, ENDERECO, NOME, ATIVO) VALUES ('Maringa', 1, 0, 'Novo', '11111-111', 'Rua A', 'Condominio 01', true);
+INSERT INTO apartamento(ATIVO, BLOCO, DATACADASTRO, NUMERO, CONDOMINIO_ID, CONDOMINO_ID) VALUES (true, 'BL-1', '2016-01-18', '01', 1, NULL), (true, 'BL-1', '2016-01-18', '02', 1, NULL), (true, 'BL-1', '2016-01-18', '03', 1, NULL), (true, 'BL-1', '2016-01-18', '04', 1, NULL);
+INSERT INTO funcionario(ativo, bairro, celular, cep, cpf, dataNasc, endereco, municipio, nome, rg, telefone, turno, condominio_id) VALUES (true, 'Novo', '(44) 9999-9999', '11111-111', '111.111.111-11', '1980-01-01', 'R. Nova', 'Maringa', 'Jose Aparecido', '11.111.111-1', '(44) 4444-4444', 'Manha', 1);
+INSERT INTO sindico(Municipio, ativo, bairro, celular, cep, cpf, dataNasc, endereco, nome, rg, telefone, condominio_id) VALUES ('Maringa', true, 'Velho', '(33) 8888-8888', '00000-000', '000.000.000-00', '1970-01-01', 'Rua Debaixo', 'Maria da Silva', '00.000.000-0', '(44) 3333-3333', 1);
+INSERT INTO condomino(CPF, RG, ativo, nome, sobreNome, telefone, apartamento_id, condominio_id) VALUES ('', '', true, 'Ricardo', 'Souza', '', 1, 1);

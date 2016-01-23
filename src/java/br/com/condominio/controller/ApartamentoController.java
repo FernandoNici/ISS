@@ -2,6 +2,7 @@ package br.com.condominio.controller;
 
 import br.com.condominio.model.Apartamento;
 import br.com.condominio.dao.ApartamentoDAO;
+import br.com.condominio.utils.JSFMessageUtil;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
@@ -42,8 +43,7 @@ public class ApartamentoController implements Serializable {
   }
 
   public String deletarApartamento() {
-    apartamentoDAO.deletar(apartamento);
-    return "ConsultaApartamento?faces-redirect=true";
+    return removerEntidade(apartamento);
   }
 
   public String atualizarApartamento() {
@@ -69,8 +69,13 @@ public class ApartamentoController implements Serializable {
   }
 
   public String removerEntidade(Apartamento ap) {
-    apartamentoDAO.deletar(ap);
-    return "ConsultaApartamento?faces-redirect=true";
+    try {
+      apartamentoDAO.deletar(ap);
+      return "ConsultaApartamento?faces-redirect=true";
+    } catch (Exception e) {
+      JSFMessageUtil.addMessageError(null, e.getCause().getMessage());
+      return "";
+    }
   }
 
   public String getFiltro() {
