@@ -10,12 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.SQLDelete;
 
 /**
  *
  * @author Massao
  */
 @Entity
+@SQLDelete(sql = " UPDATE APARTAMENTO SET ATIVO = 0 WHERE ID = ? ")
 public class Apartamento implements Serializable {
 
   @Id
@@ -24,8 +26,8 @@ public class Apartamento implements Serializable {
   private String bloco;
   private String numero;
   @Temporal(TemporalType.DATE)
-  private Date dataCadastro;
-  private boolean ativo;
+  private Date dataCadastro = new Date();
+  private boolean ativo = true;
   @OneToOne
   private Condominio condominio;
   @OneToOne
@@ -41,7 +43,6 @@ public class Apartamento implements Serializable {
 
   public Apartamento() {
     setDataCadastro(Calendar.getInstance().getTime());
-    setAtivo(true);
   }
 
   public long getId() {

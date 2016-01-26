@@ -1,7 +1,6 @@
 package br.com.condominio.dao;
 
-import br.com.condominio.model.Apartamento;
-import br.com.condominio.model.Condominio;
+import br.com.condominio.model.AreaLazer;
 import br.com.condominio.utils.HibernateUtil;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -14,21 +13,20 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author Massao
  */
-public class ApartamentoDAO {
+public class AreaLazerDAO {
 
   private Session sessao;
   private Transaction transacao;
-  private List<Apartamento> lista;
+  private List<AreaLazer> lista;
 
-  public ApartamentoDAO() {
+  public AreaLazerDAO() {
   }
 
-  public void adicionar(Apartamento ap) {
+  public void adicionar(AreaLazer areaLazer) {
     try {
       sessao = HibernateUtil.getSessionFactory().openSession();
       transacao = sessao.beginTransaction();
-
-      sessao.save(ap);
+      sessao.save(areaLazer);
       transacao.commit();
     } catch (Exception e) {
       e.printStackTrace();
@@ -38,11 +36,11 @@ public class ApartamentoDAO {
     }
   }
 
-  public void deletar(Apartamento ap) {
+  public void deletar(AreaLazer areaLazer) {
     try {
       sessao = HibernateUtil.getSessionFactory().openSession();
       transacao = sessao.beginTransaction();
-      sessao.delete(ap);
+      sessao.delete(areaLazer);
       transacao.commit();
     } catch (Exception e) {
       transacao.rollback();
@@ -52,11 +50,11 @@ public class ApartamentoDAO {
     }
   }
 
-  public void atualizar(Apartamento ap) {
+  public void atualizar(AreaLazer areaLazer) {
     try {
       sessao = HibernateUtil.getSessionFactory().openSession();
       transacao = sessao.beginTransaction();
-      sessao.update(ap);
+      sessao.update(areaLazer);
       transacao.commit();
     } catch (Exception e) {
       e.printStackTrace();
@@ -66,24 +64,12 @@ public class ApartamentoDAO {
     }
   }
 
-  public List<Apartamento> getLista(String filtro) {
+  public List<AreaLazer> getLista(String filtro) {
     Criterion filtroNome;
     sessao = HibernateUtil.getSessionFactory().openSession();
     transacao = sessao.beginTransaction();
-    Criteria criteria = sessao.createCriteria(Apartamento.class);
-    filtroNome = Restrictions.like("numero", filtro + "%");
-    criteria.add(filtroNome);
-    criteria.add(Restrictions.eq("ativo", true));
-    this.lista = criteria.list();
-    return this.lista;
-  }
-
-  public List<Apartamento> getListaDoCondominio(Condominio filtro) {
-    Criterion filtroNome;
-    sessao = HibernateUtil.getSessionFactory().openSession();
-    transacao = sessao.beginTransaction();
-    Criteria criteria = sessao.createCriteria(Apartamento.class);
-    filtroNome = Restrictions.eq("condominio", filtro);
+    Criteria criteria = sessao.createCriteria(AreaLazer.class);
+    filtroNome = Restrictions.like("nome", filtro + "%");
     criteria.add(filtroNome);
     criteria.add(Restrictions.eq("ativo", true));
     this.lista = criteria.list();

@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+  <script language="JavaScript" src="Funcoes.js"></script>
+  <h:head>
+    <title>Cadastro de Área de Lazer</title>
+  </h:head>
+  <h:body>
+    <ui:composition template="LayoutPadrao.xhtml">
+      <ui:define name="content">
+        <center>
+          <h:form>
+            <h:panelGrid columns="3" cellpadding="15">
+              <h:inputHidden id="id" value="#{areaLazerController.areaLazer.id}"/>
+              <h:inputHidden id="ativo" value="#{areaLazerController.areaLazer.ativo}"/>
+              <br/>         
+              <p:outputLabel for="dataCadastro" value="Cadastro:"/>
+              <p:calendar 
+                id="dataCadastro" 
+                value="#{areaLazerController.areaLazer.dataCadastro}"
+                disabled="true"/>     
+              <br/>
+              <p:outputLabel for="condominio" value="Condominio:"/>
+              <p:selectOneMenu  id="condominio" value="#{areaLazerController.areaLazer.condominio}" required="true">
+                <f:selectItem itemValue="" itemLabel="Selecione um Condomínio"/>
+                <f:selectItems value="#{condominioController.listaCondominios()}" 
+                               var="condominio" 
+                               itemValue="#{condominio}" 
+                               itemLabel="#{condominio.nome}"/>
+                <f:converter converterId="CondominioConverter"/>
+              </p:selectOneMenu> 
+              <br/>            
+              <p:outputLabel for="nome" value="Nome:"/>
+              <p:inputText  id="nome"       
+                            value="#{areaLazerController.areaLazer.nome}" 
+                            required="true" 
+                            maxlength="50" 
+                            placeholder="Nome até 50 caracteres"
+                            requiredMessage="Campo Nome obrigatório">
+              </p:inputText>  
+              <br/>         
+              <p:outputLabel for="descricao" value="Descrição:"/>
+              <p:inputTextarea  id="descricao"       
+                                value="#{areaLazerController.areaLazer.descricao}" 
+                                maxlength="250"
+                                placeholder="Descrição até 250 caracteres">
+              </p:inputTextarea>  
+              <br/>
+              <p:outputLabel for="valor" value="Valor:"/>
+              <p:inputText  id="valor"       
+                            value="#{areaLazerController.areaLazer.valor}" 
+                            maxlength="14"
+                            placeholder="0.00" 
+                            onkeypress="mascara(this, moeda)"
+                            converter="DecimalConverter">        
+              </p:inputText>  
+              <br/>
+            </h:panelGrid>
+            <h:inputHidden></h:inputHidden>
+            <p:commandButton value="Salvar" 
+                             action="#{areaLazerController.manutencaoAreaLazer()}"
+                             styleClass="btn input"
+                             onclick="return (confirm('Deseja realmente salvar as alterações?'));">
+            </p:commandButton> 
+            <p:commandButton value="Cancelar" 
+                             action="ConsultaAreaLazer?faces-redirect=true" 
+                             styleClass="btn input" 
+                             immediate="true"
+                             onclick="return (confirm('Deseja realmente descartar as alterações?'));"/> 
+          </h:form>
+        </center>
+      </ui:define>
+    </ui:composition>  
+  </h:body>
+</html>
+

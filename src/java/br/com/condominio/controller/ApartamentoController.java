@@ -17,6 +17,8 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class ApartamentoController implements Serializable {
 
+  private static final String URL_CONSULTA = "ConsultaApartamento?faces-redirect=true";
+  private static final String URL_CADASTRO = "CadastroApartamento?faces-redirect=true";
   private Apartamento apartamento = new Apartamento();
   private ApartamentoDAO apartamentoDAO = new ApartamentoDAO();
   public String filtro;
@@ -27,19 +29,15 @@ public class ApartamentoController implements Serializable {
   }
 
   public String manutencaoApartamento() {
-    System.out.println(apartamento);
     if ((apartamento.getId() == 0)) {
-      adicionarApartamento();
-    } else {
-      atualizarApartamento();
-    }
-
-    return "ConsultaApartamento?faces-redirect=true";
+      return adicionarApartamento();
+    } 
+    return atualizarApartamento();
   }
 
   public String adicionarApartamento() {
     apartamentoDAO.adicionar(apartamento);
-    return "ConsultaApartament?faces-redirect=trueo";
+    return URL_CONSULTA;
   }
 
   public String deletarApartamento() {
@@ -48,14 +46,14 @@ public class ApartamentoController implements Serializable {
 
   public String atualizarApartamento() {
     apartamentoDAO.atualizar(apartamento);
-    return "ConsultaApartamento?faces-redirect=true";
+    return URL_CONSULTA;
   }
 
   public String novoApartamento() {
     apartamento.setBloco("");
     apartamento.setDataCadastro(Calendar.getInstance().getTime());
     apartamento.setNumero("");
-    return "CadastroApartamento?faces-redirect=true";
+    return URL_CADASTRO;
   }
 
   public List<Apartamento> listaApartamento() {
@@ -71,7 +69,7 @@ public class ApartamentoController implements Serializable {
   public String removerEntidade(Apartamento ap) {
     try {
       apartamentoDAO.deletar(ap);
-      return "ConsultaApartamento?faces-redirect=true";
+      return URL_CONSULTA;
     } catch (Exception e) {
       JSFMessageUtil.addMessageError(null, e.getCause().getMessage());
       return "";

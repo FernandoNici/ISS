@@ -5,6 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+  <script language="JavaScript" src="Funcoes.js"></script>
   <h:head>
     <title>Cadastro Apartamento</title>
   </h:head>
@@ -14,6 +15,8 @@
         <center>
           <h:form>     
             <h:panelGrid columns="3" cellpadding="5">
+              <h:inputHidden id="id" value="#{apartamentoController.apartamento.id}"/>
+              <h:inputHidden id="ativo" value="#{apartamentoController.apartamento.ativo}"/>
               <p:outputLabel for="bloco" value="Bloco:"/>
               <p:inputText  id="bloco"        
                             value="#{apartamentoController.apartamento.bloco}" 
@@ -26,6 +29,7 @@
                             value="#{apartamentoController.apartamento.numero}" 
                             required="true" 
                             maxlength="9" 
+                            onkeydown="return SomenteNumero(event);"
                             requiredMessage="Campo Número obrigatório">
               </p:inputText>  
               <br/>
