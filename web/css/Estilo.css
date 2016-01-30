@@ -1,0 +1,44 @@
+/* 
+    Created on : 30/01/2016, 12:10:56
+    Author     : Massao
+*/
+.input {
+  width: 50%;
+}  
+.button {
+  width: 100%;
+}
+.tabela {
+  border: 1px solid;                        
+  width: 100%;                        
+}
+.header {
+  border: 1px;                       
+  text-align: center;
+  padding: 2px;
+  background:none repeat scroll 0 0 #428bca;
+  color: #fff;
+}
+.rowAntes{
+  text-align:center;
+  background: none repeat scroll 0 0 #ffffff;	
+}
+.rowDepois{
+  text-align:center;
+  background: none repeat scroll 0 0 #e2e2e2;
+}
+
+.label{
+  width:160px; 
+  text-align:right; 
+  padding-right:4px;
+}
+.p{
+  margin-top:6px;
+}
+
+.btnNaConsulta{
+  width: 30%;
+  alignment-adjust: auto;
+  alignment-baseline: central;
+}

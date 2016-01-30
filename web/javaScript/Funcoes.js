@@ -51,4 +51,4 @@ function moeda(valor) {
   valor = valor.replace(/(\d)(\d{5})$/, "$1.$2");
   valor = valor.replace(/(\d)(\d{2})$/, "$1,$2");
   return valor;
-} 
+}
