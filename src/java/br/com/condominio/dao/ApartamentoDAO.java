@@ -78,14 +78,13 @@ public class ApartamentoDAO {
     return this.lista;
   }
 
-  public List<Apartamento> getListaDoCondominio(Condominio filtro) {
-    Criterion filtroNome;
+  public List<Apartamento> getListaDoCondominio(Condominio condominio) {
+    Criterion filtroCondominio;
     sessao = HibernateUtil.getSessionFactory().openSession();
     transacao = sessao.beginTransaction();
     Criteria criteria = sessao.createCriteria(Apartamento.class);
-    filtroNome = Restrictions.eq("condominio", filtro);
-    criteria.add(filtroNome);
-    criteria.add(Restrictions.eq("ativo", true));
+    filtroCondominio = Restrictions.eq("condominio", condominio);
+    criteria.add(filtroCondominio);
     this.lista = criteria.list();
     return this.lista;
   }

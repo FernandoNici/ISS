@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 /**
  *
@@ -18,6 +19,7 @@ import org.hibernate.annotations.SQLDelete;
  */
 @Entity
 @SQLDelete(sql = " UPDATE APARTAMENTO SET ATIVO = 0 WHERE ID = ? ")
+@Where(clause = "ativo = 1")
 public class Apartamento implements Serializable {
 
   @Id

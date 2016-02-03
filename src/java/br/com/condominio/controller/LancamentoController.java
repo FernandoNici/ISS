@@ -1,7 +1,7 @@
 package br.com.condominio.controller;
 
 import br.com.condominio.model.Lancamento;
-import br.com.condominio.dao.LancamentoDao;
+import br.com.condominio.dao.LancamentoDAO;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -12,7 +12,7 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class LancamentoController {
     private Lancamento lancamento = new Lancamento();
-    private LancamentoDao lancamentoDao = new LancamentoDao();
+    private LancamentoDAO lancamentoDao = new LancamentoDAO();
     public String filtro;
     public String pago;
     private List<Lancamento> lista;
@@ -81,5 +81,9 @@ public class LancamentoController {
 
     public void setFiltro(String filtro) {
         this.filtro = filtro;
+    }
+    
+    public String fechamentoMensal(){
+      return "FechamentoMensal?faces-redirect=true";
     }
 }

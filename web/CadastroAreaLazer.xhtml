@@ -53,11 +53,11 @@
               <p:outputLabel for="valor" value="Valor:"/>
               <p:inputText  id="valor"       
                             value="#{areaLazerController.areaLazer.valor}" 
+                            onkeypress="mascara(this, moeda)"
                             maxlength="14"
                             placeholder="0.00" 
-                            onkeypress="mascara(this, moeda)"
                             converter="DecimalConverter">        
-              </p:inputText>  
+              </p:inputText>
               <br/>
             </h:panelGrid>
             <h:inputHidden></h:inputHidden>

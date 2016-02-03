@@ -8,13 +8,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.FilterDefs;
+import org.hibernate.annotations.Filters;
+import org.hibernate.annotations.ParamDef;
 
 @Entity
 @Table(name = "LANCAMENTOS")
+@Filters({
+  @Filter(name = "lancamentosStatusAtivo", condition = "ativo = :statusAtivo"),
+  @Filter(name = "lancamentosStatusBaixa", condition = "pago = :statusBaixa"),
+  @Filter(name = "lancamentosTipoDebito", condition = "debito = :tipoDebito")
+})
+@FilterDefs({
+  @FilterDef(name = "lancamentosStatusAtivo", parameters = {
+    @ParamDef(name = "statusAtivo", type = "boolean")}),
+  @FilterDef(name = "lancamentosStatusBaixa", parameters = {
+    @ParamDef(name = "statusBaixa", type = "boolean")}),
+  @FilterDef(name = "lancamentosTipoDebito", parameters = {
+    @ParamDef(name = "tipoDebito", type = "boolean")})
+})
 public class Lancamento implements Serializable {
 
   @Id

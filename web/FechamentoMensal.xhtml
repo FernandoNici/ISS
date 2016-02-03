@@ -16,13 +16,14 @@
         <link href="css/Estilo.css" rel="stylesheet" type="text/css"/>
         <h:form>
           <b:container>
+            <h1>Fechamento mensal</h1>
             <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 
             <h:panelGrid columns="8">
               <p> 
                 <p:outputLabel for="condominioSel" value="Condominio:" style="float:left"/>
                 <div>
-                  <p:selectOneMenu  id="condominioSel" value="#{lancamentoController.lancamento.condominio}">
+                  <p:selectOneMenu  id="condominioSel" value="#{fechamentoMensalController.condominio}">
                     <f:selectItem itemValue="" itemLabel="Selecione um Condomínio"/>
                     <f:selectItems value="#{condominioController.listaCondominios()}" var="condominio" itemValue="#{condominio}" itemLabel="#{condominio.nome}"/>
                     <f:converter converterId="CondominioConverter"/>
@@ -30,7 +31,7 @@
                 </div>
               </p>
               <p:outputLabel for="competencia" value="Competência:" />
-              <p:calendar id="competencia" value="#{fechamentoMensalController.mesFechamento}" pattern="MM-yyyy" mask="true" />
+              <p:calendar id="competencia" value="#{fechamentoMensalController.mesFechamento}" pattern="MM/yyyy" mask="true" />
               <p:commandButton ajax="false" 
                                value="Filtrar"                                
                                styleClass="button"/>
@@ -68,7 +69,7 @@
               <h:inputHidden></h:inputHidden>
               <p:commandButton value="Gerar Fechamento" 
                                process="selecionaLancamentos" 
-                               action="#{fechamentoMensalController.finalizar(fechamentoMensalController.lancamentosSelecionados)}"
+                               action="#{fechamentoMensalController.gerarFechamentoMensal(fechamentoMensalController.lancamentosSelecionados)}"
                                styleClass="btnNaConsulta"
                                onclick="return (confirm('Deseja realmente gerar o fechamento?'));">
               </p:commandButton> 

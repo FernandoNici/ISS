@@ -6,56 +6,58 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <meta charset="utf-8"></meta>
-        <meta http-equivequiv="X-UA-Compatible" content="IE=edge"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-        <title>Gerenciamento de Despesas</title>
-    </h:head>
-    <h:body>
-        <ui:composition template="LayoutPadrao.xhtml">
-            <ui:define name="content">
-                <style>
-                    h1 {font-weight:bold;}
-                    p       {margin:0px;margin-top:6px;}
-                    label {width:90px; text-align:right; padding-right:4px;}
-                </style>
+  <h:head>
+    <meta charset="utf-8"></meta>
+    <meta http-equivequiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>Gerenciamento de Despesas</title>
+  </h:head>
+  <h:body>
+    <ui:composition template="LayoutPadrao.xhtml">
+      <ui:define name="content">
+        <style>
+          h1 {font-weight:bold;}
+          p       {margin:0px;margin-top:6px;}
+          label {width:90px; text-align:right; padding-right:4px;}
+        </style>
 
-                <h:form>
-                    <b:container>
-                        <h1>Gerenciamento de Despesas</h1> 
-                        <h:panelGrid columns="6">
-                            <p:outputLabel for="descricao" value="Descricao:"/>
-                            <p:inputText id="descricao" value="#{lancamentoController.filtro}" size="40"/>
-                            <p:outputLabel for="situacao" value="Situação:"/>
-                            <p:selectOneMenu id="situacao" value="#{lancamentoController.pago}" style="float:left; width:100px; margin-right:10px;" > 
-                                <f:selectItem itemLabel="Pago" itemValue="true" />
-                                <f:selectItem itemLabel="Aberto" itemValue="false" />
-                                <f:selectItem itemLabel="Ambos" itemValue="Ambos"/>
-                            </p:selectOneMenu>  &nbsp; 
-                            <p:commandButton ajax="false" value="Filtrar" styleClass="button"/>
-                        </h:panelGrid>
-                        
-                        <p><p:commandButton value="+ Novo" styleClass="button novo" action="#{lancamentoController.novoLancamento()}" /></p>
-                        
-                        
-                        <p:dataTable value="#{lancamentoController.listaLancamentos()}" var="lancamento"  style="margin-top:10px;" >
-                            <p:column width="05%" headerText="Id"><h:outputText value="#{lancamento.idLanc}"/></p:column>
-                            <p:column width="25%" headerText="Descricao"><h:outputText value="#{lancamento.descricao}"/></p:column>
-                            <p:column width="20%" headerText="Valor"><h:outputText value="#{lancamento.valor}"/></p:column> 
-                            <p:column width="16%" headerText="Vencimento"><h:outputText value="#{lancamento.vencimento}"/></p:column>
-                            <p:column width="16%" headerText="Pago"><h:outputText value="#{lancamento.pago}"/></p:column>
-                            <p:column width="18%" headerText="Ações" colspan="2">
-                                <p:commandButton value="Editar"  style="display:inline" />
-                                <p:commandButton value="Pago"  style="display:inline" onclick="return(confirm('Deseja Realmente Pagar?'));"/>
-                            </p:column>
-                        </p:dataTable>
-                        
-                    </b:container>
-                </h:form>
-            </ui:define>     
-        </ui:composition>
+        <h:form>
+          <b:container>
+            <h1>Gerenciamento de Despesas</h1> 
+            <h:panelGrid columns="6">
+              <p:outputLabel for="descricao" value="Descricao:"/>
+              <p:inputText id="descricao" value="#{lancamentoController.filtro}" size="40"/>
+              <p:outputLabel for="situacao" value="Situação:"/>
+              <p:selectOneMenu id="situacao" value="#{lancamentoController.pago}" style="float:left; width:100px; margin-right:10px;" > 
+                <f:selectItem itemLabel="Pago" itemValue="true" />
+                <f:selectItem itemLabel="Aberto" itemValue="false" />
+                <f:selectItem itemLabel="Ambos" itemValue="Ambos"/>
+              </p:selectOneMenu>  &nbsp; 
+              <p:commandButton ajax="false" value="Filtrar" styleClass="button"/>
+            </h:panelGrid>
 
-    </h:body>
+            <h:panelGrid columns="4">
+              <p><p:commandButton value="+ Novo" styleClass="button novo" action="#{lancamentoController.novoLancamento()}" /></p>
+              <p><p:commandButton value="Fechamento mensal" styleClass="button novo" action="#{lancamentoController.fechamentoMensal()}" /></p>
+            </h:panelGrid>
+
+            <p:dataTable value="#{lancamentoController.listaLancamentos()}" var="lancamento"  style="margin-top:10px;" >
+              <p:column width="05%" headerText="Id"><h:outputText value="#{lancamento.idLanc}"/></p:column>
+              <p:column width="25%" headerText="Descricao"><h:outputText value="#{lancamento.descricao}"/></p:column>
+              <p:column width="20%" headerText="Valor"><h:outputText value="#{lancamento.valor}"/></p:column> 
+              <p:column width="16%" headerText="Vencimento"><h:outputText value="#{lancamento.vencimento}"/></p:column>
+              <p:column width="16%" headerText="Pago"><h:outputText value="#{lancamento.pago}"/></p:column>
+              <p:column width="18%" headerText="Ações" colspan="2">
+                <p:commandButton value="Editar"  style="display:inline" />
+                <p:commandButton value="Pago"  style="display:inline" onclick="return(confirm('Deseja Realmente Pagar?'));"/>
+              </p:column>
+            </p:dataTable>
+
+          </b:container>
+        </h:form>
+      </ui:define>     
+    </ui:composition>
+
+  </h:body>
 </html>
 
