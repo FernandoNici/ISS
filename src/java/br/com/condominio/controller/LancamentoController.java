@@ -50,7 +50,6 @@ public class LancamentoController {
         return this.lista;
     }
     
-    /*sobrecarregar isso aqui fazer um tipo para lancto manual e outro tipo para o lancoAtomatico*/
     public String novoLancamento(){
         lancamento.setDescricao(null);
         lancamento.setVencimento(null);        
