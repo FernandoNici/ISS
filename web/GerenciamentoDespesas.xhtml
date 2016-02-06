@@ -19,6 +19,9 @@
           h1 {font-weight:bold;}
           p       {margin:0px;margin-top:6px;}
           label {width:90px; text-align:right; padding-right:4px;}
+          .center {text-align:center;}
+          .rigth  {text-align:right;}
+          [type="submit"] {margin-right:5px;}
         </style>
 
         <h:form>
@@ -36,20 +39,30 @@
               <p:commandButton ajax="false" value="Filtrar" styleClass="button"/>
             </h:panelGrid>
 
-            <h:panelGrid columns="4">
-              <p><p:commandButton value="+ Novo" styleClass="button novo" action="#{lancamentoController.novoLancamento()}" /></p>
-              <p><p:commandButton value="Fechamento mensal" styleClass="button novo" action="#{lancamentoController.fechamentoMensal()}" /></p>
-            </h:panelGrid>
+            
+              <p><p:commandButton value="+ Novo" styleClass="button novo" action="#{lancamentoController.novoLancamento()}" />
+              <p:commandButton value="Fechamento Mensal" styleClass="button novo" action="#{lancamentoController.fechamentoMensal()}" /></p>
+            
 
             <p:dataTable value="#{lancamentoController.listaLancamentos()}" var="lancamento"  style="margin-top:10px;" >
-              <p:column width="05%" headerText="Id"><h:outputText value="#{lancamento.idLanc}"/></p:column>
+                <p:column width="05%" headerText="Id" styleClass="center"><h:outputText value="#{lancamento.idLanc}"/></p:column>
               <p:column width="25%" headerText="Descricao"><h:outputText value="#{lancamento.descricao}"/></p:column>
-              <p:column width="20%" headerText="Valor"><h:outputText value="#{lancamento.valor}"/></p:column> 
-              <p:column width="16%" headerText="Vencimento"><h:outputText value="#{lancamento.vencimento}"/></p:column>
-              <p:column width="16%" headerText="Pago"><h:outputText value="#{lancamento.pago}"/></p:column>
-              <p:column width="18%" headerText="Ações" colspan="2">
-                <p:commandButton value="Editar"  style="display:inline" />
-                <p:commandButton value="Pago"  style="display:inline" onclick="return(confirm('Deseja Realmente Pagar?'));"/>
+              <p:column width="20%" headerText="Valor" styleClass="rigth">
+                  <h:outputText value="#{lancamento.valor}">
+                      <f:convertNumber pattern="##0.00"/>
+                  </h:outputText>
+              </p:column> 
+              <p:column width="16%" headerText="Vencimento" styleClass="center">
+                  <h:outputText value="#{lancamento.vencimento}">
+                      <f:convertDateTime pattern="dd/MM/yyyy"/>
+                  </h:outputText>
+              </p:column>
+              <p:column width="16%" headerText="Pago" styleClass="center">
+                  <h:outputText value="Pago" rendered="#{lancamento.pago==true}"/>
+                  <h:outputText value="A Pagar" rendered="#{lancamento.pago==false}"/>
+              </p:column>
+              <p:column width="18%" headerText="Ações" colspan="2" styleClass="center">
+                  <p:commandButton value="Pago" style="display:inline" onclick="return(confirm('Deseja Realmente Pagar?'));" action="#{lancamentoController.pagarLancamento()}" />
               </p:column>
             </p:dataTable>
 

@@ -57,6 +57,13 @@ public class LancamentoController {
         return "LancamentoManual?faces-redirect=true";
     }
     
+    public String pagarLancamento(){
+        lancamento.setPago(true);
+        lancamentoDao.atualizar(lancamento);
+        
+        return "GerenciamentoDespesas?faces-redirect=true";
+    }
+    
      public String carregarEntidade(Lancamento lancamento){
         this.lancamento = lancamento;
         return "CadastroLancamento";

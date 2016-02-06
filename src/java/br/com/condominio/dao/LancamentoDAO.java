@@ -58,7 +58,6 @@ public class LancamentoDAO {
     try {
       sessao = HibernateUtil.getSessionFactory().openSession();
       transacao = sessao.beginTransaction();
-
       sessao.update(lancto);
       transacao.commit();
     } catch (Exception e) {
