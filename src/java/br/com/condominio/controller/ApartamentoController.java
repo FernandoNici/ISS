@@ -3,6 +3,7 @@ package br.com.condominio.controller;
 import br.com.condominio.model.Apartamento;
 import br.com.condominio.dao.ApartamentoDAO;
 import br.com.condominio.utils.JSFMessageUtil;
+import br.com.condominio.utils.SessaoJSF;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
@@ -102,4 +103,8 @@ public class ApartamentoController implements Serializable {
     return false;
   }
 
+  public String gerenciarDespesas(Apartamento ap){
+    SessaoJSF.set(ap, "apartamento");
+    return "LancamentosApartamento?faces-redirect=true";
+  }
 }

@@ -2,6 +2,9 @@ package br.com.condominio.controller;
 
 import br.com.condominio.model.Lancamento;
 import br.com.condominio.dao.LancamentoDAO;
+import br.com.condominio.model.Apartamento;
+import br.com.condominio.utils.SessaoJSF;
+import br.com.condominio.utils.Status;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,10 +23,12 @@ public class LancamentoController {
   public String filtro;
   public String pago;
   private List<Lancamento> lista;
+  private Apartamento apartamento = new Apartamento();
 
   public LancamentoController() {
     setFiltro("");
-    setPago("Ambos");
+    setPago("Ambos");    
+    apartamento = (Apartamento)SessaoJSF.get("apartamento");
   }
 
   public boolean DataLancValidator(Date data) {
@@ -72,6 +77,11 @@ public class LancamentoController {
     return this.lista;
   }
 
+  public List<Lancamento> listaLancamentos(Apartamento ap) {
+    lista = lancamentoDao.getListaDoApartamento(ap, Status.FALSO, Status.NULO);
+    return this.lista;
+  }
+
   public String novoLancamento() {
     lancamento.setDescricao(null);
     lancamento.setValor(0);
@@ -85,7 +95,7 @@ public class LancamentoController {
     if (lancamento.getIdPai() > 0) {
       atualizarFechamentoMensal(lancamento);
     }
-    return "GerenciamentoDespesas?faces-redirect=true";
+    return "";
   }
 
   public String carregarEntidade(Lancamento lancamento) {
@@ -128,5 +138,13 @@ public class LancamentoController {
         pagarLancamento(lancamento);
       }
     }
+  }
+
+  public Apartamento getApartamento() {
+    return apartamento;
+  }
+
+  public void setApartamento(Apartamento apartamento) {
+    this.apartamento = apartamento;
   }
 }
