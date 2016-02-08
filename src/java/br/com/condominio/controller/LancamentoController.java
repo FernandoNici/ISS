@@ -3,7 +3,10 @@ package br.com.condominio.controller;
 import br.com.condominio.model.Lancamento;
 import br.com.condominio.dao.LancamentoDAO;
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -21,7 +24,22 @@ public class LancamentoController {
         setFiltro("");        
         setPago("Ambos");
     }
-
+    
+    public boolean DataLancValidator(Date data){
+        Calendar hoje = Calendar.getInstance();
+        hoje.set(hoje.HOUR_OF_DAY,0);
+        hoje.set(hoje.MINUTE,0);
+        hoje.set(hoje.SECOND,0);
+        hoje.set(hoje.MILLISECOND,0);
+        
+        if(data.compareTo(hoje.getTime()) < 0){
+            lancamento.setVencimento(null);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Vencimento Deve Ser Maior ou igual a hoje", "Informe um novo vencimento"));
+            return false;
+        }
+        return true;
+    }
+        
     public String getPago() {
         return pago;
     }
@@ -31,8 +49,8 @@ public class LancamentoController {
     }
 
     public String manutencaoLancamento(){
-        if(lancamento.getIdLanc()==0) lancamentoDao.salvar(lancamento);
-        else lancamentoDao.atualizar(lancamento);
+        if(!DataLancValidator(lancamento.getVencimento())) return "LancamentoManual";
+        lancamentoDao.salvar(lancamento);
         return "GerenciamentoDespesas?faces-redirect=true";
     }
     public String RemoverLancamento(){
@@ -52,12 +70,12 @@ public class LancamentoController {
     
     public String novoLancamento(){
         lancamento.setDescricao(null);
-        lancamento.setVencimento(null);        
         lancamento.setValor(0);
+        lancamento.setVencimento(null);
         return "LancamentoManual?faces-redirect=true";
     }
     
-    public String pagarLancamento(){
+    public String pagarLancamento(Lancamento lancamento){
         lancamento.setPago(true);
         lancamentoDao.atualizar(lancamento);
         

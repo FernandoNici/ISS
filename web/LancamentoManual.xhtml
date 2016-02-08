@@ -37,7 +37,9 @@
                             <p:inputText id="descricao" value="#{lancamentoController.lancamento.descricao}" required="true" size="60" requiredMessage="Por Favor digite a Descrição para o lançamento"/>
 
                             <p:outputLabel for="vencimento" value="Vencimento:" />
-                            <p:calendar size="10" id="vencimento" value="#{lancamentoController.lancamento.vencimento}" required="true" pattern="dd/MM/yyyy" mask="99/99/9999" requiredMessage="Por Favor digite o Vencimento para o lançamento"/>    
+                            
+                            
+                            <p:calendar placeholder="data" mindate="calwidget.today()" widgetVar="calwidget" size="10" id="vencimento" value="#{lancamentoController.lancamento.vencimento}" required="true" pattern="dd/MM/yyyy" mask="99/99/9999" requiredMessage="Por Favor digite o Vencimento para o lançamento"/>    
 
                         </p>
 

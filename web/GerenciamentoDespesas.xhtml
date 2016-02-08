@@ -62,7 +62,7 @@
                   <h:outputText value="A Pagar" rendered="#{lancamento.pago==false}"/>
               </p:column>
               <p:column width="18%" headerText="Ações" colspan="2" styleClass="center">
-                  <p:commandButton value="Pago" style="display:inline" onclick="return(confirm('Deseja Realmente Pagar?'));" action="#{lancamentoController.pagarLancamento()}" />
+                  <p:commandButton value="Pago" action="#{lancamentoController.pagarLancamento(lancamento)}"  onclick="return(confirm('Deseja Realmente Pagar?'));"/>
               </p:column>
             </p:dataTable>
 
