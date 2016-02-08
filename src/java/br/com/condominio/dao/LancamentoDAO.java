@@ -30,7 +30,7 @@ public class LancamentoDAO {
     try {
       sessao = HibernateUtil.getSessionFactory().openSession();
       transacao = sessao.beginTransaction();
-      
+
       sessao.save(lancto);
       transacao.commit();
     } catch (Exception e) {
@@ -162,11 +162,50 @@ public class LancamentoDAO {
       criteria.add(Restrictions.ge("vencimento", dataInicial));
       criteria.add(Restrictions.le("vencimento", dataFinal));
       criteria.add(Restrictions.isNull("apartamento"));
-      criteria.add(Restrictions.eq("idFechamentoMensal", (long)0));
-      criteria.add(Restrictions.eq("idPai", (long)0));
+      criteria.add(Restrictions.eq("idFechamentoMensal", (long) 0));
+      criteria.add(Restrictions.eq("idPai", (long) 0));
       this.lista = criteria.list();
       return lista;
     }
     return null;
+  }
+
+  public List<Lancamento> getListaLancamentosGeradosFechamentoMensal(long idPai, boolean pago) {
+    sessao = HibernateUtil.getSessionFactory().openSession();
+    transacao = sessao.beginTransaction();
+    Criteria criteria = sessao.createCriteria(Lancamento.class);
+    sessao.enableFilter("lancamentosStatusAtivo").setParameter("statusAtivo", filtroAtivo);
+    criteria.add(Restrictions.eq("idPai", idPai));
+    criteria.add(Restrictions.eq("pago", pago));
+    return criteria.list();
+  }
+
+  public List<Lancamento> getListaLancamentosGeradosFechamentoMensal(Lancamento lancto, boolean pago) {
+    return getListaLancamentosGeradosFechamentoMensal(lancto.getIdPai(), pago);
+  }
+
+  public List<Lancamento> getListaLancamentosDoFechamentoMensal(long idFechamentoMensal, boolean pago) {
+    sessao = HibernateUtil.getSessionFactory().openSession();
+    transacao = sessao.beginTransaction();
+    Criteria criteria = sessao.createCriteria(Lancamento.class);
+    sessao.enableFilter("lancamentosStatusAtivo").setParameter("statusAtivo", false);
+    criteria.add(Restrictions.eq("idFechamentoMensal", idFechamentoMensal));
+    criteria.add(Restrictions.eq("pago", pago));
+    return criteria.list();
+  }
+
+  public List<Lancamento> getListaLancamentosDoFechamentoMensal(Lancamento lancto, boolean pago) {
+    return getListaLancamentosDoFechamentoMensal(lancto.getIdPai(), pago);
+  }
+
+  public Lancamento getLancamento(long id) {
+    List<Lancamento> listaLancamentos;
+    sessao = HibernateUtil.getSessionFactory().openSession();
+    transacao = sessao.beginTransaction();
+    Criteria criteria = sessao.createCriteria(Lancamento.class);
+    sessao.enableFilter("lancamentosStatusAtivo").setParameter("statusAtivo", filtroAtivo);
+    criteria.add(Restrictions.eq("idLanc", id));
+    listaLancamentos = criteria.list();
+    return listaLancamentos.get(0);
   }
 }
