@@ -7,7 +7,7 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Lançamento Manual</title>
+        <title>Cadastro de Ocorrências</title>
     </h:head>
     <h:body>
         <ui:composition template="LayoutPadrao.xhtml">
@@ -24,35 +24,27 @@
                         <p> 
                             <p:outputLabel for="condominioSel" value="Condominio:" style="float:left"/>
                             <div>
-                                <p:selectOneMenu  id="condominioSel" value="#{lancamentoController.lancamento.condominio}">
+                                <p:selectOneMenu  id="condominioSel" value="#{ocorrenciaController.ocorrencia.condominio}">
                                     <f:selectItem itemValue="" itemLabel="Selecione um Condomínio"/>
                                     <f:selectItems value="#{condominioController.listaCondominios()}" var="condominio" itemValue="#{condominio}" itemLabel="#{condominio.nome}"/>
                                     <f:converter converterId="CondominioConverter"/>
                                 </p:selectOneMenu>
                             </div>
                         </p>
-
+                        
                         <p>
-                            <p:outputLabel for="descricao" value="Descrição:" />
-                            <p:inputText id="descricao" value="#{lancamentoController.lancamento.descricao}" required="true" size="60" requiredMessage="Por Favor digite a Descrição para o lançamento"/>
-
-                            <p:outputLabel for="vencimento" value="Vencimento:" />
-                            
-                            
-                            <p:calendar placeholder="data" mindate="calwidget.today()" widgetVar="calwidget" size="10" id="vencimento" value="#{lancamentoController.lancamento.vencimento}" required="true" pattern="dd/MM/yyyy" mask="99/99/9999" requiredMessage="Por Favor digite o Vencimento para o lançamento"/>    
-
+                            <p:outputLabel for="data" value="Data:"/>
+                            <p:calendar placeholder="data" mindate="calwidget.today()" widgetVar="calwidget" size="10" id="data" value="#{ocorrenciaController.ocorrencia.data}" required="true" pattern="dd/MM/yyyy" mask="99/99/9999" requiredMessage="Por Favor digite a Data para a Ocorrência"/>    
                         </p>
 
                         <p>
-                            <p:outputLabel for="valor" value="Valor:" />
-                            <p:inputText  id="valor" value="#{lancamentoController.lancamento.valor}" onkeypress="javascript:mascara(this, moeda)"  placeholder="0.00" converter="DecimalConverter">
-                            <f:convertNumber pattern="#0.00" />
-                            </p:inputText>
+                            <p:outputLabel for="descricao" value="Descrição:"/>
+                            <p:inputTextarea rows="6" cols="33" id="descricao" value="#{ocorrenciaController.ocorrencia.descricao}" required="true" requiredMessage="Por Favor digite a Descrição para o lançamento"/>
                         </p>
 
                         <center>
-                            <p:commandButton value="Salvar" action="#{lancamentoController.manutencaoLancamento()}" onclick="return(confirm('Deseja Realmente Salvar?'));"/>
-                            <p:commandButton immediate="true" value="Limpar" action="#{lancamentoController.novoLancamento()}"/>
+                            <p:commandButton value="Salvar" action="#{ocorrenciaController.manutencaoOcorrencia()}" onclick="return(confirm('Deseja Realmente Salvar?'));"/>
+                            <p:commandButton immediate="true" value="Limpar" action="#{ocorrenciaController.novoOcorrencia()}"/>
                         </center>
                     </b:container>
                 </h:form>

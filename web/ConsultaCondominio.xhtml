@@ -19,6 +19,8 @@
           h1 {font-weight:bold;}
           p       {margin:0px;margin-top:6px;}
           label {width:90px; text-align:right; padding-right:4px;}
+          .center {text-align:center;}
+          .rigth  {text-align:right;}
         </style>
 
         <h:form>
@@ -40,11 +42,11 @@
             <p><p:commandButton value="+ Novo" styleClass="button novo" action="#{condominioController.novoCondominio()}" /></p>
 
             <p:dataTable value="#{condominioController.listaCondominios()}" var="condominio"  style="margin-top:10px;" >
-              <p:column width="05%" headerText="Id"><h:outputText value="#{condominio.id}"/></p:column>
+              <p:column styleClass="center" width="05%" headerText="Id"><h:outputText value="#{condominio.id}"/></p:column>
               <p:column width="25%" headerText="Nome"><h:outputText value="#{condominio.nome}"/></p:column>
               <p:column width="15%" headerText="Endereço"><h:outputText value="#{condominio.endereco}"/></p:column>
-              <p:column width="16%" headerText="Qtd Andares"><h:outputText value="#{condominio.andares}"/></p:column>
-              <p:column width="20%" headerText="Qtd Aptos /Andar"><h:outputText value="#{condominio.aptosPorAndar}"/></p:column>
+              <p:column styleClass="center" width="16%" headerText="Qtd Andares"><h:outputText value="#{condominio.andares}"/></p:column>
+              <p:column styleClass="center" width="20%" headerText="Qtd Aptos /Andar"><h:outputText value="#{condominio.aptosPorAndar}"/></p:column>
               <p:column width="18%" headerText="Ações" colspan="2">
                 <p:commandButton value="Editar" action="#{condominioController.carregarEntidade(condominio)}" style="display:inline" />
                 <p:commandButton value="Remover" actionListener="#{condominioController.excluirEntidade(condominio)}" style="display:inline" onclick="return(confirm('Deseja Realmente Remover?'));"/>

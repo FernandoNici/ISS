@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import br.com.condominio.utils.CpfValidator;
 
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -20,7 +21,7 @@ public class SindicoController {
 
     private Sindico sindico = new Sindico();
     private SindicoDAO sindicoDAO = new SindicoDAO();
-    private UsuarioFacade usuface =  new UsuarioFacade(sindico);
+    private UsuarioFacade usuface = new UsuarioFacade(sindico);
     public String filtro;
     public String ativo;
     public Date data;
@@ -61,17 +62,23 @@ public class SindicoController {
     }
 
     public String manutencaoSindico() {
+        if(VerificaCpf(sindico)){
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cpf Já Cadastrado", "Contact admin."));
+           return "CadastroSindico";
+        }
+
+        if(!CpfValidator.isCPF(sindico.getCpf())) {
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Por Favor Digite um CPF valido", ""));
+           return "CadastroSindico";
+        }
+
         if (sindico.getId() == 0) {
-            if (VerificaCpf(sindico.getCpf())) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cpf Já Cadastrado", "Contact admin."));
-                return "CadastroSindico";
-            }
             sindicoDAO.salvar(sindico);
             usuface.CriaUsuarioSindico();
         } else {
             sindicoDAO.atualizar(sindico);
         }
-       return "ConsultaSindico?faces-redirect=true";
+        return "ConsultaSindico?faces-redirect=true";
     }
 
     public String RemoverSindico() {
@@ -79,10 +86,10 @@ public class SindicoController {
         return "ConsultaSindico?faces-redirect=true";
     }
 
-    public boolean VerificaCpf(String cpf) {
+    public boolean VerificaCpf(Sindico sindico) {
         lista = sindicoDAO.getLista("", "true");
-        for (Sindico sindico : lista) {
-            if (sindico.getCpf().contains(cpf)) {
+        for (Sindico sindico1 : lista) {
+            if (sindico1.getCpf().contains(sindico.getCpf()) && (sindico1.getId() != sindico.getId())) {
                 return true;
             }
         }

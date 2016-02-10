@@ -2,6 +2,7 @@ package br.com.condominio.controller;
 
 import br.com.condominio.model.Funcionario;
 import br.com.condominio.dao.FuncionarioDAO;
+import br.com.condominio.utils.CpfValidator;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -11,15 +12,16 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @RequestScoped
 public class FuncionarioController {
+
     private Funcionario funcionario = new Funcionario();
     private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-    private UsuarioFacade usuface =  new UsuarioFacade(funcionario);
+    private UsuarioFacade usuface = new UsuarioFacade(funcionario);
     public String filtro;
     public String ativo;
     private List<Funcionario> lista;
-    
+
     public FuncionarioController() {
-        setFiltro("");       
+        setFiltro("");
         setAtivo("true");
     }
 
@@ -30,40 +32,46 @@ public class FuncionarioController {
     public void setAtivo(String ativo) {
         this.ativo = ativo;
     }
-    
-    public String manutencaoFuncionario(){
+
+    public String manutencaoFuncionario() {
+        if (VerificaCpf(funcionario)) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cpf Já Cadastrado", "Contact admin."));
+            return "CadastroSindico";
+        }
+        
+        if (!CpfValidator.isCPF(funcionario.getCpf())) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Por Favor Digite um CPF valido", ""));
+            return "CadastroSindico";
+        }
+
         if (funcionario.getId() == 0) {
-            if (VerificaCpf(funcionario.getCpf())) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cpf Já Cadastrado", "Contact admin."));
-                return "CadastroSindico";
-            }
             funcionarioDAO.salvar(funcionario);
             usuface.CriaUsuarioFuncionario();
-        }   
-        else {
+        } else {
             funcionarioDAO.atualizar(funcionario);
         }
         return "ConsultaFuncionario?faces-redirect=true";
     }
-   
-    public String RemoverFuncionario(){
+
+    public String RemoverFuncionario() {
         funcionarioDAO.deletar(funcionario);
         return "ConsultaFuncionario?faces-redirect=true";
     }
-    
-    public String EditaFuncionario(){
+
+    public String EditaFuncionario() {
         funcionarioDAO.atualizar(funcionario);
         return "ConsultaFuncionario?faces-redirect=true";
     }
-    
-    public List<Funcionario> listaFuncionarios(){
-        lista = funcionarioDAO.getLista(filtro,ativo);
+
+    public List<Funcionario> listaFuncionarios() {
+        lista = funcionarioDAO.getLista(filtro, ativo);
         return this.lista;
     }
-    public String novoFuncionario(){
+
+    public String novoFuncionario() {
         funcionario.setNome(null);
         funcionario.setDataNasc(null);
-        funcionario.setTelefone(null);        
+        funcionario.setTelefone(null);
         funcionario.setCelular(null);
         funcionario.setEndereco(null);
         funcionario.setBairro(null);
@@ -71,16 +79,17 @@ public class FuncionarioController {
         funcionario.setMunicipio(null);
         return "CadastroFuncionario?faces-redirect=true";
     }
-    
-     public String carregarEntidade(Funcionario funcionario){
+
+    public String carregarEntidade(Funcionario funcionario) {
         this.funcionario = funcionario;
         return "CadastroFuncionario";
     }
-     public String excluirEntidade(Funcionario funcionario){
+
+    public String excluirEntidade(Funcionario funcionario) {
         funcionarioDAO.deletar(funcionario);
         return "ConsultaFuncionario?faces-redirect=true";
     }
-     
+
     public Funcionario getFuncionario() {
         return funcionario;
     }
@@ -97,10 +106,10 @@ public class FuncionarioController {
         this.filtro = filtro;
     }
 
-    private boolean VerificaCpf(String cpf) {
+    private boolean VerificaCpf(Funcionario func) {
         lista = funcionarioDAO.getLista("", "true");
         for (Funcionario funcionario : lista) {
-            if (funcionario.getCpf().contains(cpf)) {
+            if (funcionario.getCpf().contains(func.getCpf()) && (funcionario.getId() != func.getId())) {
                 return true;
             }
         }

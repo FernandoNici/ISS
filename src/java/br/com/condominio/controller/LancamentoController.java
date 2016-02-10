@@ -31,7 +31,7 @@ public class LancamentoController {
     apartamento = (Apartamento)SessaoJSF.get("apartamento");
   }
 
-  public boolean DataLancValidator(Date data) {
+  public boolean dataLancValidator(Date data) {
     Calendar hoje = Calendar.getInstance();
     hoje.set(hoje.HOUR_OF_DAY, 0);
     hoje.set(hoje.MINUTE, 0);
@@ -45,6 +45,11 @@ public class LancamentoController {
     }
     return true;
   }
+  
+  public boolean valorLancValidator(Double valor){
+      if(valor <= 0.0) return false;
+      return true;
+  }
 
   public String getPago() {
     return pago;
@@ -55,19 +60,20 @@ public class LancamentoController {
   }
 
   public String manutencaoLancamento() {
-    if (!DataLancValidator(lancamento.getVencimento())) {
+    if (!dataLancValidator(lancamento.getVencimento())||!valorLancValidator(lancamento.getValor())){
       return "LancamentoManual";
     }
+    
     lancamentoDao.salvar(lancamento);
     return "GerenciamentoDespesas?faces-redirect=true";
   }
 
-  public String RemoverLancamento() {
+  public String removerLancamento() {
     lancamentoDao.deletar(lancamento);
     return "GerenciamentoDespesas?faces-redirect=true";
   }
 
-  public String EditaLancamento() {
+  public String editaLancamento() {
     lancamentoDao.atualizar(lancamento);
     return "GerenciamentoDespesas?faces-redirect=true";
   }

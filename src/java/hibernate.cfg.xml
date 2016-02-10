@@ -16,5 +16,6 @@
     <mapping class="br.com.condominio.model.Usuario"/>
     <mapping class="br.com.condominio.model.Lancamento"/>
     <mapping class="br.com.condominio.model.AreaLazer"/>
+    <mapping class="br.com.condominio.model.Ocorrencia"/>
   </session-factory>
 </hibernate-configuration>

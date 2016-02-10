@@ -19,6 +19,8 @@
                     h1         {font-weight:bold;}
                     p          {margin:0px;margin-top:6px;}
                     label      {width:90px; text-align:right; padding-right:4px;}
+                    .center {text-align:center;}
+                    .rigth  {text-align:right;}
                 </style>
                 <h:form>
                     <b:container>
@@ -38,9 +40,9 @@
                         <p><p:commandButton value="+ Novo" action="#{sindicoController.novoSindico}" /></p>
 
                         <p:dataTable value="#{sindicoController.listaSindicos()}" var="sindico" style="margin-top:10px;" >
-                            <p:column width="05%" headerText="Id"><h:outputText value="#{sindico.id}"/></p:column>
+                            <p:column styleClass="center" width="05%" headerText="Id"><h:outputText value="#{sindico.id}"/></p:column>
                             <p:column width="25%" headerText="Nome"><h:outputText value="#{sindico.nome}"/></p:column>
-                            <p:column width="15%" headerText="Telefone"><h:outputText value="#{sindico.telefone}"/></p:column>
+                            <p:column styleClass="center"  width="15%" headerText="Telefone"><h:outputText value="#{sindico.telefone}"/></p:column>
                             <p:column width="16%" headerText="Endereço"><h:outputText value="#{sindico.endereco}"/></p:column>
                             <p:column width="20%" headerText="Condominio"><h:outputText value="#{sindico.condominio.nome}"/></p:column>
                             <p:column width="18%" headerText="Ações" colspan="2">

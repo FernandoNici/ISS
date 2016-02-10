@@ -7,7 +7,7 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Manutenção Condomíno</title>
+        <title>Cadastro Condomíno</title>
     </h:head>
     <h:body>
         <ui:composition template="LayoutPadrao.xhtml">
@@ -15,12 +15,12 @@
                 <style>
                     label {width:160px; text-align:right; padding-right:4px;}
                     p     {margin-top:6px;}
-
                 </style>
                 <h:form>
                     <b:container>
                         <h:inputHidden id="idCond" value="#{condominioController.condominio.id}"/>
-                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                        
+                        <p:messages id="messages" autoUpdate="true" closable="true"/>
 
                         <p>
                             <p:outputLabel for="nomeCond" value="Nome:" />
@@ -34,6 +34,7 @@
                             <p:outputLabel for="qtdAptosAndarCond" value="Qtd Aptos /Andar:" />
                             <p:spinner id="qtdAptosAndarCond" value="#{condominioController.condominio.andares}" size="5"/>
                         </p>
+                        
                         <p>
                             <p:outputLabel for="cepCond" value="CEP:"/>
                             <p:inputMask id="cepCond" value="#{condominioController.condominio.cep}" mask="99999-999"/>
