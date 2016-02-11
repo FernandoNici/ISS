@@ -11,8 +11,8 @@
                 <b:navbarLinks pull="left">
                     <b:navLink value="Principal" href="Index.xhtml"></b:navLink>
                     <b:dropMenu value="Consulta">
-                        <b:navLink value="Condomínio" href="ConsultaCondominio.xhtml"></b:navLink>
-                        <b:navLink value="Síndico" href="ConsultaSindico.xhtml"></b:navLink>
+                        <b:navLink value="Condomínio" href="ConsultaCondominio.xhtml" rendered="#{usuarioController.isPermissaoSindico}"></b:navLink>
+                        <b:navLink value="Síndico" href="ConsultaSindico.xhtml" rendered="#{usuarioController.isPermissaoSindico}" ></b:navLink>
                         <b:navLink value="Funcionário" href="ConsultaFuncionario.xhtml"></b:navLink>
                         <b:navLink value="Condomino" href="ConsultaCondomino.xhtml"></b:navLink>
                         <b:navLink value="Apartamento" href="ConsultaApartamento.xhtml"></b:navLink>  
@@ -28,7 +28,7 @@
                         <b:navLink value="Funcionário" href="CadastroFuncionario.xhtml"/>
                     </b:dropMenu>
                     <b:dropMenu value="Documentos">
-                        <b:navLink value="Gerar Boleto" href="#"></b:navLink>
+                        <b:navLink value="Gerar Boleto" href="GeraBoleto.xhtml"></b:navLink>
                         <b:navLink value="Relatório" href="#"></b:navLink>                  
                     </b:dropMenu>
                 </b:navbarLinks>

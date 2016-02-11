@@ -56,12 +56,12 @@ public class UsuarioController {
         this.usuario = usuario;
     }
     
-      public String ValidarLogin() {
+    public String ValidarLogin() {
         setFiltro("");
         this.lista = listaUsuarios();
 
-        for (Usuario u : this.lista){
-            if(u.getLogin().equals(this.username) && u.getSenha().equals(this.senha)){
+        for (Usuario u : this.lista) {
+            if (u.getLogin().equals(this.username) && u.getSenha().equals(this.senha)) {
                 this.setUsuario(u);
                 return "Index?faces-redirect=true";
             }
@@ -88,6 +88,7 @@ public class UsuarioController {
         this.senha = senha;
     }
       
-    
-    
+    public Boolean IsPermissaoSindico(){
+        return usuario.getAcesso().equals("Sindico");
+    }    
 }
