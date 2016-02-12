@@ -97,5 +97,8 @@ public class UsuarioController {
   public void setSenha(String senha) {
     this.senha = senha;
   }
-
+   
+  public boolean IsPermissaoSindico() {
+    return usuario.getAcesso().equals("Sindico");
+  }
 }
