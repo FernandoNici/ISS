@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title>Cadastro Síndico</title>
+        <title>Cadastro SÃ­ndico</title>
     </h:head>
     <h:body>
         <ui:composition template="LayoutPadrao.xhtml">
@@ -37,7 +37,9 @@
                         </p>
                         <p>
                             <p:outputLabel for="rgsindico" value="RG:"/>
-                            <p:inputMask id="rgsindico" value="#{sindicoController.sindico.rg}" mask="99.999.999-9" required="true"/>
+                            <p:inputText id="rgsindico" value="#{sindicoController.sindico.rg}" required="true">
+                                <f:convertNumber/>
+                            </p:inputText>
 
                             <p:outputLabel for="cpfsindico" value="CPF:"/>
                             <p:inputMask id="cpfsindico" value="#{sindicoController.sindico.cpf}" mask="999.999.999-99" required="true"/>
@@ -49,10 +51,10 @@
                         </p>
 
                         <p>
-                            <p:outputLabel for="munsindico" value="Município:"/>
+                            <p:outputLabel for="munsindico" value="MunicÃ­pio:"/>
                             <p:inputText id="munsindico" value="#{sindicoController.sindico.municipio}" required="true"/>
 
-                            <p:outputLabel for="endsindico" value="Endereço:"/>
+                            <p:outputLabel for="endsindico" value="EndereÃ§o:"/>
                             <p:inputText id="endsindico" value="#{sindicoController.sindico.endereco}" required="true" size="60"/>
                         </p>
 
@@ -65,7 +67,7 @@
                             <p:outputLabel for="condominioSel" value="Condominio:" style="float:left"/>
                             <div>
                                 <p:selectOneMenu  id="condominioSel" value="#{sindicoController.sindico.condominio}">
-                                    <f:selectItem itemValue="" itemLabel="Selecione um Condomínio"/>
+                                    <f:selectItem itemValue="" itemLabel="Selecione um CondomÃ­nio"/>
                                     <f:selectItems value="#{condominioController.listaCondominios()}" var="condominio" itemValue="#{condominio}" itemLabel="#{condominio.nome}"/>
                                     <f:converter converterId="CondominioConverter"/>
                                 </p:selectOneMenu>

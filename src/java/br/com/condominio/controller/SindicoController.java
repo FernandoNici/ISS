@@ -62,14 +62,22 @@ public class SindicoController {
     }
 
     public String manutencaoSindico() {
-        if(VerificaCpf(sindico)){
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cpf Já Cadastrado", "Contact admin."));
-           return "CadastroSindico";
+        if (VerificaCpf(sindico)) {
+            try {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cpf JÃ¡ Cadastrado", "Contact admin."));
+                return "CadastroSindico";
+            } catch (NullPointerException e) {
+                return "Cpf JÃ¡ Cadastrado(manutencaoSindico)";
+            }
         }
 
-        if(!CpfValidator.isCPF(sindico.getCpf())) {
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Por Favor Digite um CPF valido", ""));
-           return "CadastroSindico";
+        if (!CpfValidator.isCPF(sindico.getCpf())) {
+            try {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Por Favor Digite um CPF valido", ""));
+                return "CadastroSindico";
+            } catch (NullPointerException e) {
+                return "Cpf invalido(manutencaoSincico)";
+            }
         }
 
         if (sindico.getId() == 0) {

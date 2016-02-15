@@ -81,6 +81,7 @@ public class sindicoControllerTeste {
         assertEquals(URL_CONSULTA, result);
     }
     
+    @Test
     public void testManutencaoSindico_cpf() throws ParseException{
         System.out.println("Teste de sindico");
         Sindico sindico = new Sindico();
@@ -102,4 +103,6 @@ public class sindicoControllerTeste {
         sindicoController.excluirEntidade(sindico);
         assertEquals(URL_CONSULTA, result);
     }
+    
+    
 }

@@ -35,13 +35,23 @@ public class FuncionarioController {
 
     public String manutencaoFuncionario() {
         if (VerificaCpf(funcionario)) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cpf Já Cadastrado", "Contact admin."));
-            return "CadastroSindico";
+            try {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cpf JÃ¡ Cadastrado", "Contact admin."));
+                return "CadastroSindico";
+            } catch (NullPointerException e) {
+                return "Cpf JÃ¡ Cadastrado(manutencaoSindico)";
+            }
+
         }
-        
+
         if (!CpfValidator.isCPF(funcionario.getCpf())) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Por Favor Digite um CPF valido", ""));
-            return "CadastroSindico";
+            try {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Por Favor Digite um CPF valido", ""));
+                return "CadastroSindico";
+
+            } catch (NullPointerException e) {
+                return "Cpf invalido(manutencaoSincico)";
+            }
         }
 
         if (funcionario.getId() == 0) {
