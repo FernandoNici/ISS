@@ -5,31 +5,31 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Geração de Boletos</title>
-    </h:head>
-    <h:body>
-        <ui:composition template="LayoutPadrao.xhtml"> 
-            <ui:define name="content">
-                <style>
-                    label {width:160px; text-align:right; padding-right:4px;}
-                </style>
-                 
-                <h:form>
-                    <center>
-                        <h:panelGrid columns="2" style="margin-bottom:20px"  cellpadding="5">
+  <h:head>
+    <title>Geração de Boletos</title>
+  </h:head>
+  <h:body>
+    <ui:composition template="LayoutPadrao.xhtml"> 
+      <ui:define name="content">
+        <style>
+          label {width:160px; text-align:right; padding-right:4px;}
+        </style>
 
-                            <p:outputLabel for="mesReferencia" value="Mês de Referência:" />
-                            <p:calendar id="mesReferencia"  required="true" locale="pt"/>
-  
-                        </h:panelGrid>
+        <h:form>
+          <center>
+            <h:panelGrid columns="2" style="margin-bottom:20px"  cellpadding="5">
 
-                        <p:commandButton value="Emitir" action="boletoController.gerarBoleto"/>
-                        <p:commandButton value="Cancelar" rendered="true" immediate="true" action="Index.xhtml"/>
-                    </center>
-                </h:form>
-            </ui:define>
-        </ui:composition>               
-    </h:body>
+              <p:outputLabel for="mesReferencia" value="Mês de Referência:" />
+              <p:calendar id="mesReferencia"  value="#{boletoController.mesReferencia}" required="true" locale="pt" pattern="MM/yyyy" mask="true" />
+
+            </h:panelGrid>
+
+            <p:commandButton value="Emitir" action="#{boletoController.preparaEGeraBoleto}"/>
+            <p:commandButton value="Cancelar" rendered="true" immediate="true" action="Index.xhtml"/>
+          </center>
+        </h:form>
+      </ui:define>
+    </ui:composition>               
+  </h:body>
 </html>
 

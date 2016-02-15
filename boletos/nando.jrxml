@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nando" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="275917f9-1494-4963-92a5-cd07fd8daf67">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="sacado" class="java.lang.String">
+		<fieldDescription><![CDATA[boleto.sacado]]></fieldDescription>
+	</field>
+	<field name="cedente" class="java.lang.String">
+		<fieldDescription><![CDATA[boleto.cedente]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[boleto.valor]]></fieldDescription>
+	</field>
+	<field name="vencimento" class="java.util.Calendar">
+		<fieldDescription><![CDATA[boleto.vencimento]]></fieldDescription>
+	</field>
+	<field name="nossoNumero" class="java.lang.String"/>
+	<field name="localPagamento" class="java.lang.String">
+		<fieldDescription><![CDATA[boleto.localPagamento]]></fieldDescription>
+	</field>
+	<field name="cateira" class="java.lang.String"/>
+	<field name="quantidadeDeMoeda" class="java.lang.String">
+		<fieldDescription><![CDATA[boleto.quantidadeDeMoeda]]></fieldDescription>
+	</field>
+	<field name="especieMoeda" class="java.lang.String">
+		<fieldDescription><![CDATA[boleto.especieMoeda]]></fieldDescription>
+	</field>
+	<field name="instrucao1" class="java.lang.String">
+		<fieldDescription><![CDATA[boleto.instrucao1]]></fieldDescription>
+	</field>
+	<field name="instrucao2" class="java.lang.String"/>
+	<field name="aceite" class="java.lang.String">
+		<fieldDescription><![CDATA[boleto.aceite]]></fieldDescription>
+	</field>
+	<field name="dataProcessamento" class="java.util.Calendar">
+		<fieldDescription><![CDATA[boleto.dataProcessamento]]></fieldDescription>
+	</field>
+	<field name="valorDesconto" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[boleto.valorDesconto]]></fieldDescription>
+	</field>
+	<field name="linhaDigitavel" class="java.lang.String">
+		<fieldDescription><![CDATA[boleto.linhaDigitavek]]></fieldDescription>
+	</field>
+	<field name="codigoDeBarras" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
