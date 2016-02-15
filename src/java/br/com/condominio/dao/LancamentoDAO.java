@@ -145,6 +145,9 @@ public class LancamentoDAO {
       sessao = HibernateUtil.getSessionFactory().openSession();
       transacao = sessao.beginTransaction();
       Criteria criteria = sessao.createCriteria(Lancamento.class);
+      sessao.disableFilter("lancamentosStatusAtivo");
+      sessao.disableFilter("lancamentosTipoDebito");
+      sessao.disableFilter("lancamentosStatusBaixa");
       sessao.enableFilter("lancamentosStatusAtivo").setParameter("statusAtivo", filtroAtivo);
       if (statusTipoDebito != Status.NULO) {
         sessao.enableFilter("lancamentosTipoDebito").setParameter("tipoDebito", statusTipoDebito.toBoolean());

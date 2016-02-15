@@ -3,6 +3,7 @@ package br.com.condominio.controller;
 import br.com.condominio.model.Usuario;
 import br.com.condominio.dao.UsuarioDAO;
 import br.com.condominio.utils.MySQLUtil;
+import br.com.condominio.utils.SessaoJSF;
 import java.sql.SQLException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -73,6 +74,7 @@ public class UsuarioController {
         } catch (SQLException e) {
           e.printStackTrace();
         }
+        SessaoJSF.set(usuario, "usuario");
         return "Index?faces-redirect=true";
       }
     }

@@ -10,6 +10,7 @@ import br.com.condominio.dao.ApartamentoDAO;
 import br.com.condominio.model.Condominio;
 import br.com.condominio.model.Condomino;
 import br.com.condominio.dao.CondominoDAO;
+import br.com.condominio.utils.CpfValidator;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -49,6 +50,10 @@ public class CondominoController {
         if (condomino.getId() == 0){
             if ( VerificaCPF(condomino.getCPF())) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Já Cadastrado", "Contact admin."));
+                return "CadastroCondomino";
+            }
+            if(!CpfValidator.isCPF(condomino.getCPF())) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Por Favor Digite um CPF valido", ""));
                 return "CadastroCondomino";
             }
             return AdicionarCondomino();
