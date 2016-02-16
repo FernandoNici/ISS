@@ -37,7 +37,9 @@
                         </p>
                         <p>
                             <p:outputLabel for="rgsindico" value="RG:"/>
-                            <p:inputMask id="rgsindico" value="#{sindicoController.sindico.rg}" mask="99.999.999-9" required="true"/>
+                            <p:inputText id="rgsindico" value="#{sindicoController.sindico.rg}" required="true">
+                                <f:convertNumber/>
+                            </p:inputText>
 
                             <p:outputLabel for="cpfsindico" value="CPF:"/>
                             <p:inputMask id="cpfsindico" value="#{sindicoController.sindico.cpf}" mask="999.999.999-99" required="true"/>

@@ -51,7 +51,9 @@
 
                         <p>
                             <p:outputLabel for="rgfuncionario" value="RG:"/>
-                            <p:inputMask id="rgfuncionario" value="#{funcionarioController.funcionario.rg}" mask="99.999.999-9" required="true"/>
+                            <p:inputText id="rgfuncionario" value="#{funcionarioController.funcionario.rg}" required="true">
+                                <f:convertNumber/>
+                            </p:inputText>    
 
                             <p:outputLabel for="cpffuncionario" value="CPF:"/>
                             <p:inputMask id="cpffuncionario" value="#{funcionarioController.funcionario.cpf}" mask="999.999.999-99" required="true"/>
